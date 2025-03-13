@@ -1,0 +1,9 @@
+{
+	"confirm_anim": "confirm",
+	"antialiasing": true,
+	"idle_anim": "idle",
+	"position": [48, 3],
+	"scale": 1,
+	"image": "Menu_Pico_Playable_BF",
+	"flipX": false
+}
