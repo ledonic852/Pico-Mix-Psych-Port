@@ -1,0 +1,43 @@
+{
+	"storyName": "Daddy Dearest",
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"weekBefore": "tutorial",
+	"startUnlocked": true,
+	"weekCharacters": [
+		"dad",
+		"pico-playable-bf",
+		"nene-bf"
+	],
+	"songs": [
+		[
+			"Bopeebo (Pico Mix)",
+			"dad",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"Fresh (Pico Mix)",
+			"dad",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"Dad Battle (Pico Mix)",
+			"dad",
+			[
+				146,
+				113,
+				253
+			]
+		]
+	],
+	"hideStoryMode": false,
+	"weekName": "Week 1 (Pico Mix)"
+}

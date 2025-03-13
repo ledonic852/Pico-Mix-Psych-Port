@@ -1,0 +1,9 @@
+{
+	"name": "Pico Mix",
+	"description": "Adds the Pico Mixes of Base Game in Psych Engine",
+	"restart":false,
+	"runsGlobally": false,
+	"color": [65, 60, 174],
+	"discordRPC": "863222024192262205",
+	"iconFramerate": 10
+}
