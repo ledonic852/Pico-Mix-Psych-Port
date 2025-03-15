@@ -97,7 +97,7 @@
 				[14500, 3, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -112,7 +112,7 @@
 				[16000, 5, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -152,7 +152,7 @@
 				[19833.3333333333, 0, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -166,7 +166,7 @@
 				[21166.6666666667, 3, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -179,7 +179,7 @@
 				[22333.3333333333, 3, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -246,7 +246,7 @@
 				[27916.6666666667, 3, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -260,7 +260,7 @@
 				[29166.6666666667, 2, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -274,14 +274,14 @@
 				[30583.3333333333, 1, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
 				[30667.3333333333, 0, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -417,7 +417,7 @@
 				[45333.3333333333, 2, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -431,7 +431,7 @@
 				[46500, 3, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -448,7 +448,7 @@
 				[48000, 0, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -467,7 +467,7 @@
 				[49333.3333333333, 1, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -484,7 +484,7 @@
 				[50583.3333333333, 0, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -506,7 +506,7 @@
 				[52000, 2, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -523,7 +523,7 @@
 				[53333.3333333333, 6, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -574,7 +574,7 @@
 				[57333.3333333333, 1, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -592,7 +592,7 @@
 				[58583.3333333333, 7, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -635,7 +635,7 @@
 				[62666.6666666667, 7, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -736,7 +736,7 @@
 				[70666.3333333333, 0, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -748,7 +748,7 @@
 				[71999.6666666667, 1, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -760,7 +760,7 @@
 				[73333.3333333333, 0, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -772,7 +772,7 @@
 				[74500, 3, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -821,7 +821,7 @@
 				[78500, 1, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [
@@ -838,7 +838,7 @@
 				[79833.3333333333, 3, 0]
 			],
 			"sectionBeats": 4,
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionNotes": [

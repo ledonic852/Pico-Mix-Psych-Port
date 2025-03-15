@@ -1,407 +1,373 @@
 {
 	"events": [
 		[
-			8727,
+			0,
 			[
-				["ZoomCamera", "quadInOut", "64"]
+				["Set Camera Target", "Dad", ""]
 			]
 		],
 		[
-			11545,
+			2909.09090909091,
 			[
-				["SetCameraBop", "2", "1.4"]
+				["Set Camera Target", "BF", ""]
 			]
 		],
 		[
-			11681,
+			5818.18181818182,
 			[
-				["ZoomCamera", "expoOut", "8"]
+				["Set Camera Target", "Dad", ""]
 			]
 		],
 		[
-			21090,
+			8727.27272727273,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Target", "BF", ""],
+				["Set Camera Zoom", "0.8,stage", "64,quadInOut"]
 			]
 		],
 		[
-			23318,
+			11636.3636363636,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Target", "Dad", ""],
+				["Set Camera Zoom", "1,stage", "8,expoOut"],
+				["Set Camera Bop", "2", "1.4"]
 			]
 		],
 		[
-			26227,
+			17454.5454545455,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Target", "BF", ""]
 			]
 		],
 		[
-			29136,
+			21090.9090909091,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Zoom", "1.05,stage", "16,expoOut"]
 			]
 		],
 		[
-			30727,
+			23272.7272727273,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Target", "Dad", ""],
+				["Set Camera Zoom", "1,stage", "16,expoOut"]
+			]
+		],
+		[
+			26181.8181818182,
+			[
+				["Set Camera Target", "Dad,110,20", ""],
+				["Set Camera Zoom", "0.95,stage", "16,expoOut"]
+			]
+		],
+		[
+			29090.9090909091,
+			[
+				["Set Camera Target", "BF", ""],
+				["Set Camera Zoom", "1,stage", "16,expoOut"]
+			]
+		],
+		[
+			30727.2727272727,
+			[
+				["Set Camera Zoom", "1.1,stage", "16,expoOut"]
 			]
 		],
 		[
 			32000,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Zoom", "1,stage", "16,expoOut"]
 			]
 		],
 		[
-			34818,
+			34909.0909090909,
 			[
-				["SetCameraBop", "1", "0.4"]
+				["Set Camera Target", "Dad", ""],
+				["Set Camera Bop", "1", "0.4"]
 			]
 		],
 		[
-			42181,
+			40727.2727272727,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Target", "BF", ""]
 			]
 		],
 		[
-			43545,
+			42181.8181818182,
 			[
-				["SetCameraBop", "1", "0.5"]
+				["Set Camera Zoom", "1.04,stage", "16,expoOut"]
 			]
 		],
 		[
-			43636,
+			43636.3636363637,
 			[
-				["ZoomCamera", "16", "expoOut"]
+				["Set Camera Zoom", "1.08,stage", "16,expoOut"],
+				["Set Camera Bop", "1", "0.5"]
 			]
 		],
 		[
-			44272,
+			44363.6363636364,
 			[
-				["SetCameraBop", "1", "0.6"]
+				["Set Camera Zoom", "1.12,stage", "16,expoOut"],
+				["Set Camera Bop", "1", "0.6"]
 			]
 		],
 		[
-			44363,
+			45090.9090909091,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Zoom", "1.16,stage", "16,expoOut"],
+				["Set Camera Bop", "1", "0.7"]
 			]
 		],
 		[
-			45000,
+			45818.1818181818,
 			[
-				["SetCameraBop", "1", "0.7"]
+				["Set Camera Zoom", "1,stage", "16,expoOut"],
+				["Set Camera Bop", "1", "0"]
 			]
 		],
 		[
-			45090,
+			46545.4545454546,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Target", "Dad", ""],
+				["Set Camera Bop", "2", "1.4"]
 			]
 		],
 		[
-			45727,
+			48000,
 			[
-				["SetCameraBop", "1", "0"]
+				["Set Camera Bop", "2", "0"]
 			]
 		],
 		[
-			45818,
+			49454.5454545455,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Target", "Dad,110,20", ""],
+				["Set Camera Zoom", "0.95,stage", "16,expoOut"],
+				["Set Camera Bop", "2", "2.5"]
 			]
 		],
 		[
-			46454,
+			52363.6363636364,
 			[
-				["SetCameraBop", "2", "1.4"]
+				["Set Camera Target", "BF", ""],
+				["Set Camera Zoom", "1,stage", "16,expoOut"],
+				["Set Camera Bop", "2", "1.8"]
 			]
 		],
 		[
-			47909,
+			53818.1818181818,
 			[
-				["SetCameraBop", "2", "0"]
+				["Set Camera Zoom", "0.95,stage", "16,expoOut"]
 			]
 		],
 		[
-			49363,
+			55272.7272727273,
 			[
-				["SetCameraBop", "2", "2.5"]
+				["Set Camera Zoom", "1,stage", "16,expoOut"]
 			]
 		],
 		[
-			49500,
+			57454.5454545455,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Zoom", "1.04,stage", "16,expoOut"]
 			]
 		],
 		[
-			52272,
+			57818.1818181818,
 			[
-				["SetCameraBop", "2", "1.8"]
+				["Set Camera Zoom", "1.08,stage", "16,expoOut"]
 			]
 		],
 		[
-			52409,
+			58181.8181818182,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Target", "Dad", ""],
+				["Set Camera Zoom", "1,stage", "16,expoOut"],
+				["Set Camera Bop", "2", "2"]
 			]
 		],
 		[
-			53818,
+			59636.3636363637,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Bop", "2", "0"]
 			]
 		],
 		[
-			55272,
+			61090.9090909091,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Target", "Dad,110,20", ""],
+				["Set Camera Zoom", "0.95,stage", "16,expoOut"],
+				["Set Camera Bop", "2", "2.5"]
 			]
 		],
 		[
-			57454,
+			64000,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Target", "BF", ""],
+				["Set Camera Zoom", "1,stage", "16,expoOut"],
+				["Set Camera Bop", "2", "1.8"]
 			]
 		],
 		[
-			57818,
+			65454.5454545455,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Zoom", "0.95,stage", "16,expoOut"]
 			]
 		],
 		[
-			58090,
+			66909.0909090909,
 			[
-				["SetCameraBop", "2", "2"]
+				["Set Camera Zoom", "1,stage", "16,expoOut"]
 			]
 		],
 		[
-			58227,
+			68363.6363636364,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Zoom", "1.05,stage", "16,expoOut"],
+				["Set Camera Bop", "2", "0"]
 			]
 		],
 		[
-			59545,
+			69818.1818181819,
 			[
-				["SetCameraBop", "2", "0"]
+				["Set Camera Target", "Dad", ""],
+				["Set Camera Zoom", "1,stage", "16,expoOut"],
+				["Set Camera Bop", "1", "0.4"]
 			]
 		],
 		[
-			61000,
+			75636.3636363637,
 			[
-				["SetCameraBop", "2", "2.5"]
+				["Set Camera Target", "BF", ""]
 			]
 		],
 		[
-			61136,
+			77090.9090909091,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Zoom", "1.04,stage", "16,expoOut"]
 			]
 		],
 		[
-			63909,
+			78545.4545454546,
 			[
-				["SetCameraBop", "2", "1.8"]
+				["Set Camera Zoom", "1.08,stage", "16,expoOut"],
+				["Set Camera Bop", "1", "0.5"]
 			]
 		],
 		[
-			64045,
+			79272.7272727273,
 			[
-				["ZoomCamera", "expoOut", "16"]
-			]
-		],
-		[
-			65454,
-			[
-				["ZoomCamera", "expoOut", "16"]
-			]
-		],
-		[
-			66909,
-			[
-				["ZoomCamera", "expoOut", "16"]
-			]
-		],
-		[
-			68272,
-			[
-				["SetCameraBop", "2", "0"]
-			]
-		],
-		[
-			68363,
-			[
-				["ZoomCamera", "expoOut", "16"]
-			]
-		],
-		[
-			69727,
-			[
-				["SetCameraBop", "1", "0.4"]
-			]
-		],
-		[
-			69863,
-			[
-				["ZoomCamera", "expoOut", "16"]
-			]
-		],
-		[
-			77090,
-			[
-				["ZoomCamera", "expoOut", "16"]
-			]
-		],
-		[
-			78454,
-			[
-				["SetCameraBop", "1", "0.5"]
-			]
-		],
-		[
-			78545,
-			[
-				["ZoomCamera", "expoOut", "16"]
-			]
-		],
-		[
-			79181,
-			[
-				["SetCameraBop", "1", "0.6"]
-			]
-		],
-		[
-			79272,
-			[
-				["ZoomCamera", "expoOut", "16"]
-			]
-		],
-		[
-			79909,
-			[
-				["SetCameraBop", "1", "0.7"]
+				["Set Camera Zoom", "1.12,stage", "16,expoOut"],
+				["Set Camera Bop", "1", "0.6"]
 			]
 		],
 		[
 			80000,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Zoom", "1.16,stage", "16,expoOut"],
+				["Set Camera Bop", "1", "0.7"]
 			]
 		],
 		[
-			80636,
+			80727.2727272728,
 			[
-				["SetCameraBop", "1", "0"]
+				["Set Camera Zoom", "1.2,stage", "16,expoOut"],
+				["Set Camera Bop", "1", "0"]
 			]
 		],
 		[
-			80727,
+			81090.9090909091,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Zoom", "1.1,stage", "16,expoOut"]
 			]
 		],
 		[
-			81090,
+			81454.5454545455,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Target", "Dad", ""],
+				["Set Camera Zoom", "1,stage", "16,expoOut"],
+				["Set Camera Bop", "2", "2"]
 			]
 		],
 		[
-			81363,
+			84909.090909091,
 			[
-				["SetCameraBop", "2", "2"]
+				["Set Camera Target", "Dad,110,20", ""],
+				["Set Camera Zoom", "0.95,stage", "16,expoOut"]
 			]
 		],
 		[
-			81500,
+			87272.7272727273,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Target", "BF", ""],
+				["Set Camera Zoom", "1,stage", "16,expoOut"]
 			]
 		],
 		[
-			84954,
+			88727.2727272728,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Zoom", "1.05,stage", "16,expoOut"]
 			]
 		],
 		[
-			87318,
+			90181.8181818182,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Target", "Dad,110,20", ""],
+				["Set Camera Zoom", "0.95,stage", "16,expoOut"]
 			]
 		],
 		[
-			88727,
+			93090.9090909091,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Target", "Dad", ""],
+				["Set Camera Zoom", "1,stage", "16,expoOut"]
 			]
 		],
 		[
-			90227,
+			96000.0000000001,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Target", "Dad,110,20", ""],
+				["Set Camera Zoom", "0.95,stage", "16,expoOut"]
 			]
 		],
 		[
-			93136,
+			98909.090909091,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Target", "BF", ""],
+				["Set Camera Zoom", "1,stage", "16,expoOut"]
 			]
 		],
 		[
-			96226,
+			101090.909090909,
 			[
-				["ZoomCamera", "16", "expoOut"]
+				["Set Camera Zoom", "1.05,stage", "16,expoOut"]
 			]
 		],
 		[
-			98954,
+			101818.181818182,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Zoom", "1,stage", "16,expoOut"]
 			]
 		],
 		[
-			101090,
+			103272.727272727,
 			[
-				["ZoomCamera", "expoOut", "16"]
-			]
-		],
-		[
-			101818,
-			[
-				["ZoomCamera", "expoOut", "16"]
-			]
-		],
-		[
-			103181,
-			[
-				["SetCameraBop", "1", "1"]
-			]
-		],
-		[
-			103272,
-			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Zoom", "0.95,stage", "16,expoOut"],
+				["Set Camera Bop", "1", "1"]
 			]
 		],
 		[
 			104000,
 			[
-				["ZoomCamera", "expoOut", "16"]
+				["Set Camera Zoom", "0.9,stage", "16,expoOut"]
 			]
 		],
 		[
-			104636,
+			104727.272727273,
 			[
-				["SetCameraBop", "1", "0"]
+				["Set Camera Bop", "1", "0"]
 			]
 		]
 	],
-	"format": "psych_v1_convert"
+	"format": "psych_v1"
 }

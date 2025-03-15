@@ -7,14 +7,14 @@
 			"sectionNotes": [
 				[1200, 3, 250]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
 			"sectionNotes": [
 				[2800, 2, 250]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -23,7 +23,7 @@
 				[4400, 0, 0],
 				[4600, 1, 0]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -31,7 +31,7 @@
 				[4800, 3, 0],
 				[6000, 3, 0]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -69,7 +69,7 @@
 				[10800, 0, 0],
 				[11000, 3, 0]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -81,7 +81,7 @@
 				[12400, 3, 0],
 				[12600, 0, 250]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -127,7 +127,7 @@
 				[17000, 0, 0],
 				[17200, 1, 250]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -140,7 +140,7 @@
 				[18800, 2, 250, "Hey!"],
 				[19000, 7, 0]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -212,7 +212,7 @@
 				[27000, 2, 0],
 				[27100, 0, 0]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -227,7 +227,7 @@
 				[28300, 1, 0],
 				[28300, 0, 0]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -239,7 +239,7 @@
 				[29800, 1, 0],
 				[30000, 3, 0]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -252,7 +252,7 @@
 				[31799, 5, 0],
 				[31999, 4, 0]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -289,7 +289,7 @@
 				[36400, 0, 0],
 				[36600, 3, 0]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -301,7 +301,7 @@
 				[38000, 1, 0],
 				[38200, 3, 250]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -347,7 +347,7 @@
 				[42600, 0, 0],
 				[42800, 1, 0]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -360,7 +360,7 @@
 				[44400, 2, 250, "Hey!"],
 				[44600, 7, 0]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -447,7 +447,7 @@
 				[52600, 2, 0],
 				[52700, 0, 0]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -462,7 +462,7 @@
 				[53900, 1, 0],
 				[53900, 0, 0]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -474,7 +474,7 @@
 				[55400, 1, 0],
 				[55600, 3, 0]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -485,7 +485,7 @@
 				[56800, 3, 250],
 				[57200, 0, 250]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -557,7 +557,7 @@
 				[65200, 1, 0],
 				[65200, 3, 0]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -570,7 +570,7 @@
 				[66800, 2, 0],
 				[66800, 0, 0]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -583,7 +583,7 @@
 				[68400, 1, 0],
 				[68400, 2, 0]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -595,7 +595,7 @@
 				[69800, 0, 0],
 				[70000, 3, 250]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -670,7 +670,7 @@
 				[78000, 3, 0],
 				[78200, 1, 0]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -686,7 +686,7 @@
 				[79600, 2, 0],
 				[79800, 0, 0]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
@@ -703,7 +703,7 @@
 				[81200, 1, 0],
 				[81400, 0, 0]
 			],
-			"mustHitSection": true
+			"mustHitSection": false
 		},
 		{
 			"sectionBeats": 4,
