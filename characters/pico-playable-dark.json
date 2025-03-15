@@ -73,6 +73,14 @@
 			"name": "Pico NOTE LEFT miss"
 		},
 		{
+			"offsets": [39, 2],
+			"loop": false,
+			"fps": 24,
+			"anim": "hey",
+			"indices": [],
+			"name": "Pico HEY dark"
+		},
+		{
 			"loop": false,
 			"offsets": [40, -1],
 			"anim": "burpShit",
@@ -107,7 +115,7 @@
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
-	"image": "characters/pico_dark",
+	"image": "characters/pico_dark, characters/picoHey_dark",
 	"position": [0, 300],
 	"healthicon": "pico",
 	"flip_x": true,

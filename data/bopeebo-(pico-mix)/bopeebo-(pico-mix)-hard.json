@@ -1,9 +1,4 @@
 {
-	"generatedBy": "Psych Engine v1.0.3 - Chart Editor V-Slice Importer",
-	"charter": "Fabs + Spazkid",
-	"artist": "ThatAndyGuy (feat. Saruky)",
-	"speed": 2.3,
-	"stage": "stageErect",
 	"player1": "pico-playable",
 	"player2": "dad",
 	"events": [],
@@ -22,7 +17,7 @@
 				[2400, 1, 525],
 				[3000, 2, 0],
 				[3600, 1, 525],
-				[4200, 3, 0]
+				[4200, 3, 0, "No Animation"]
 			],
 			"sectionBeats": 4,
 			"mustHitSection": true
@@ -45,7 +40,7 @@
 				[8100, 2, 0],
 				[8250, 0, 0],
 				[8400, 3, 0],
-				[9000, 1, 0]
+				[9000, 1, 0, "No Animation"]
 			],
 			"sectionBeats": 4,
 			"mustHitSection": true
@@ -87,7 +82,7 @@
 				[14700, 7, 0],
 				[15300, 3, 0],
 				[15300, 5, 0],
-				[15600, 6, 562.5],
+				[15600, 6, 600],
 				[15600, 2, 0],
 				[15900, 0, 0],
 				[16500, 1, 225]
@@ -104,7 +99,7 @@
 				[17700, 1, 0],
 				[18000, 0, 0],
 				[18300, 2, 0],
-				[18600, 0, 450]
+				[18600, 0, 450, "No Animation"]
 			],
 			"sectionBeats": 4,
 			"mustHitSection": true
@@ -128,7 +123,7 @@
 				[22800, 0, 0],
 				[22950, 3, 0],
 				[23250, 0, 0],
-				[23400, 2, 375]
+				[23400, 2, 375, "No Animation"]
 			],
 			"sectionBeats": 4,
 			"mustHitSection": true
@@ -155,7 +150,7 @@
 				[27300, 1, 0],
 				[27600, 0, 0],
 				[27900, 1, 225],
-				[28200, 2, 375]
+				[28200, 2, 375, "No Animation"]
 			],
 			"sectionBeats": 4,
 			"mustHitSection": true
@@ -182,8 +177,8 @@
 				[32400, 4, 0],
 				[32550, 0, 0],
 				[32700, 1, 0],
-				[33000, 3, 0],
 				[33000, 7, 0],
+				[33000, 3, 0],
 				[33075, 6, 300],
 				[33450, 4, 0],
 				[33525, 6, 0]
@@ -228,7 +223,7 @@
 				[37200, 3, 225],
 				[37500, 6, 0],
 				[37500, 0, 225],
-				[37800, 2, 375],
+				[37800, 2, 375, "No Animation"],
 				[37800, 7, 0],
 				[37875, 5, 0],
 				[38100, 4, 0]
@@ -266,7 +261,7 @@
 				[42150, 4, 0],
 				[42300, 0, 0],
 				[42300, 5, 0],
-				[42600, 2, 375],
+				[42600, 2, 375, "No Animation"],
 				[42750, 7, 0],
 				[42900, 6, 0],
 				[43050, 4, 0]
@@ -276,7 +271,7 @@
 		},
 		{
 			"sectionNotes": [
-				[43200, 5, 187.5],
+				[43200, 5, 225],
 				[43200, 1, 225],
 				[43500, 0, 0],
 				[43650, 3, 0],
@@ -310,7 +305,7 @@
 				[46800, 3, 0],
 				[46950, 0, 0],
 				[47100, 3, 0],
-				[47400, 2, 375]
+				[47400, 2, 375, "No Animation"]
 			],
 			"sectionBeats": 4,
 			"mustHitSection": true
@@ -318,7 +313,7 @@
 		{
 			"sectionNotes": [
 				[48000, 6, 450],
-				[48600, 7, 337.5],
+				[48600, 7, 375],
 				[49200, 5, 525]
 			],
 			"sectionBeats": 4,
@@ -366,7 +361,7 @@
 				[56100, 1, 0],
 				[56400, 3, 225],
 				[56700, 0, 225],
-				[57000, 2, 375]
+				[57000, 2, 375, "No Animation"]
 			],
 			"sectionBeats": 4,
 			"mustHitSection": true
@@ -400,7 +395,7 @@
 				[61050, 1, 0],
 				[61200, 2, 0],
 				[61500, 1, 225],
-				[61800, 3, 0],
+				[61800, 3, 0, "No Animation"],
 				[62100, 6, 0],
 				[62100, 1, 0],
 				[62250, 0, 0]
@@ -440,7 +435,7 @@
 				[65850, 0, 0],
 				[66000, 2, 0],
 				[66300, 1, 225],
-				[66600, 3, 375]
+				[66600, 3, 375, "No Animation"]
 			],
 			"sectionBeats": 4,
 			"mustHitSection": true
@@ -455,7 +450,7 @@
 				[67800, 5, 0],
 				[68100, 2, 0],
 				[68100, 7, 0],
-				[68400, 5, 562.5],
+				[68400, 5, 600],
 				[68400, 0, 0],
 				[68700, 1, 225],
 				[69000, 3, 0],
@@ -521,7 +516,7 @@
 				[75750, 1, 0],
 				[75900, 3, 0],
 				[76050, 1, 0],
-				[76200, 2, 375]
+				[76200, 2, 375, "No Animation"]
 			],
 			"sectionBeats": 4,
 			"mustHitSection": true
@@ -549,12 +544,26 @@
 			],
 			"sectionBeats": 4,
 			"mustHitSection": true
+		},
+		{
+			"sectionBeats": 4,
+			"sectionNotes": [],
+			"gfSection": false,
+			"altAnim": false,
+			"mustHitSection": true,
+			"changeBPM": false,
+			"bpm": 100
 		}
 	],
 	"gfVersion": "nene",
-	"format": "psych_v1_convert",
-	"bpm": 100,
-	"needsVoices": true,
+	"charter": "Fabs + Spazkid",
+	"offset": 0,
 	"song": "Bopeebo (Pico Mix)",
-	"offset": 0
+	"stage": "stageErect",
+	"generatedBy": "Psych Engine v1.0.3 - Chart Editor V-Slice Importer",
+	"needsVoices": true,
+	"artist": "ThatAndyGuy (feat. Saruky)",
+	"speed": 2.3,
+	"format": "psych_v1_convert",
+	"bpm": 100
 }
