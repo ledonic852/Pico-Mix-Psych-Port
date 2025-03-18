@@ -2,8 +2,9 @@
 	"storyName": "RED SNOW",
 	"hideFreeplay": false,
 	"weekBackground": "christmas",
-	"weekBefore": "week4",
-	"startUnlocked": true,
+	"weekBefore": "weekend1",
+	"startUnlocked": false,
+	"hiddenUntilUnlocked": true,
 	"weekCharacters": [
 		"parents-christmas",
 		"pico-playable-bf",
@@ -20,6 +21,6 @@
 			]
 		]
 	],
-	"hideStoryMode": false,
+	"hideStoryMode": true,
 	"weekName": "Week 5 (Pico Mix)"
 }

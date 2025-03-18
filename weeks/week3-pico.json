@@ -2,8 +2,9 @@
 	"storyName": "PICO",
 	"hideFreeplay": false,
 	"weekBackground": "philly",
-	"weekBefore": "week2",
-	"startUnlocked": true,
+	"weekBefore": "weekend1",
+	"startUnlocked": false,
+	"hiddenUntilUnlocked": true,
 	"weekCharacters": [
 		"pico",
 		"pico-playable-bf",
@@ -38,6 +39,6 @@
 			]
 		]
 	],
-	"hideStoryMode": false,
+	"hideStoryMode": true,
 	"weekName": "Week 3 (Pico Mix)"
 }

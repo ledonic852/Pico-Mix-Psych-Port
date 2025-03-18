@@ -2,8 +2,9 @@
 	"storyName": "Daddy Dearest",
 	"hideFreeplay": false,
 	"weekBackground": "stage",
-	"weekBefore": "tutorial",
-	"startUnlocked": true,
+	"weekBefore": "weekend1",
+	"startUnlocked": false,
+	"hiddenUntilUnlocked": true,
 	"weekCharacters": [
 		"dad",
 		"pico-playable-bf",
@@ -38,6 +39,6 @@
 			]
 		]
 	],
-	"hideStoryMode": false,
+	"hideStoryMode": true,
 	"weekName": "Week 1 (Pico Mix)"
 }

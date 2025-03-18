@@ -14,8 +14,6 @@
 
 // ALL UNUSED THINGS WERE DELETED FROM ORIGINAL SHADER!!!
 
-//#define screenCoord openfl_TextureCoordv
-vec2 screenCoord = openfl_TextureCoordv;
 uniform vec2 uScreenResolution;
 uniform vec4 uCameraBounds;
 uniform vec4 uFrameBounds;
@@ -53,7 +51,7 @@ vec2 worldToScreen(vec2 worldCoord)
 
 vec2 bitmapCoordScale()
 {
-	return openfl_TextureCoordv / screenCoord;
+	return openfl_TextureCoordv / openfl_TextureCoordv;
 }
 
 vec2 screenToBitmap(vec2 screenCoord)
@@ -204,7 +202,7 @@ float rainDist(vec2 p, float scale, float intensity) {
 }
 
 void main() {
-	vec2 wpos = screenToWorld(screenCoord);
+	vec2 wpos = screenToWorld(openfl_TextureCoordv);
 	if (uSpriteMode) wpos = screenToWorld(screenToFrame(openfl_TextureCoordv));
 	vec2 origWpos = wpos;
 	float intensity = uIntensity;

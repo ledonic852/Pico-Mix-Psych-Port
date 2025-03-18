@@ -2,8 +2,9 @@
 	"storyName": "Spooky Month",
 	"hideFreeplay": false,
 	"weekBackground": "halloween",
-	"weekBefore": "week1",
-	"startUnlocked": true,
+	"weekBefore": "weekend1",
+	"startUnlocked": false,
+	"hiddenUntilUnlocked": true,
 	"weekCharacters": [
 		"spooky",
 		"pico-playable-bf",
@@ -29,6 +30,6 @@
 			]
 		]
 	],
-	"hideStoryMode": false,
+	"hideStoryMode": true,
 	"weekName": "Week 2 (Pico Mix)"
 }

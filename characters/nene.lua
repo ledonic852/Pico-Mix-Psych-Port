@@ -8,9 +8,9 @@ function onCreate()
         If that's the case, you can manually choose which option to pick by putting a string from 'animOptions'.
     ]]
     for optionName, optionStr in pairs(animOptions) do
-        if getModSetting('neneComboAnim') == optionName then
+        if getModSetting('neneComboAnim', currentModDirectory) == optionName then
             neneComboAnim = optionStr
-        elseif getModSetting('neneComboAnim') == nil then
+        elseif getModSetting('neneComboAnim', currentModDirectory) == nil then
             neneComboAnim = 'none'
         end
     end

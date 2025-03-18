@@ -2,13 +2,14 @@
 	"storyName": "Tankman",
 	"hideFreeplay": false,
 	"weekBackground": "tank",
-	"weekBefore": "week6",
+	"weekBefore": "weekend1",
 	"freeplayColor": [
 		146,
 		113,
 		253
 	],
-	"startUnlocked": true,
+	"startUnlocked": false,
+	"hiddenUntilUnlocked": true,
 	"weekCharacters": [
 		"tankman",
 		"pico-playable-bf",
@@ -34,6 +35,6 @@
 			]
 		]
 	],
-	"hideStoryMode": false,
+	"hideStoryMode": true,
 	"weekName": "Week 7 (Pico Mix)"
 }
