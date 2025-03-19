@@ -2,9 +2,8 @@
 	"storyName": "Daddy Dearest",
 	"hideFreeplay": false,
 	"weekBackground": "stage",
-	"weekBefore": "weekend1",
-	"startUnlocked": false,
-	"hiddenUntilUnlocked": true,
+	"weekBefore": "tutorial",
+ 	"startUnlocked": true,
 	"weekCharacters": [
 		"dad",
 		"pico-playable-bf",

@@ -2,9 +2,8 @@
 	"storyName": "PICO",
 	"hideFreeplay": false,
 	"weekBackground": "philly",
-	"weekBefore": "weekend1",
-	"startUnlocked": false,
-	"hiddenUntilUnlocked": true,
+	"weekBefore": "week2",
+	"startUnlocked": true,
 	"weekCharacters": [
 		"pico",
 		"pico-playable-bf",
