@@ -85,12 +85,14 @@ end
 
 local stopCountdown = true
 function onStartCountdown()
+    if seenCutscene == true or isStoryMode == true then
+        setUpFinishedCutscene()
+        stopCountdown = false
+    end
     if seenCutscene == false and stopCountdown == true then
         setProperty('camHUD.alpha', 0)
         playCutscene()
         return Function_Stop
-    else
-        setUpFinishedCutscene()
     end
 end
 
@@ -322,6 +324,30 @@ function onTimerCompleted(tag, loops, loopsLeft)
     end
     if tag == 'goBackToMenu' then
         endSong()
+    end
+end
+
+function onEvent(eventName, value1, value2, strumTime)
+    if eventName == 'Philly Glow' then
+        if value1 == '0' then
+            for i, object in ipairs({'dopplegangerPlayer', 'dopplegangerOpponent', 'cigarette', 'bloodPool'}) do
+                setProperty(object..'.color', 0xFFFFFF)
+                if shadersEnabled == true then
+                    setSpriteShader(object, 'adjustColor')
+                    setShaderFloat(object, 'hue', -26)
+                    setShaderFloat(object, 'saturation', -16)
+                    setShaderFloat(object, 'contrast', 0)
+                    setShaderFloat(object, 'brightness', -5)
+                end
+            end
+        elseif value1 == '1' then
+            for i, object in ipairs({'dopplegangerPlayer', 'dopplegangerOpponent', 'cigarette', 'bloodPool'}) do
+                if shadersEnabled == true then
+                    removeSpriteShader(object)
+                end
+                setProperty(object..'.color', getProperty('boyfriend.color'))
+            end
+        end
     end
 end
 

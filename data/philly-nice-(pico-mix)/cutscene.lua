@@ -85,12 +85,14 @@ end
 
 local stopCountdown = true
 function onStartCountdown()
+    if seenCutscene == true or isStoryMode == true then
+        setUpFinishedCutscene()
+        stopCountdown = false
+    end
     if seenCutscene == false and stopCountdown == true then
         setProperty('camHUD.alpha', 0)
         playCutscene()
         return Function_Stop
-    else
-        setUpFinishedCutscene()
     end
 end
 
