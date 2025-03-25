@@ -2,8 +2,8 @@
     If you plan on using this note type in another mod, make sure to follow these instructions:
 
     If you're on 1.0 or higher:
-    Just go into Character Editor and add the censor animations by naming them like the sing anims and add '-censor'.
-    Ex: If the animation is for the right note, then name it 'singRIGHT-censor'.
+    Just go into Character Editor and add the censor animations by naming them like the sing anims and add 'censor'.
+    Ex: If the animation is for the right note, then name it 'singRIGHTcensor'.
 
     If you're on 0.7.3 or lower:
     1) The image and .XML files must be placed in 'YourModName/images/characters'.
@@ -41,8 +41,8 @@ local showCensorDadSprite = false
 local noteDirection = {'LEFT', 'DOWN', 'UP', 'RIGHT'}
 function goodNoteHit(membersIndex, noteData, noteType, isSustainNote)
     if noteType == 'Censor' then
-        if callMethod('boyfriend.animOffsets.exists', {'sing'..noteDirection[noteData + 1]..'-censor'}) then
-            playAnim('boyfriend', 'sing'..noteDirection[noteData + 1]..'-censor')
+        if callMethod('boyfriend.animOffsets.exists', {'sing'..noteDirection[noteData + 1]..'censor'}) then
+            playAnim('boyfriend', 'sing'..noteDirection[noteData + 1]..'censor')
             setProperty('boyfriend.specialAnim', true)
         else
             makeCensorSprite(noteData, false)
@@ -52,8 +52,8 @@ end
 
 function opponentNoteHit(membersIndex, noteData, noteType, isSustainNote)
     if noteType == 'Censor' then
-        if callMethod('dad.animOffsets.exists', {'sing'..noteDirection[noteData + 1]..'-censor'}) then
-            playAnim('dad', 'sing'..noteDirection[noteData + 1]..'-censor')
+        if callMethod('dad.animOffsets.exists', {'sing'..noteDirection[noteData + 1]..'censor'}) then
+            playAnim('dad', 'sing'..noteDirection[noteData + 1]..'censor')
             setProperty('dad.specialAnim', true)
         else
             makeCensorSprite(noteData, true)

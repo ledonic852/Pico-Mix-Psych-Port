@@ -28,7 +28,7 @@
 			"offsets": [21, 27],
 			"loop": false,
 			"fps": 24,
-			"anim": "singUP-censor",
+			"anim": "singUPcensor",
 			"indices": [],
 			"name": "pico swear up"
 		},
@@ -36,7 +36,7 @@
 			"offsets": [84, -80],
 			"loop": false,
 			"fps": 24,
-			"anim": "singDOWN-censor",
+			"anim": "singDOWNcensor",
 			"indices": [],
 			"name": "pico swear down"
 		},
@@ -75,7 +75,7 @@
 		{
 			"loop": false,
 			"offsets": [-48, 2],
-			"anim": "singRIGHT-censor",
+			"anim": "singRIGHTcensor",
 			"fps": 24,
 			"name": "pico swear right",
 			"indices": []
@@ -83,7 +83,7 @@
 		{
 			"loop": false,
 			"offsets": [85, -10],
-			"anim": "singLEFT-censor",
+			"anim": "singLEFTcensor",
 			"fps": 24,
 			"name": "pico swear left",
 			"indices": []
