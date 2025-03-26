@@ -1,341 +1,321 @@
 {
 	"events": [
 		[
-			46,
+			0,
 			[
-				["ZoomCamera", "32", "expoOut"]
-			]
-		],
-		[
-			93.1621621621634,
-			[
-				["SetCameraBop", "1", "0.8"]
+				["Set Camera Target", "Dad", ""],
+				["Set Camera Zoom", "1.05,stage", "32,expoOut"],
+				["Set Camera Bop", "1", "0.8"]
 			]
 		],
 		[
 			1500,
 			[
-				["PlayAnimation", "dad", "augh"]
+				["Set Camera Target", "BF", ""],
+				["Play Animation", "argh", "Dad"]
+			]
+		],
+		[
+			3000,
+			[
+				["Set Camera Target", "Dad", ""]
+			]
+		],
+		[
+			4500,
+			[
+				["Set Camera Target", "BF", ""]
 			]
 		],
 		[
 			5625,
 			[
-				["PlayAnimation", "dad", "ugh"]
+				["Play Animation", "singUP-alt", "Dad"]
 			]
 		],
 		[
-			5906.16216216216,
+			6000,
 			[
-				["SetCameraBop", "2", "1.5"]
-			]
-		],
-		[
-			6046,
-			[
-				["ZoomCamera", "32", "expoOut"]
-			]
-		],
-		[
-			10312.1621621622,
-			[
-				["SetCameraBop", "2", "0"]
+				["Set Camera Target", "Dad,180,-10", ""],
+				["Set Camera Zoom", "1,stage", "32,expoOut"],
+				["Set Camera Bop", "2", "1.5"]
 			]
 		],
 		[
 			10500,
 			[
-				["PlayAnimation", "dad", "laugh"]
+				["Set Camera Target", "Dad", ""],
+				["Set Camera Zoom", "1.05,stage", "32,expoOut"],
+				["Set Camera Bop", "2", "0"],
+				["Play Animation", "laugh", "Dad"]
 			]
 		],
 		[
-			10546,
+			13875,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Target", "Dad,180,-10", ""],
+				["Set Camera Zoom", "1,stage", "32,expoOut"]
 			]
 		],
 		[
-			13921,
+			15000,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Target", "Dad", ""],
+				["Set Camera Zoom", "1.05,stage", "32,expoOut"],
+				["Set Camera Bop", "2", "1.5"]
 			]
 		],
 		[
-			14859.1621621622,
+			16875,
 			[
-				["SetCameraBop", "2", "1.5"]
+				["Set Camera Target", "Dad,180,-10", ""],
+				["Set Camera Zoom", "1,stage", "32,expoOut"]
 			]
 		],
 		[
-			15046,
+			18000,
 			[
-				["ZoomCamera", "32", "expoOut"]
-			]
-		],
-		[
-			16921,
-			[
-				["ZoomCamera", "32", "expoOut"]
-			]
-		],
-		[
-			18046,
-			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Target", "BF", ""],
+				["Set Camera Zoom", "1.05,stage", "32,expoOut"]
 			]
 		],
 		[
 			21000,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Zoom", "1.1,stage", "32,expoOut"]
 			]
 		],
 		[
-			24046,
+			24000,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Target", "Dad", ""],
+				["Set Camera Zoom", "1.05,stage", "32,expoOut"]
 			]
 		],
 		[
-			30421,
+			30375,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Target", "Dad,180,-10", ""],
+				["Set Camera Zoom", "1,stage", "32,expoOut"]
 			]
 		],
 		[
-			33046,
+			33000,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Target", "BF", ""],
+				["Set Camera Zoom", "1.05,stage", "32,expoOut"]
 			]
 		],
 		[
-			35906.1621621622,
+			36000,
 			[
-				["SetCameraBop", "1", "0.8"]
+				["Set Camera Target", "Dad", ""],
+				["Set Camera Bop", "1", "0.8"]
 			]
 		],
 		[
 			37500,
 			[
-				["PlayAnimation", "dad", "ugh"]
+				["Play Animation", "singUP-alt", "Dad"]
+			]
+		],
+		[
+			42000,
+			[
+				["Set Camera Target", "BF", ""]
 			]
 		],
 		[
 			43500,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Zoom", "1.1,stage", "32,expoOut"]
 			]
 		],
 		[
 			44625,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Zoom", "1.05,stage", "32,expoOut"]
 			]
 		],
 		[
-			45046,
+			45000,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Target", "Dad,180,-10", ""],
+				["Set Camera Zoom", "1,stage", "32,expoOut"]
 			]
 		],
 		[
-			47906.1621621622,
+			48000,
 			[
-				["SetCameraBop", "2", "1.5"]
+				["Set Camera Target", "Dad", ""],
+				["Set Camera Zoom", "1.04,stage", "32,expoOut"],
+				["Set Camera Bop", "2", "1.5"]
 			]
 		],
 		[
-			48046,
+			49031.25,
 			[
-				["ZoomCamera", "32", "expoOut"]
-			]
-		],
-		[
-			49080,
-			[
-				["PlayAnimation", "boyfriend", "false"]
+				["Play Animation", "burpSmile", "BF"]
 			]
 		],
 		[
 			49125,
 			[
-				["ZoomCamera", "32", "expoOut"]
-			]
-		],
-		[
-			49453,
-			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Target", "BF,50", "16,expoOut"],
+				["Set Camera Zoom", "1.08,stage", "32,expoOut"]
 			]
 		],
 		[
 			49500,
 			[
-				["PlayAnimation", "dad", "augh"]
-			]
-		],
-		[
-			50203,
-			[
-				["PlayAnimation", "dad", "beat it"]
+				["Set Camera Target", "Dad", "16,expoOut"],
+				["Set Camera Zoom", "1.04,stage", "32,expoOut"],
+				["Play Animation", "argh", "Dad"]
 			]
 		],
 		[
 			50250,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Zoom", "1.1,stage", "32,expoOut"],
+				["Play Animation", "beatIT", "Dad"]
 			]
 		],
 		[
 			51000,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Zoom", "1.05,stage", "32,expoOut"]
 			]
 		],
 		[
-			53906.1621621622,
+			54000,
 			[
-				["SetCameraBop", "1", "0.8"]
+				["Set Camera Target", "Dad,180,-10", ""],
+				["Set Camera Zoom", "1,stage", "32,expoOut"],
+				["Set Camera Bop", "1", "0.8"]
 			]
 		],
 		[
-			54046,
+			55500,
 			[
-				["ZoomCamera", "32", "expoOut"]
-			]
-		],
-		[
-			55406.1621621622,
-			[
-				["SetCameraBop", "2", "1.5"]
-			]
-		],
-		[
-			55546,
-			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Target", "BF", ""],
+				["Set Camera Zoom", "1.05,stage", "32,expoOut"],
+				["Set Camera Bop", "2", "1.5"]
 			]
 		],
 		[
 			57000,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Zoom", "1.1,stage", "32,expoOut"]
 			]
 		],
 		[
 			58500,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Zoom", "1.05,stage", "32,expoOut"]
 			]
 		],
 		[
-			59906.1621621622,
+			60000,
 			[
-				["SetCameraBop", "1", "0.8"]
+				["Set Camera Target", "Dad,180,-10", ""],
+				["Set Camera Zoom", "1,stage", "32,expoOut"],
+				["Set Camera Bop", "1", "0.8"]
 			]
 		],
 		[
-			60046,
+			63000,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Bop", "2", "1.5"]
 			]
 		],
 		[
-			62906.1621621622,
+			66000,
 			[
-				["SetCameraBop", "2", "1.5"]
-			]
-		],
-		[
-			66046,
-			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Target", "BF", ""],
+				["Set Camera Zoom", "1.05,stage", "32,expoOut"]
 			]
 		],
 		[
 			66750,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Zoom", "1,stage", "32,expoOut"]
 			]
 		],
 		[
 			67500,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Zoom", "1.04,stage", "32,expoOut"]
 			]
 		],
 		[
 			68250,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Zoom", "1.08,stage", "32,expoOut"]
 			]
 		],
 		[
 			69000,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Zoom", "1.12,stage", "32,expoOut"]
 			]
 		],
 		[
 			69750,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Zoom", "1.16,stage", "32,expoOut"]
 			]
 		],
 		[
 			70500,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Zoom", "1.25,stage", "32,expoOut"]
 			]
 		],
 		[
-			71906.1621621622,
+			72000,
 			[
-				["SetCameraBop", "1", "0.8"]
-			]
-		],
-		[
-			72046,
-			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Target", "Dad,180,-10", ""],
+				["Set Camera Zoom", "1,stage", "32,expoOut"],
+				["Set Camera Bop", "1", "0.8"]
 			]
 		],
 		[
 			77625,
 			[
-				["PlayAnimation", "ugh", "false"]
+				["Play Animation", "singUP-alt", "Dad"]
 			]
 		],
 		[
-			78046,
+			78000,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Target", "BF", ""],
+				["Set Camera Zoom", "1.05,stage", "32,expoOut"]
 			]
 		],
 		[
 			79500,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Zoom", "1.1,stage", "32,expoOut"]
 			]
 		],
 		[
 			81000,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Zoom", "1.05,stage", "32,expoOut"]
 			]
 		],
 		[
 			82500,
 			[
-				["ZoomCamera", "32", "expoOut"]
+				["Set Camera Zoom", "1.1,stage", "32,expoOut"]
 			]
 		],
 		[
-			83906.1621621622,
+			84000,
 			[
-				["SetCameraBop", "1", "0"]
+				["Set Camera Bop", "1", "0"]
 			]
 		]
 	],
-	"format": "psych_v1_convert"
+	"format": "psych_v1"
 }
