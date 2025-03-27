@@ -25,8 +25,15 @@ end
     Go check the Abot Speaker's script for more information at line 217.
 ]]
 function onCreatePost()
-    addLuaScript('characters/abot-speaker')
-    callScript('characters/abot-speaker', 'createSpeaker', {'nene', -35, 325}) -- {characterName, offsetX, offsetY}
+    if curStage == 'phillyStreets' or curStage == 'phillyBlazin' then
+        if gfName == 'nene' then
+            setCharacterX('gf', getCharacterX('gf') - 60)
+            setCharacterY('gf', getCharacterY('gf') + 200)
+        end
+    else
+        addLuaScript('characters/abot-speaker')
+        callScript('characters/abot-speaker', 'createSpeaker', {'nene', -35, 325}) -- {characterName, offsetX, offsetY}
+    end
 end
 
 local comboAnimActive = true

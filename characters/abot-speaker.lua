@@ -13,6 +13,20 @@ local propertyTracker = {
     {'visible', nil}
 }
 
+local visualizerActive = nil
+function onCreate()
+    --[[
+        This is how the script recognizes which option you chose to use.
+        However, if you decide to take Abot inside another mod,
+        the 'visualizerActive' variable will default to 'true' to avoid any bugs or issues.
+    ]]
+    if getModSetting('visualizerActive', currentModDirectory) == nil then
+        visualizerActive = true
+    else
+        visualizerActive = getModSetting('visualizerActive', currentModDirectory)
+    end
+end
+
 function createSpeaker(attachedCharacter, offsetX, offsetY)
     characterName = attachedCharacter
     offsetData = {offsetX, offsetY}
@@ -32,25 +46,45 @@ function createSpeaker(attachedCharacter, offsetX, offsetY)
         setProperty('AbotSpeaker.eyes.anim.curFrame', getProperty('AbotSpeaker.eyes.anim.length') - 1)
     end
 
-    if characterType ~= '' then
-        runHaxeCode([[
-            function startVisualizer() getLuaObject('AbotSpeaker').snd = FlxG.sound.music;
-            function speakerShaderCheck() return getLuaObject('AbotSpeaker').speaker.shader == ]]..characterType..[[.shader;
-            function applySpeakerShader() {
-                var abot = getLuaObject('AbotSpeaker');
-                for (object in [abot.speaker, abot.bg, abot.eyes, abot.eyeBg]) {
-                    object.shader = ]]..characterType..[[.shader;
-                }
-                for (i in 0...abot.vizSprites.length) {
-                    abot.vizSprites[i].shader = ]]..characterType..[[.shader;
-                }
-            }
-        ]])
-    else
-        runHaxeCode([[
-            function startVisualizer() getLuaObject('AbotSpeaker').snd = FlxG.sound.music;
-        ]])
+    if visualizerActive == false then
+        for i = 0, 6 do
+            callMethod('AbotSpeaker.vizSprites['..i..'].animation.addByPrefix', {'idle', 'viz'..(i + 1), 24, false})
+        end
     end
+
+    runHaxeCode([[
+        var abot = getLuaObject('AbotSpeaker');
+        function startVisualizer() abot.snd = FlxG.sound.music;
+        function stopVisualizer() {
+            abot.analyzer = null;
+            for (i in 0...abot.vizSprites.length) {
+                abot.vizSprites[i].animation.curAnim.finish();
+            }
+        }
+
+        function speakerShaderCheck(character:String) return abot.speaker.shader == getAttachedCharacter(character).shader;
+        function applySpeakerShader(character:String) {
+            for (object in [abot.speaker, abot.bg, abot.eyes, abot.eyeBg]) {
+                object.shader = getAttachedCharacter(character).shader;
+            }
+            for (i in 0...abot.vizSprites.length) {
+                abot.vizSprites[i].shader = getAttachedCharacter(character).shader;
+            }
+        }
+
+        function getAttachedCharacter(character:String) {
+            switch(character) {
+                case 'boyfriend':
+                    return game.boyfriend;
+                case 'dad':
+                    return game.dad;
+                case 'gf':
+                    return game.gf;
+                default:
+                    return getLuaObject('AbotSpeaker');
+            }
+        }
+    ]])
 
     if characterName ~= '' then
         if _G[characterType..'Name'] ~= characterName then
@@ -60,7 +94,57 @@ function createSpeaker(attachedCharacter, offsetX, offsetY)
 end
 
 function onSongStart()
-    runHaxeFunction('startVisualizer')
+    if visualizerActive == true then
+        runHaxeFunction('startVisualizer')
+    end
+end
+
+function onEndSong()
+    if visualizerActive == true then
+        runHaxeFunction('stopVisualizer')
+    end
+end
+
+function onCountdownTick(counter)
+    if visualizerActive == false then
+        if characterType == 'gf' then
+            characterSpeed = getProperty('gfSpeed')
+        else
+            characterSpeed = 1
+        end
+        if characterType ~= '' then
+            danceEveryNumBeats = getProperty(characterType..'.danceEveryNumBeats')
+        else
+            danceEveryNumBeats = 1
+        end
+        if counter % (danceEveryNumBeats * characterSpeed) == 0 then
+            callMethod('AbotSpeaker.beatHit')
+            for i = 0, 6 do
+                callMethod('AbotSpeaker.vizSprites['..i..'].animation.play', {'idle', true})
+            end
+        end
+    end
+end
+
+function onBeatHit()
+    if visualizerActive == false then
+        if characterType == 'gf' then
+            characterSpeed = getProperty('gfSpeed')
+        else
+            characterSpeed = 1
+        end
+        if characterType ~= '' then
+            danceEveryNumBeats = getProperty(characterType..'.danceEveryNumBeats')
+        else
+            danceEveryNumBeats = 1
+        end
+        if curBeat % (danceEveryNumBeats * characterSpeed) == 0 then
+            callMethod('AbotSpeaker.beatHit')
+            for i = 0, 6 do
+                callMethod('AbotSpeaker.vizSprites['..i..'].animation.play', {'idle', true})
+            end
+        end
+    end
 end
 
 function onMoveCamera(character)
@@ -111,10 +195,8 @@ function onUpdatePost(elapsed)
             end
         end
     end
-    if characterType ~= '' then
-        if runHaxeFunction('speakerShaderCheck') == false then
-            runHaxeFunction('applySpeakerShader')
-        end
+    if runHaxeFunction('speakerShaderCheck', {characterType}) == false then
+        runHaxeFunction('applySpeakerShader', {characterType})
     end
 end
 

@@ -24,72 +24,72 @@ function createSpeaker(attachedCharacter, offsetX, offsetY)
         characterType = getCharacterType(attachedCharacter)
     end
 
-    makeLuaSprite('AbotSpeakerBG', 'abot/stereoBG')
+    makeLuaSprite('AbotSpeakerBGDark', 'abot/stereoBG')
     if characterType ~= '' then
-        setObjectOrder('AbotSpeakerBG', getObjectOrder(characterType..'Group'))
+        setObjectOrder('AbotSpeakerBGDark', getObjectOrder(characterType..'Group'))
     end
-    addLuaSprite('AbotSpeakerBG')
-    setProperty('AbotSpeakerBG.color', 0x616785)
+    addLuaSprite('AbotSpeakerBGDark')
+    setProperty('AbotSpeakerBGDark.color', 0x616785)
 
     initLuaShader('adjustColor')
     for bar = 1, 7 do
-        makeAnimatedLuaSprite('AbotSpeakerVisualizer'..bar, 'abot/aBotViz')
-        addAnimationByPrefix('AbotSpeakerVisualizer'..bar, 'idle', 'viz'..bar, 24, false)
+        makeAnimatedLuaSprite('AbotSpeakerVisualizerDark'..bar, 'abot/aBotViz')
+        addAnimationByPrefix('AbotSpeakerVisualizerDark'..bar, 'idle', 'viz'..bar, 24, false)
         if characterType ~= '' then
-            setObjectOrder('AbotSpeakerVisualizer'..bar, getObjectOrder(characterType..'Group'))
+            setObjectOrder('AbotSpeakerVisualizerDark'..bar, getObjectOrder(characterType..'Group'))
         end
-        addLuaSprite('AbotSpeakerVisualizer'..bar)
+        addLuaSprite('AbotSpeakerVisualizerDark'..bar)
 
-        setSpriteShader('AbotSpeakerVisualizer'..bar, 'adjustColor')
-        setShaderFloat('AbotSpeakerVisualizer'..bar, 'hue', -26)
-        setShaderFloat('AbotSpeakerVisualizer'..bar, 'saturation', -45)
-        setShaderFloat('AbotSpeakerVisualizer'..bar, 'contrast', 0)
-        setShaderFloat('AbotSpeakerVisualizer'..bar, 'brightness', -12)
+        setSpriteShader('AbotSpeakerVisualizerDark'..bar, 'adjustColor')
+        setShaderFloat('AbotSpeakerVisualizerDark'..bar, 'hue', -26)
+        setShaderFloat('AbotSpeakerVisualizerDark'..bar, 'saturation', -45)
+        setShaderFloat('AbotSpeakerVisualizerDark'..bar, 'contrast', 0)
+        setShaderFloat('AbotSpeakerVisualizerDark'..bar, 'brightness', -12)
     end
 
-    makeLuaSprite('AbotEyes')
-    makeGraphic('AbotEyes', 140, 60)
+    makeLuaSprite('AbotEyesDark')
+    makeGraphic('AbotEyesDark', 140, 60)
     if characterType ~= '' then
-        setObjectOrder('AbotEyes', getObjectOrder(characterType..'Group'))
+        setObjectOrder('AbotEyesDark', getObjectOrder(characterType..'Group'))
     end
-    addLuaSprite('AbotEyes')
-    setProperty('AbotEyes.color', 0x6F96CE)
+    addLuaSprite('AbotEyesDark')
+    setProperty('AbotEyesDark.color', 0x6F96CE)
 
-    makeFlxAnimateSprite('AbotPupils')
-    loadAnimateAtlas('AbotPupils', 'abot/systemEyes')
+    makeFlxAnimateSprite('AbotPupilsDark')
+    loadAnimateAtlas('AbotPupilsDark', 'abot/systemEyes')
     if characterType ~= '' then
-        setObjectOrder('AbotPupils', getObjectOrder(characterType..'Group'))
+        setObjectOrder('AbotPupilsDark', getObjectOrder(characterType..'Group'))
     end
-    addLuaSprite('AbotPupils')
+    addLuaSprite('AbotPupilsDark')
 
     looksAtPlayer = getPropertyFromClass('states.PlayState', 'SONG.notes['..curSection..'].mustHitSection')
     if looksAtPlayer == false then
-        setProperty('AbotPupils.anim.curFrame', 17)
-        pauseAnim('AbotPupils')
+        setProperty('AbotPupilsDark.anim.curFrame', 17)
+        pauseAnim('AbotPupilsDark')
     else
-        setProperty('AbotPupils.anim.curFrame', 0)
-        pauseAnim('AbotPupils')
+        setProperty('AbotPupilsDark.anim.curFrame', 0)
+        pauseAnim('AbotPupilsDark')
     end
     
-    makeFlxAnimateSprite('AbotSpeaker')
-    loadAnimateAtlas('AbotSpeaker', 'abot/abotSystem')
+    makeFlxAnimateSprite('AbotSpeakerDark')
+    loadAnimateAtlas('AbotSpeakerDark', 'abot/abotSystem')
     if characterType ~= '' then
-        setObjectOrder('AbotSpeaker', getObjectOrder(characterType..'Group'))
+        setObjectOrder('AbotSpeakerDark', getObjectOrder(characterType..'Group'))
     end
-    addLuaSprite('AbotSpeaker')
+    addLuaSprite('AbotSpeakerDark')
 
     initLuaShader('textureSwap')
-    setSpriteShader('AbotSpeaker', 'textureSwap')
-    setShaderSampler2D('AbotSpeaker', 'image', 'abot/dark/abotSystem/spritemap1')
-    setShaderFloat('AbotSpeaker', 'fadeAmount', 1)
+    setSpriteShader('AbotSpeakerDark', 'textureSwap')
+    setShaderSampler2D('AbotSpeakerDark', 'image', 'abot/dark/abotSystem/spritemap1')
+    setShaderFloat('AbotSpeakerDark', 'fadeAmount', 1)
 
     for property = 1, 2 do
         if characterType ~= '' then
             propertyTracker[property][2] = getProperty(characterType..'.'..propertyTracker[property][1])
             setAbotSpeakerProperty(propertyTracker[property][1], propertyTracker[property][2])
         else
-            propertyTracker[property][2] = getProperty('AbotSpeaker.'..propertyTracker[property][1])
-            setProperty('AbotSpeaker.'..propertyTracker[property][1], offsetData[property])
+            propertyTracker[property][2] = getProperty('AbotSpeakerDark.'..propertyTracker[property][1])
+            setProperty('AbotSpeakerDark.'..propertyTracker[property][1], offsetData[property])
         end
     end
 
@@ -102,17 +102,12 @@ end
 
 -- Self explanatory again.
 function destroySpeaker()
-    runHaxeCode([[
-        game.variables.get('AbotSpeaker').destroy();
-        game.variables.remove('AbotSpeaker');
-        game.variables.get('AbotPupils').destroy();
-        game.variables.remove('AbotPupils');
-    ]])
-    removeLuaSprite('AbotSpeakerBG')
-    for bar = 1, 7 do
-        removeLuaSprite('AbotSpeakerVisualizer'..bar)
+    for _, object in ipairs({'AbotSpeakerDark', 'AbotSpeakerBGDark', 'AbotPupilsDark', 'AbotEyesDark'}) do
+        setProperty(object..'.visible', false)
     end
-    removeLuaSprite('AbotEyes')
+    for bar = 1, 7 do
+        setProperty('AbotSpeakerVisualizerDark'..bar..'.visible', false)
+    end
 end
 
 -- This is to prevent the speaker from still appearing when the attached character's gone.
@@ -128,14 +123,14 @@ function onEvent(eventName, value1, value2, strumTime)
         for _, startStringBF in ipairs({'0', 'bf', 'boyfriend'}) do
             if stringStartsWith(string.lower(value1), startStringBF) then
                 if looksAtPlayer == false then
-                    playAnim('AbotPupils', '', true, false, 17)
+                    playAnim('AbotPupilsDark', '', true, false, 17)
                 end
             end
         end
         for _, startStringDad in ipairs({'1', 'dad', 'opponent'}) do
             if stringStartsWith(string.lower(value1), startStringDad) then
                 if looksAtPlayer == true then
-                    playAnim('AbotPupils', '', true, false, 0)
+                    playAnim('AbotPupilsDark', '', true, false, 0)
                 end
             end
         end
@@ -160,9 +155,9 @@ function onCountdownTick(swagCounter)
         danceEveryNumBeats = 1
     end
     if swagCounter % (danceEveryNumBeats * characterSpeed) == 0 then
-        playAnim('AbotSpeaker', '', true, false, 1)
+        playAnim('AbotSpeakerDark', '', true, false, 1)
         for bar = 1, 7 do
-            playAnim('AbotSpeakerVisualizer'..bar, 'idle', true)
+            playAnim('AbotSpeakerVisualizerDark'..bar, 'idle', true)
         end
     end
 end
@@ -182,9 +177,9 @@ function onBeatHit()
         danceEveryNumBeats = 1
     end
     if curBeat % (danceEveryNumBeats * characterSpeed) == 0 then
-        playAnim('AbotSpeaker', '', true, false, 1)
+        playAnim('AbotSpeakerDark', '', true, false, 1)
         for bar = 1, 7 do
-            playAnim('AbotSpeakerVisualizer'..bar, 'idle', true)
+            playAnim('AbotSpeakerVisualizerDark'..bar, 'idle', true)
         end
     end
 end
@@ -193,13 +188,13 @@ function onMoveCamera(character)
     -- Abot will look to the right (towards the player).
     if character == 'boyfriend' then
         if looksAtPlayer == false then
-            playAnim('AbotPupils', '', true, false, 17)
+            playAnim('AbotPupilsDark', '', true, false, 17)
         end
     end
     -- Abot will look to the left (towards the opponent).
     if character == 'dad' then
         if looksAtPlayer == true then
-            playAnim('AbotPupils', '', true, false, 0)
+            playAnim('AbotPupilsDark', '', true, false, 0)
         end
     end
 end
@@ -213,8 +208,8 @@ function onUpdatePost(elapsed)
                 setAbotSpeakerProperty(propertyTracker[property][1], propertyTracker[property][2])
             end
         else
-            if propertyTracker[property][2] ~= getProperty('AbotSpeaker.'..propertyTracker[property][1]) then
-                propertyTracker[property][2] = getProperty('AbotSpeaker.'..propertyTracker[property][1])
+            if propertyTracker[property][2] ~= getProperty('AbotSpeakerDark.'..propertyTracker[property][1]) then
+                propertyTracker[property][2] = getProperty('AbotSpeakerDark.'..propertyTracker[property][1])
                 setAbotSpeakerProperty(propertyTracker[property][1], propertyTracker[property][2])
             end
         end
@@ -223,37 +218,37 @@ function onUpdatePost(elapsed)
         These make it so the animations stop when they're supposed to be,
         instead of looping endlessly.
     ]] 
-    if getProperty('AbotSpeaker.anim.curFrame') >= 15 then
-        pauseAnim('AbotSpeaker')
+    if getProperty('AbotSpeakerDark.anim.curFrame') >= 15 then
+        pauseAnim('AbotSpeakerDark')
     end
     if looksAtPlayer == true then
-        if getProperty('AbotPupils.anim.curFrame') >= 17 then
+        if getProperty('AbotPupilsDark.anim.curFrame') >= 17 then
             looksAtPlayer = false
-            pauseAnim('AbotPupils')
+            pauseAnim('AbotPupilsDark')
         end
     end
     if looksAtPlayer == false then
-        if getProperty('AbotPupils.anim.curFrame') >= 31 then
+        if getProperty('AbotPupilsDark.anim.curFrame') >= 31 then
             looksAtPlayer = true
-            pauseAnim('AbotPupils')
+            pauseAnim('AbotPupilsDark')
         end
     end
     -- This is how we control the animations' speed depending on the 'playbackRate' for Atlas Sprites.
-    setProperty('AbotSpeaker.anim.framerate', 24 * playbackRate)
-    setProperty('AbotPupils.anim.framerate', 24 * playbackRate)
+    setProperty('AbotSpeakerDark.anim.framerate', 24 * playbackRate)
+    setProperty('AbotPupilsDark.anim.framerate', 24 * playbackRate)
 end
 
 function translateAlpha(value)
-    setShaderFloat('AbotSpeaker', 'fadeAmount', value)
+    setShaderFloat('AbotSpeakerDark', 'fadeAmount', value)
     for bar = 1, 7 do
-        setShaderFloat('AbotSpeakerVisualizer'..bar, 'hue', interpolateFloat(0, -26, value))
-        setShaderFloat('AbotSpeakerVisualizer'..bar, 'saturation', interpolateFloat(0, -45, value))
-        setShaderFloat('AbotSpeakerVisualizer'..bar, 'contrast', interpolateFloat(0, 0, value))
-        setShaderFloat('AbotSpeakerVisualizer'..bar, 'brightness', interpolateFloat(0, -12, value))
+        setShaderFloat('AbotSpeakerVisualizerDark'..bar, 'hue', interpolateFloat(0, -26, value))
+        setShaderFloat('AbotSpeakerVisualizerDark'..bar, 'saturation', interpolateFloat(0, -45, value))
+        setShaderFloat('AbotSpeakerVisualizerDark'..bar, 'contrast', interpolateFloat(0, 0, value))
+        setShaderFloat('AbotSpeakerVisualizerDark'..bar, 'brightness', interpolateFloat(0, -12, value))
     end
 
-    setProperty('AbotSpeakerBG.color', interpolateColor(0xFFFFFF, 0x616785, value))
-    setProperty('AbotEyes.color', interpolateColor(0xFFFFFF, 0x6F96CE, value))
+    setProperty('AbotSpeakerBGDark.color', interpolateColor(0xFFFFFF, 0x616785, value))
+    setProperty('AbotEyesDark.color', interpolateColor(0xFFFFFF, 0x6F96CE, value))
 end
 
 --[[
@@ -268,7 +263,7 @@ end
     setProperty('boyfriend.alpha', 0.5)     --> If attached to the BF character type.
     setProperty('dad.alpha', 0.5)           --> If attached to the Dad character type.
     setProperty('gf.alpha', 0.5)            --> If attached to the GF character type.
-    setProperty('AbotSpeaker.alpha', 0.5)   --> If not attached to any character type.
+    setProperty('AbotSpeakerDark.alpha', 0.5)   --> If not attached to any character type.
 
     'doTween' functions also work the same way. 
 ]]
@@ -276,64 +271,64 @@ function setAbotSpeakerProperty(property, value)
     if property == 'x' then
         if characterType ~= '' then
             value = value + offsetData[1]
-            setProperty('AbotSpeaker.'..property, value - 100)
+            setProperty('AbotSpeakerDark.'..property, value - 100)
         end
         for bar = 1, 7 do
-            setProperty('AbotSpeakerVisualizer'..bar..'.'..property, getProperty('AbotSpeaker.'..property) + 200 + visualizerOffsetX(bar))
+            setProperty('AbotSpeakerVisualizerDark'..bar..'.'..property, getProperty('AbotSpeakerDark.'..property) + 200 + visualizerOffsetX(bar))
         end
-        setProperty('AbotSpeakerBG.'..property, getProperty('AbotSpeaker.'..property) + 165)
-        setProperty('AbotEyes.'..property, getProperty('AbotSpeaker.'..property) + 30)
-        setProperty('AbotPupils.'..property, getProperty('AbotSpeaker.'..property) - 507)
+        setProperty('AbotSpeakerBGDark.'..property, getProperty('AbotSpeakerDark.'..property) + 165)
+        setProperty('AbotEyesDark.'..property, getProperty('AbotSpeakerDark.'..property) + 30)
+        setProperty('AbotPupilsDark.'..property, getProperty('AbotSpeakerDark.'..property) - 507)
     elseif property == 'y' then
         if characterType ~= '' then
             value = value + offsetData[2]
-            setProperty('AbotSpeaker.'..property, value + 316)
+            setProperty('AbotSpeakerDark.'..property, value + 316)
         end
         for bar = 1, 7 do
-            setProperty('AbotSpeakerVisualizer'..bar..'.'..property, getProperty('AbotSpeaker.'..property) + 84 + visualizerOffsetY(bar))
+            setProperty('AbotSpeakerVisualizerDark'..bar..'.'..property, getProperty('AbotSpeakerDark.'..property) + 84 + visualizerOffsetY(bar))
         end
-        setProperty('AbotSpeakerBG.'..property, getProperty('AbotSpeaker.'..property) + 30)
-        setProperty('AbotEyes.'..property, getProperty('AbotSpeaker.'..property) + 230)
-        setProperty('AbotPupils.'..property, getProperty('AbotSpeaker.'..property) - 492)
+        setProperty('AbotSpeakerBGDark.'..property, getProperty('AbotSpeakerDark.'..property) + 30)
+        setProperty('AbotEyesDark.'..property, getProperty('AbotSpeakerDark.'..property) + 230)
+        setProperty('AbotPupilsDark.'..property, getProperty('AbotSpeakerDark.'..property) - 492)
     else
         if characterType ~= '' then
-            setProperty('AbotSpeaker.'..property, value)
+            setProperty('AbotSpeakerDark.'..property, value)
         end
         for bar = 1, 7 do
-            setProperty('AbotSpeakerVisualizer'..bar..'.'..property, value)
+            setProperty('AbotSpeakerVisualizerDark'..bar..'.'..property, value)
         end
-        setProperty('AbotSpeakerBG.'..property, value)
-        setProperty('AbotEyes.'..property, value)
-        setProperty('AbotPupils.'..property, value)
+        setProperty('AbotSpeakerBGDark.'..property, value)
+        setProperty('AbotEyesDark.'..property, value)
+        setProperty('AbotPupilsDark.'..property, value)
     end
 end
 
 --[[ Old version of the function above.
 function updateSpeaker(property)
     if property == 'x' then
-        setProperty('AbotSpeaker.'..property, offset.x - 100)
+        setProperty('AbotSpeakerDark.'..property, offset.x - 100)
         for bar = 1, 7 do
-            setProperty('AbotSpeakerVisualizer'..bar..'.'..property, offset.x + 100 + visualizerOffsetX(bar))
+            setProperty('AbotSpeakerVisualizerDark'..bar..'.'..property, offset.x + 100 + visualizerOffsetX(bar))
         end
-        setProperty('AbotSpeakerBG.'..property, offset.x + 65)
-        setProperty('AbotEyes.'..property, offset.x - 60)
-        setProperty('AbotPupils.'..property, offset.x - 607)
+        setProperty('AbotSpeakerBGDark.'..property, offset.x + 65)
+        setProperty('AbotEyesDark.'..property, offset.x - 60)
+        setProperty('AbotPupilsDark.'..property, offset.x - 607)
     elseif property == 'y' then
-        setProperty('AbotSpeaker.'..property, offset.y + 316)
+        setProperty('AbotSpeakerDark.'..property, offset.y + 316)
         for bar = 1, 7 do
-            setProperty('AbotSpeakerVisualizer'..bar..'.'..property, offset.y + 400 + visualizerOffsetY(bar))
+            setProperty('AbotSpeakerVisualizerDark'..bar..'.'..property, offset.y + 400 + visualizerOffsetY(bar))
         end
-        setProperty('AbotSpeakerBG.'..property, offset.y + 347)
-        setProperty('AbotEyes.'..property, offset.y + 567)
-        setProperty('AbotPupils.'..property, offset.y - 176)
+        setProperty('AbotSpeakerBGDark.'..property, offset.y + 347)
+        setProperty('AbotEyesDark.'..property, offset.y + 567)
+        setProperty('AbotPupilsDark.'..property, offset.y - 176)
     elseif characterType ~= '' then
-        setProperty('AbotSpeaker.'..property, getProperty(characterType..'.'..property))
+        setProperty('AbotSpeakerDark.'..property, getProperty(characterType..'.'..property))
         for bar = 1, 7 do
-            setProperty('AbotSpeakerVisualizer'..bar..'.'..property, getProperty(characterType..'.'..property))
+            setProperty('AbotSpeakerVisualizerDark'..bar..'.'..property, getProperty(characterType..'.'..property))
         end
-        setProperty('AbotSpeakerBG.'..property, getProperty(characterType..'.'..property))
-        setProperty('AbotEyes.'..property, getProperty(characterType..'.'..property))
-        setProperty('AbotPupils.'..property, getProperty(characterType..'.'..property))
+        setProperty('AbotSpeakerBGDark.'..property, getProperty(characterType..'.'..property))
+        setProperty('AbotEyesDark.'..property, getProperty(characterType..'.'..property))
+        setProperty('AbotPupilsDark.'..property, getProperty(characterType..'.'..property))
     end
 end
 ]]

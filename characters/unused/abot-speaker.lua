@@ -81,14 +81,25 @@ function createSpeaker(attachedCharacter, offsetX, offsetY)
         end
     end
 
-    if characterType ~= '' then
-        runHaxeCode([[
-            function shaderCheck(object:String) return getLuaObject(object).shader == ]]..characterType..[[.shader;
-            function applyShader(object:String) getLuaObject(object).shader = ]]..characterType..[[.shader;
-            function shaderAtlasCheck(object:String) return game.variables.get(object).shader == ]]..characterType..[[.shader;
-            function applyAtlasShader(object:String) game.variables.get(object).shader = ]]..characterType..[[.shader;
-        ]])
-    end
+    runHaxeCode([[
+        function shaderCheck(object:String, character:String) return getLuaObject(object).shader == getAttachedCharacter(character).shader;
+        function applyShader(object:String, character:String) getLuaObject(object).shader = getAttachedCharacter(character).shader;
+        function shaderAtlasCheck(object:String, character:String) return game.variables.get(object).shader == getAttachedCharacter(character).shader;
+        function applyAtlasShader(object:String, character:String) game.variables.get(object).shader = getAttachedCharacter(character).shader;
+
+        function getAttachedCharacter(character:String) {
+            switch(character) {
+                case 'boyfriend':
+                    return game.boyfriend;
+                case 'dad':
+                    return game.dad;
+                case 'gf':
+                    return game.gf;
+                default:
+                    return getLuaObject('AbotSpeaker');
+            }
+        }
+    ]])
 
     if characterName ~= '' then
         if _G[characterType..'Name'] ~= characterName then
@@ -99,17 +110,12 @@ end
 
 -- Self explanatory again.
 function destroySpeaker()
-    runHaxeCode([[
-        game.variables.get('AbotSpeaker').destroy();
-        game.variables.remove('AbotSpeaker');
-        game.variables.get('AbotPupils').destroy();
-        game.variables.remove('AbotPupils');
-    ]])
-    removeLuaSprite('AbotSpeakerBG')
-    for bar = 1, 7 do
-        removeLuaSprite('AbotSpeakerVisualizer'..bar)
+    for _, object in ipairs({'AbotSpeaker', 'AbotSpeakerBG', 'AbotPupils', 'AbotEyes'}) do
+        setProperty(object..'.visible', false)
     end
-    removeLuaSprite('AbotEyes')
+    for bar = 1, 7 do
+        setProperty('AbotSpeakerVisualizer'..bar..'.visible', false)
+    end
 end
 
 -- This is to prevent the speaker from still appearing when the attached character's gone.
@@ -215,21 +221,19 @@ function onUpdatePost(elapsed)
             end
         end
     end
-    if characterType ~= '' then    
-        for _, object in ipairs({'AbotSpeaker', 'AbotPupils'}) do
-            if runHaxeFunction('shaderAtlasCheck', {object}) == false then
-                runHaxeFunction('applyAtlasShader', {object})
-            end
+    for _, object in ipairs({'AbotSpeaker', 'AbotPupils'}) do
+        if runHaxeFunction('shaderAtlasCheck', {object, characterType}) == false then
+            runHaxeFunction('applyAtlasShader', {object, characterType})
         end
-        for bar = 1, 7 do
-            if runHaxeFunction('shaderCheck', {'AbotSpeakerVisualizer'..bar}) == false then
-                runHaxeFunction('applyShader', {'AbotSpeakerVisualizer'..bar})
-            end
+    end
+    for bar = 1, 7 do
+        if runHaxeFunction('shaderCheck', {'AbotSpeakerVisualizer'..bar, characterType}) == false then
+            runHaxeFunction('applyShader', {'AbotSpeakerVisualizer'..bar, characterType})
         end
-        for _, object in ipairs({'AbotSpeakerBG', 'AbotEyes'}) do
-            if runHaxeFunction('shaderCheck', {object}) == false then
-                runHaxeFunction('applyShader', {object})
-            end
+    end
+    for _, object in ipairs({'AbotSpeakerBG', 'AbotEyes'}) do
+        if runHaxeFunction('shaderCheck', {object, characterType}) == false then
+            runHaxeFunction('applyShader', {object, characterType})
         end
     end
     --[[

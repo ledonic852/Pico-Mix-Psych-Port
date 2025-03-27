@@ -6,5 +6,12 @@
 		"description": "Select how Nene should react to the combo, or turn it off.",
 		"value": "Psych",
 		"options": ["Psych", "Vanilla", "Disabled"]
+	},
+	{
+		"save": "visualizerActive",
+		"name": "Enable Abot's Visualizer",
+		"type": "bool",
+		"description": "Select if you want Abot to react to the song's instrumental.",
+		"value": true
 	}
 ]

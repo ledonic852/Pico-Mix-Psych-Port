@@ -11,6 +11,20 @@ local propertyTracker = {
     {'visible', nil}
 }
 
+local visualizerActive = nil
+function onCreate()
+    --[[
+        This is how the script recognizes which option you chose to use.
+        However, if you decide to take Abot inside another mod,
+        the 'visualizerActive' variable will default to 'true' to avoid any bugs or issues.
+    ]]
+    if getModSetting('visualizerActive', currentModDirectory) == nil then
+        visualizerActive = true
+    else
+        visualizerActive = getModSetting('visualizerActive', currentModDirectory)
+    end
+end
+
 function createSpeaker(attachedCharacter, offsetX, offsetY)
     characterName = attachedCharacter
     offsetData = {offsetX, offsetY}
@@ -18,63 +32,126 @@ function createSpeaker(attachedCharacter, offsetX, offsetY)
         characterType = getCharacterType(attachedCharacter)
     end
 
-    createInstance('AbotSpeaker', 'states.stages.objects.ABotSpeaker', {0, 0})
-    addLuaSprite('AbotSpeaker')
+    createInstance('AbotSpeakerDark', 'states.stages.objects.ABotSpeaker', {0, 0})
+    addLuaSprite('AbotSpeakerDark')
 
     local looksAtPlayer = getPropertyFromClass('states.PlayState', 'SONG.notes['..curSection..'].mustHitSection')
     if looksAtPlayer == false then
-        callMethod('AbotSpeaker.lookLeft')
-        setProperty('AbotSpeaker.eyes.anim.curFrame', getProperty('AbotSpeaker.eyes.anim.length') - 1)
+        callMethod('AbotSpeakerDark.lookLeft')
+        setProperty('AbotSpeakerDark.eyes.anim.curFrame', getProperty('AbotSpeakerDark.eyes.anim.length') - 1)
     else
-        callMethod('AbotSpeaker.lookRight')
-        setProperty('AbotSpeaker.eyes.anim.curFrame', getProperty('AbotSpeaker.eyes.anim.length') - 1)
+        callMethod('AbotSpeakerDark.lookRight')
+        setProperty('AbotSpeakerDark.eyes.anim.curFrame', getProperty('AbotSpeakerDark.eyes.anim.length') - 1)
+    end
+
+    if visualizerActive == false then
+        for i = 0, 6 do
+            callMethod('AbotSpeakerDark.vizSprites['..i..'].animation.addByPrefix', {'idle', 'viz'..(i + 1), 24, false})
+        end
     end
 
     runHaxeCode([[
-        function startVisualizer() getLuaObject('AbotSpeaker').snd = FlxG.sound.music;
+        var abot = getLuaObject('AbotSpeakerDark');
+        function startVisualizer() abot.snd = FlxG.sound.music;
+        function stopVisualizer() {
+            abot.analyzer = null;
+            for (i in 0...abot.vizSprites.length) {
+                abot.vizSprites[i].animation.curAnim.finish();
+            }
+        }
     ]])
-    setProperty('AbotSpeaker.bg.color', 0x616785)
-    setProperty('AbotSpeaker.eyeBg.color', 0x6F96CE)
+    setProperty('AbotSpeakerDark.bg.color', 0x616785)
+    setProperty('AbotSpeakerDark.eyeBg.color', 0x6F96CE)
     
     initLuaShader('textureSwap')
-    setSpriteShader('AbotSpeaker.speaker', 'textureSwap')
-    setShaderSampler2D('AbotSpeaker.speaker', 'image', 'abot/dark/abotSystem/spritemap1')
-    setShaderFloat('AbotSpeaker.speaker', 'fadeAmount', 1)
+    setSpriteShader('AbotSpeakerDark.speaker', 'textureSwap')
+    setShaderSampler2D('AbotSpeakerDark.speaker', 'image', 'abot/dark/abotSystem/spritemap1')
+    setShaderFloat('AbotSpeakerDark.speaker', 'fadeAmount', 1)
 
     initLuaShader('adjustColor')
-    for i = 0, getProperty('AbotSpeaker.vizSprites.length') - 1 do
-        setSpriteShader('AbotSpeaker.vizSprites['..i..']', 'adjustColor')
-        setShaderFloat('AbotSpeaker.vizSprites['..i..']', 'hue', -26)
-        setShaderFloat('AbotSpeaker.vizSprites['..i..']', 'saturation', -45)
-        setShaderFloat('AbotSpeaker.vizSprites['..i..']', 'contrast', 0)
-        setShaderFloat('AbotSpeaker.vizSprites['..i..']', 'brightness', -12)
+    for i = 0, getProperty('AbotSpeakerDark.vizSprites.length') - 1 do
+        setSpriteShader('AbotSpeakerDark.vizSprites['..i..']', 'adjustColor')
+        setShaderFloat('AbotSpeakerDark.vizSprites['..i..']', 'hue', -26)
+        setShaderFloat('AbotSpeakerDark.vizSprites['..i..']', 'saturation', -45)
+        setShaderFloat('AbotSpeakerDark.vizSprites['..i..']', 'contrast', 0)
+        setShaderFloat('AbotSpeakerDark.vizSprites['..i..']', 'brightness', -12)
     end
 
     if characterName ~= '' then
         if _G[characterType..'Name'] ~= characterName then
-            setProperty('AbotSpeaker.visible', false)
+            setProperty('AbotSpeakerDark.visible', false)
         end
     end
 end
 
 function onSongStart()
-    runHaxeFunction('startVisualizer')
+    if visualizerActive == true then
+        runHaxeFunction('startVisualizer')
+    end
+end
+
+function onEndSong()
+    if visualizerActive == true then
+        runHaxeFunction('stopVisualizer')
+    end
+end
+
+function onCountdownTick(counter)
+    if visualizerActive == false then
+        if characterType == 'gf' then
+            characterSpeed = getProperty('gfSpeed')
+        else
+            characterSpeed = 1
+        end
+        if characterType ~= '' then
+            danceEveryNumBeats = getProperty(characterType..'.danceEveryNumBeats')
+        else
+            danceEveryNumBeats = 1
+        end
+        if counter % (danceEveryNumBeats * characterSpeed) == 0 then
+            callMethod('AbotSpeakerDark.beatHit')
+            for i = 0, 6 do
+                callMethod('AbotSpeakerDark.vizSprites['..i..'].animation.play', {'idle', true})
+            end
+        end
+    end
+end
+
+function onBeatHit()
+    if visualizerActive == false then
+        if characterType == 'gf' then
+            characterSpeed = getProperty('gfSpeed')
+        else
+            characterSpeed = 1
+        end
+        if characterType ~= '' then
+            danceEveryNumBeats = getProperty(characterType..'.danceEveryNumBeats')
+        else
+            danceEveryNumBeats = 1
+        end
+        if curBeat % (danceEveryNumBeats * characterSpeed) == 0 then
+            callMethod('AbotSpeakerDark.beatHit')
+            for i = 0, 6 do
+                callMethod('AbotSpeakerDark.vizSprites['..i..'].animation.play', {'idle', true})
+            end
+        end
+    end
 end
 
 function onMoveCamera(character)
     if character == 'boyfriend' then
-        callMethod('AbotSpeaker.lookRight')
+        callMethod('AbotSpeakerDark.lookRight')
     end
 
     if character == 'dad' then
-        callMethod('AbotSpeaker.lookLeft')
+        callMethod('AbotSpeakerDark.lookLeft')
     end
 end
 
 function onEvent(eventName, value1, value2, strumTime)
     if eventName == 'Change Character' then
         if getCharacterType(value2) == characterType and value2 ~= characterName then
-            setProperty('AbotSpeaker.visible', false)
+            setProperty('AbotSpeakerDark.visible', false)
         elseif characterName ~= '' then
             createSpeaker(characterName, offsetData[1], offsetData[2])
         end
@@ -82,12 +159,12 @@ function onEvent(eventName, value1, value2, strumTime)
     if eventName == 'Set Camera Target' then
         for _, startStringBF in ipairs({'0', 'bf', 'boyfriend'}) do
             if stringStartsWith(string.lower(value1), startStringBF) then
-                callMethod('AbotSpeaker.lookRight')
+                callMethod('AbotSpeakerDark.lookRight')
             end
         end
         for _, startStringDad in ipairs({'1', 'dad', 'opponent'}) do
             if stringStartsWith(string.lower(value1), startStringDad) then
-                callMethod('AbotSpeaker.lookLeft')
+                callMethod('AbotSpeakerDark.lookLeft')
             end
         end
     end
@@ -100,12 +177,12 @@ function onUpdatePost(elapsed)
             if property < 3 then
                 if propertyTracker[property][2] ~= getProperty(characterType..'.'..propertyTracker[property][1]) then
                     propertyTracker[property][2] = getProperty(characterType..'.'..propertyTracker[property][1])
-                    setProperty('AbotSpeaker.'..propertyTracker[property][1], propertyTracker[property][2] + offsetData[property])
+                    setProperty('AbotSpeakerDark.'..propertyTracker[property][1], propertyTracker[property][2] + offsetData[property])
                 end
             else
                 if propertyTracker[property][2] ~= getProperty(characterType..'.'..propertyTracker[property][1]) then
                     propertyTracker[property][2] = getProperty(characterType..'.'..propertyTracker[property][1])
-                    setProperty('AbotSpeaker.'..propertyTracker[property][1], propertyTracker[property][2])
+                    setProperty('AbotSpeakerDark.'..propertyTracker[property][1], propertyTracker[property][2])
                 end
             end
         end
@@ -113,16 +190,16 @@ function onUpdatePost(elapsed)
 end
 
 function translateAlpha(value)
-    setShaderFloat('AbotSpeaker.speaker', 'fadeAmount', value)
-    for i = 0, getProperty('AbotSpeaker.vizSprites.length') - 1 do
-        setShaderFloat('AbotSpeaker.vizSprites['..i..']', 'hue', interpolateFloat(0, -26, value))
-        setShaderFloat('AbotSpeaker.vizSprites['..i..']', 'saturation', interpolateFloat(0, -45, value))
-        setShaderFloat('AbotSpeaker.vizSprites['..i..']', 'contrast', interpolateFloat(0, 0, value))
-        setShaderFloat('AbotSpeaker.vizSprites['..i..']', 'brightness', interpolateFloat(0, -12, value))
+    setShaderFloat('AbotSpeakerDark.speaker', 'fadeAmount', value)
+    for i = 0, getProperty('AbotSpeakerDark.vizSprites.length') - 1 do
+        setShaderFloat('AbotSpeakerDark.vizSprites['..i..']', 'hue', interpolateFloat(0, -26, value))
+        setShaderFloat('AbotSpeakerDark.vizSprites['..i..']', 'saturation', interpolateFloat(0, -45, value))
+        setShaderFloat('AbotSpeakerDark.vizSprites['..i..']', 'contrast', interpolateFloat(0, 0, value))
+        setShaderFloat('AbotSpeakerDark.vizSprites['..i..']', 'brightness', interpolateFloat(0, -12, value))
     end
 
-    setProperty('AbotSpeaker.bg.color', interpolateColor(0xFFFFFF, 0x616785, value))
-    setProperty('AbotSpeaker.eyeBg.color', interpolateColor(0xFFFFFF, 0x6F96CE, value))
+    setProperty('AbotSpeakerDark.bg.color', interpolateColor(0xFFFFFF, 0x616785, value))
+    setProperty('AbotSpeakerDark.eyeBg.color', interpolateColor(0xFFFFFF, 0x6F96CE, value))
 end
 
 function interpolateColor(color1, color2, factor)
