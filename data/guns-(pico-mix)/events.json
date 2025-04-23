@@ -225,8 +225,8 @@
 		[
 			72648.6486486487,
 			[
-				["Set Camera Target", "Dad,180,-10", ""],
-				["Set Camera Zoom", "1,stage", "32,expoOut"],
+				["Set Camera Target", "Dad,290,-30", ""],
+				["Set Camera Zoom", "0.9,stage", "32,expoOut"],
 				["Set Camera Bop", "4", "1"]
 			]
 		],

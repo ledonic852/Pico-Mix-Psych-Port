@@ -36,8 +36,8 @@
 		[
 			6000,
 			[
-				["Set Camera Target", "Dad,180,-10", ""],
-				["Set Camera Zoom", "1,stage", "32,expoOut"],
+				["Set Camera Target", "Dad,290,-30", ""],
+				["Set Camera Zoom", "0.9,stage", "32,expoOut"],
 				["Set Camera Bop", "2", "1.5"]
 			]
 		],
@@ -53,8 +53,8 @@
 		[
 			13875,
 			[
-				["Set Camera Target", "Dad,180,-10", ""],
-				["Set Camera Zoom", "1,stage", "32,expoOut"]
+				["Set Camera Target", "Dad,290,-30", ""],
+				["Set Camera Zoom", "0.9,stage", "32,expoOut"]
 			]
 		],
 		[
@@ -68,8 +68,8 @@
 		[
 			16875,
 			[
-				["Set Camera Target", "Dad,180,-10", ""],
-				["Set Camera Zoom", "1,stage", "32,expoOut"]
+				["Set Camera Target", "Dad,290,-30", ""],
+				["Set Camera Zoom", "0.9,stage", "32,expoOut"]
 			]
 		],
 		[
@@ -95,8 +95,8 @@
 		[
 			30375,
 			[
-				["Set Camera Target", "Dad,180,-10", ""],
-				["Set Camera Zoom", "1,stage", "32,expoOut"]
+				["Set Camera Target", "Dad,290,-30", ""],
+				["Set Camera Zoom", "0.9,stage", "32,expoOut"]
 			]
 		],
 		[
@@ -140,8 +140,8 @@
 		[
 			45000,
 			[
-				["Set Camera Target", "Dad,180,-10", ""],
-				["Set Camera Zoom", "1,stage", "32,expoOut"]
+				["Set Camera Target", "Dad,290,-30", ""],
+				["Set Camera Zoom", "0.9,stage", "32,expoOut"]
 			]
 		],
 		[
@@ -189,8 +189,8 @@
 		[
 			54000,
 			[
-				["Set Camera Target", "Dad,180,-10", ""],
-				["Set Camera Zoom", "1,stage", "32,expoOut"],
+				["Set Camera Target", "Dad,290,-30", ""],
+				["Set Camera Zoom", "0.9,stage", "32,expoOut"],
 				["Set Camera Bop", "1", "0.8"]
 			]
 		],
@@ -217,8 +217,8 @@
 		[
 			60000,
 			[
-				["Set Camera Target", "Dad,180,-10", ""],
-				["Set Camera Zoom", "1,stage", "32,expoOut"],
+				["Set Camera Target", "Dad,290,-30", ""],
+				["Set Camera Zoom", "0.9,stage", "32,expoOut"],
 				["Set Camera Bop", "1", "0.8"]
 			]
 		],
@@ -274,8 +274,8 @@
 		[
 			72000,
 			[
-				["Set Camera Target", "Dad,180,-10", ""],
-				["Set Camera Zoom", "1,stage", "32,expoOut"],
+				["Set Camera Target", "Dad,290,-30", ""],
+				["Set Camera Zoom", "0.9,stage", "32,expoOut"],
 				["Set Camera Bop", "1", "0.8"]
 			]
 		],

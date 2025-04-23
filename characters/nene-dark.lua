@@ -37,7 +37,7 @@ function onCreatePost()
     addInstance(characterType..'Light')    
 
     addLuaScript('characters/abot-speaker-dark')
-    callScript('characters/abot-speaker-dark', 'createSpeaker', {'nene-dark', -35, 325})
+    callScript('characters/abot-speaker-dark', 'createSpeaker', {'nene-dark', 0, 0})
 end
 
 function onUpdatePost(elapsed)

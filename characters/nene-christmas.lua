@@ -22,11 +22,11 @@ end
     
     WARNING: The speaker can only get attached to BF, Dad, or GF type characters.
     Else, the offsets act as simple x and y positions.
-    Go check the Abot Speaker's script for more information at line 217.
+    Go check the Abot Speaker's script for more information at line 374.
 ]]
 function onCreatePost()
     addLuaScript('characters/abot-speaker')
-    callScript('characters/abot-speaker', 'createSpeaker', {'nene-christmas', -35, 325}) -- {characterName, offsetX, offsetY}
+    callScript('characters/abot-speaker', 'createSpeaker', {'nene-christmas', 0, 0}) -- {characterName, offsetX, offsetY}
 end
 
 local comboAnimActive = true

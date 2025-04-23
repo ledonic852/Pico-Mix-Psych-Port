@@ -383,6 +383,7 @@
 		[
 			92600,
 			[
+				["Set Camera Target", "BF,0,-10", "48,expoOut"],
 				["Set Camera Zoom", "0.9,stage", "48,expoOut"]
 			]
 		],
