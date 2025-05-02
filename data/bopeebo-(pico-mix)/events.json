@@ -80,12 +80,6 @@
 			]
 		],
 		[
-			23400,
-			[
-				["Hey!", "BF", ""]
-			]
-		],
-		[
 			24000,
 			[
 				["Set Camera Target", "Dad", ""]
@@ -226,12 +220,6 @@
 			[
 				["Set Camera Target", "BF", ""],
 				["Set Camera Zoom", "0.95", "16,expoOut"]
-			]
-		],
-		[
-			61800,
-			[
-				["Hey!", "BF", ""]
 			]
 		],
 		[

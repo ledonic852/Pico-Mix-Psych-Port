@@ -129,7 +129,7 @@
 			46545.4545454546,
 			[
 				["Set Camera Target", "Dad", ""],
-				["Set Camera Bop", "2", "1.4"],
+				["Set Camera Bop", "2", "2"],
 				["Philly Glow", "1", ""],
 				["Philly Glow", "2", ""]
 			]
@@ -155,7 +155,7 @@
 		[
 			48000,
 			[
-				["Set Camera Bop", "2", "0"],
+				["Set Camera Bop", "2", "1.1"],
 				["Philly Glow", "1", ""]
 			]
 		],
@@ -351,7 +351,7 @@
 		[
 			59636.3636363637,
 			[
-				["Set Camera Bop", "2", "0"],
+				["Set Camera Bop", "2", "1.1"],
 				["Philly Glow", "1", ""]
 			]
 		],
@@ -472,7 +472,6 @@
 			68363.6363636364,
 			[
 				["Set Camera Zoom", "1.05,stage", "16,expoOut"],
-				["Set Camera Bop", "2", "0"],
 				["Philly Glow", "1", ""]
 			]
 		],

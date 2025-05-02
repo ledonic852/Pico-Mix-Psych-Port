@@ -39,7 +39,7 @@
 		[
 			18000,
 			[
-				["Set Camera Target", "Dad,170,20", ""],
+				["Set Camera Target", "Dad,150,20", ""],
 				["Set Camera Zoom", "0.8,stage", "32,expoOut"]
 			]
 		],
@@ -73,7 +73,7 @@
 		[
 			32000,
 			[
-				["Set Camera Target", "Dad,170,20", ""],
+				["Set Camera Target", "Dad,150,20", ""],
 				["Set Camera Zoom", "0.8,stage", "32,expoOut"]
 			]
 		],
@@ -88,7 +88,7 @@
 		[
 			40000,
 			[
-				["Set Camera Target", "Dad,170,20", ""],
+				["Set Camera Target", "Dad,150,20", ""],
 				["Set Camera Zoom", "0.8,stage", "32,expoOut"]
 			]
 		],
@@ -102,7 +102,7 @@
 		[
 			48000,
 			[
-				["Set Camera Target", "Dad,170,20", ""],
+				["Set Camera Target", "Dad,150,20", ""],
 				["Set Camera Zoom", "0.8,stage", "32,expoOut"]
 			]
 		],
@@ -179,7 +179,7 @@
 		[
 			64000,
 			[
-				["Set Camera Target", "Dad,170,20", ""],
+				["Set Camera Target", "Dad,150,20", ""],
 				["Set Camera Zoom", "0.8,stage", "32,expoOut"]
 			]
 		],
@@ -219,7 +219,7 @@
 		[
 			78875,
 			[
-				["Set Camera Target", "Dad,170,20", ""],
+				["Set Camera Target", "Dad,150,20", ""],
 				["Set Camera Zoom", "0.8,stage", "32,expoOut"]
 			]
 		],
@@ -240,7 +240,7 @@
 		[
 			85000,
 			[
-				["Set Camera Target", "Dad,170,20", "16,expoOut"],
+				["Set Camera Target", "Dad,150,20", "16,expoOut"],
 				["Set Camera Zoom", "0.8,stage", "16,expoOut"]
 			]
 		],
@@ -254,7 +254,7 @@
 		[
 			87000,
 			[
-				["Set Camera Target", "Dad,170,20", "16,expoOut"],
+				["Set Camera Target", "Dad,150,20", "16,expoOut"],
 				["Set Camera Zoom", "0.8,stage", "16,expoOut"]
 			]
 		],
@@ -268,7 +268,7 @@
 		[
 			89000,
 			[
-				["Set Camera Target", "Dad,170,20", "16,expoOut"],
+				["Set Camera Target", "Dad,150,20", "16,expoOut"],
 				["Set Camera Zoom", "0.8,stage", "16,expoOut"]
 			]
 		],
@@ -282,7 +282,7 @@
 		[
 			91000,
 			[
-				["Set Camera Target", "Dad,170,20", "16,expoOut"],
+				["Set Camera Target", "Dad,150,20", "16,expoOut"],
 				["Set Camera Zoom", "0.8,stage", "16,expoOut"]
 			]
 		],

@@ -58,7 +58,7 @@
 		[
 			21573.0337078652,
 			[
-				["Set Camera Target", "Dad,290,-30", ""],
+				["Set Camera Target", "Dad,290,-60", ""],
 				["Set Camera Zoom", "0.9,stage", "32,expoOut"],
 				["Set Camera Bop", "1", "0.8"]
 			]
@@ -73,7 +73,7 @@
 		[
 			26966.2921348315,
 			[
-				["Set Camera Target", "Dad,290,-30", ""],
+				["Set Camera Target", "Dad,290,-60", ""],
 				["Set Camera Zoom", "0.9,stage", "32,expoOut"]
 			]
 		],
@@ -246,12 +246,12 @@
 		[
 			64044.9438202247,
 			[
-				["Set Camera Target", "Dad,220,-20", "16,expoOut"],
+				["Set Camera Target", "Dad,190,-15", "16,expoOut"],
 				["Set Camera Zoom", "0.9,stage", "16,expoOut"]
 			]
 		],
 		[
-			64297.7528089888,
+			64382.0224719101,
 			[
 				["Change Icon", "", ""]
 			]
@@ -280,7 +280,7 @@
 		[
 			75505.6179775281,
 			[
-				["Set Camera Target", "Dad,290,-30", ""],
+				["Set Camera Target", "Dad,290,-60", ""],
 				["Set Camera Zoom", "0.7,stage", "32,expoOut"]
 			]
 		],
@@ -398,7 +398,7 @@
 		[
 			97078.6516853934,
 			[
-				["Set Camera Target", "Dad,290,-30", "32,expoOut"],
+				["Set Camera Target", "Dad,290,-60", "32,expoOut"],
 				["Set Camera Zoom", "0.8,stage", "32,expoOut"],
 				["Set Camera Bop", "1", "1.2"]
 			]
@@ -451,7 +451,7 @@
 		[
 			107865.168539326,
 			[
-				["Set Camera Target", "Dad,290,-30", "32,expoOut"],
+				["Set Camera Target", "Dad,290,-60", "32,expoOut"],
 				["Set Camera Zoom", "0.9,stage", "32,expoOut"],
 				["Set Camera Bop", "1", "1.2"]
 			]
@@ -484,7 +484,7 @@
 		[
 			113258.426966292,
 			[
-				["Set Camera Target", "Dad,290,-30", "32,expoOut"],
+				["Set Camera Target", "Dad,290,-60", "32,expoOut"],
 				["Set Camera Zoom", "0.9,stage", "32,expoOut"]
 			]
 		],

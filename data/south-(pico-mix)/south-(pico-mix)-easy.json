@@ -636,13 +636,6 @@
 			],
 			"sectionBeats": 4,
 			"mustHitSection": false
-		},
-		{
-			"sectionNotes": [
-				[86909.0909090909, 3, 181.818181818182, "No Animation"]
-			],
-			"sectionBeats": 4,
-			"mustHitSection": false
 		}
 	],
 	"gfVersion": "nene-dark",
