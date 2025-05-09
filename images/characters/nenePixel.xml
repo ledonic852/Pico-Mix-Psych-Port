@@ -6,8 +6,8 @@
 	<SubTexture name="blink0003" x="57" y="0" width="52" height="84"/>
 	<SubTexture name="blink0004" x="114" y="0" width="52" height="84"/>
 	<SubTexture name="blink0005" x="114" y="0" width="52" height="84"/>
-	<SubTexture name="blink0006" x="388" y="168" width="71" height="84"/>
-	<SubTexture name="blink0007" x="388" y="168" width="71" height="84"/>
+	<SubTexture name="blink0006" x="407" y="168" width="52" height="84"/>
+	<SubTexture name="blink0007" x="407" y="168" width="52" height="84"/>
 	<SubTexture name="idle0000" x="171" y="0" width="75" height="74"/>
 	<SubTexture name="idle0001" x="171" y="0" width="75" height="74"/>
 	<SubTexture name="idle0002" x="251" y="0" width="75" height="74"/>
@@ -36,14 +36,14 @@
 	<SubTexture name="idle0025" x="80" y="168" width="75" height="74"/>
 	<SubTexture name="idle0026" x="80" y="168" width="75" height="74"/>
 	<SubTexture name="idle0027" x="80" y="168" width="75" height="74"/>
-	<SubTexture name="lower0000" x="312" y="168" width="71" height="84"/>
-	<SubTexture name="lower0001" x="312" y="168" width="71" height="84"/>
-	<SubTexture name="lower0002" x="236" y="168" width="71" height="84"/>
-	<SubTexture name="lower0003" x="236" y="168" width="71" height="84"/>
-	<SubTexture name="lower0004" x="160" y="168" width="71" height="84"/>
-	<SubTexture name="lower0005" x="160" y="168" width="71" height="84"/>
-	<SubTexture name="lower0006" x="80" y="168" width="75" height="74"/>
-	<SubTexture name="lower0007" x="80" y="168" width="75" height="74"/>
+	<SubTexture name="lower0000" x="312" y="168" width="74" height="84"/>
+	<SubTexture name="lower0001" x="312" y="168" width="74" height="84"/>
+	<SubTexture name="lower0002" x="236" y="168" width="74" height="84"/>
+	<SubTexture name="lower0003" x="236" y="168" width="74" height="84"/>
+	<SubTexture name="lower0004" x="160" y="168" width="74" height="84"/>
+	<SubTexture name="lower0005" x="160" y="168" width="74" height="84"/>
+	<SubTexture name="lower0006" x="82" y="158" width="74" height="84"/>
+	<SubTexture name="lower0007" x="82" y="158" width="74" height="84"/>
 	<SubTexture name="raise0000" x="160" y="168" width="71" height="84"/>
 	<SubTexture name="raise0001" x="160" y="168" width="71" height="84"/>
 	<SubTexture name="raise0002" x="236" y="168" width="71" height="84"/>

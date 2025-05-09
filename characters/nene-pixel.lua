@@ -17,14 +17,6 @@ function onCreate()
 end
 
 function onCreatePost()
-    if curStage == 'phillyStreets' or curStage == 'phillyBlazin' then
-        if gfName == 'nene' then
-            setCharacterX('gf', getCharacterX('gf') - 60)
-            setCharacterY('gf', getCharacterY('gf') + 200)
-            callMethod('stages[0].abot.destroy')
-        end
-    end
-    
     --[[
         If you ever want to use Abot Speaker on another character,
         just copy and paste this below, and change what's between '{}'.
@@ -83,10 +75,9 @@ function onUpdatePost(elapsed)
 	end
 end
 
-
 function onUpdatePost(elapsed)
     if songName ~= "Blazin'" then
-        --transitionAnim()
+        transitionAnim()
     end
 end
 
@@ -110,6 +101,9 @@ function transitionAnim()
         elseif getProperty('gf.animation.name') == 'danceLeft' then
             comboAnimActive = false
             setProperty('gf.specialAnim', true)
+            if getProperty('gf.animation.curAnim.curFrame') >= 6 then
+                callMethod('AbotSpeakerPixel.animation.curAnim.finish')
+            end
             if getProperty('gf.animation.finished') then
                 animTrans = 2
                 playAnim('gf', 'raiseKnife')
@@ -118,6 +112,7 @@ function transitionAnim()
             end
         end
     elseif animTrans == 2 then -- Nene keeps raising her knife while randomly blinking on beat, or lowers her knife.
+        callMethod('AbotSpeakerPixel.animation.curAnim.finish')
         if getHealth() > 0.5 then
             animTrans = 3
             playAnim('gf', 'lowerKnife')
@@ -135,11 +130,13 @@ function transitionAnim()
             end
         end
     elseif animTrans == 3 then -- Nene goes back to bopping her head.
+        callMethod('AbotSpeakerPixel.animation.curAnim.finish')
         if getProperty('gf.animation.finished') then
             animTrans = 0
             comboAnimActive = true
             setProperty('gf.danced', false)
             characterDance('gf')
+            playAnim('AbotSpeakerPixel', 'idle', true)
         end   
     end
 end
