@@ -20,6 +20,12 @@
 			]
 		],
 		[
+			9000,
+			[
+				["Hey!", "GF", ""]
+			]
+		],
+		[
 			9600,
 			[
 				["Set Camera Target", "BF", ""],
@@ -66,7 +72,8 @@
 		[
 			18600,
 			[
-				["Set Camera Zoom", "1.1,stage", "16,expoOut"]
+				["Set Camera Zoom", "1.1,stage", "16,expoOut"],
+				["Hey!", "GF", ""]
 			]
 		],
 		[
@@ -74,6 +81,12 @@
 			[
 				["Set Camera Target", "Dad", ""],
 				["Set Camera Zoom", "1,stage", "16,expoOut"]
+			]
+		],
+		[
+			28200,
+			[
+				["Hey!", "GF", ""]
 			]
 		],
 		[
@@ -133,7 +146,8 @@
 		[
 			37800,
 			[
-				["Set Camera Zoom", "1.1,stage", "16,expoOut"]
+				["Set Camera Zoom", "1.1,stage", "16,expoOut"],
+				["Hey!", "GF", ""]
 			]
 		],
 		[
@@ -363,7 +377,8 @@
 		[
 			85800,
 			[
-				["Set Camera Zoom", "1.04,stage", "16,expoOut"]
+				["Set Camera Zoom", "1.04,stage", "16,expoOut"],
+				["Hey!", "GF", ""]
 			]
 		],
 		[

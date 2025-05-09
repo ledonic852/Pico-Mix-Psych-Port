@@ -25,6 +25,14 @@
 			"name": "ComboCheer0"
 		},
 		{
+			"offsets": [-124, 52],
+			"loop": false,
+			"fps": 24,
+			"anim": "cheer",
+			"indices": [],
+			"name": "ComboCheer0"
+		},
+		{
 			"offsets": [0, 0],
 			"loop": false,
 			"fps": 24,

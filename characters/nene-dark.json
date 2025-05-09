@@ -25,6 +25,14 @@
 			"indices": []
 		},
 		{
+			"offsets": [-124, 52],
+			"loop": false,
+			"fps": 24,
+			"anim": "cheer",
+			"indices": [],
+			"name": "combo celebration 1 nene xmas"
+		},
+		{
 			"loop": false,
 			"offsets": [0, 0],
 			"anim": "drop70",
