@@ -25,9 +25,8 @@ function onCreatePost()
         end
     elseif curStage == 'tankErect' then
         if gfName == 'nene' then
-            setCharacterX('gf', getCharacterX('gf') + 140)
+            setCharacterX('gf', getCharacterX('gf') + 115)
             setCharacterY('gf', getCharacterY('gf'))
-            callMethod('stages[0].abot.destroy')
         end
     end
     
@@ -127,10 +126,13 @@ end
     This function is what controls Nene's animations dependently of the player's health.
     When the player's health is low, Nene will smoothly go to her 'raiseKnife' anim.
     If the player gains enough health, Nene will go back to bopping her head.
+    Also, it also controls her animations when the train pasees by in 'philly' and 'phillyErect'.
 ]]
 local animTrans = 0
 local blinkDelay = 3
+local trainStartedMoving = nil
 function transitionAnim()
+    checkHairBlowState()
     if animTrans == 0 then -- Nene noticed the player being low on health.
         if getHealth() <= 0.5 then
             animTrans = 1
@@ -174,5 +176,45 @@ function transitionAnim()
             setProperty('gf.danced', false)
             characterDance('gf')
         end   
+    elseif animTrans == 4 then -- Nene's hair is blown by the train.
+        if trainStartedMoving == false then
+            animTrans = 0
+            playAnim('gf', 'hairFallNormal')
+            setProperty('gf.specialAnim', true)
+        else
+            playAnim('gf', 'hairBlowNormal')
+            setProperty('gf.specialAnim', true)
+        end
+    elseif animTrans == 5 then -- Nene's hair is blown by the train while she has her knife raised. 
+        if trainStartedMoving == false then
+            animTrans = 2
+            playAnim('gf', 'hairFallKnife')
+            setProperty('gf.specialAnim', true)
+        else
+            playAnim('gf', 'hairBlowKnife')
+            setProperty('gf.specialAnim', true)
+        end
+    end
+end
+
+--[[ 
+    This is how the function above detects if Nene has her hair blown by the passing train or not.
+    Only works when the current stage is either 'philly' or 'phillyErect', else it'll do nothing.
+]]
+function checkHairBlowState()
+    if curStage == 'philly' then
+        trainStartedMoving = getProperty('stages[0].phillyTrain.startedMoving')
+    elseif curStage == 'phillyErect' then
+        trainStartedMoving = getVar('startedMoving')
+    else
+        return
+    end
+
+    if trainStartedMoving == true and animTrans < 4 then
+        if animTrans == 2 then
+            animTrans = 5
+        else
+            animTrans = 4
+        end
     end
 end
