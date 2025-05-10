@@ -74,7 +74,7 @@ function onBeatHit()
 
 	if curBeat % 2 == 0 then
 		if sniperSpecialAnim == false then
-			playAnim('sniper', 'idle')
+			playAnim('sniper', 'idle', true)
 		end
 		playAnim('tankguy', 'idle', true)
 	end

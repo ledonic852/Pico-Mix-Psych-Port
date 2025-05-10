@@ -38,6 +38,11 @@ function onCreate()
 	scaleObject('fallingPetals', 6, 6)
 	addLuaSprite('fallingPetals')
 	setProperty('fallingPetals.antialiasing', false)
+
+	setPropertyFromClass('substates.GameOverSubstate', 'characterName', 'bf-pixel-dead')
+	setPropertyFromClass('substates.GameOverSubstate', 'deathSoundName', 'fnf_loss_sfx-pixel')
+	setPropertyFromClass('substates.GameOverSubstate', 'loopSoundName', 'gameOver-pixel')
+	setPropertyFromClass('substates.GameOverSubstate', 'endSoundName', 'gameOverEnd-pixel')
 end
 
 function onCreatePost()

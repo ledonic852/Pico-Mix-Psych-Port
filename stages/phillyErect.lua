@@ -168,6 +168,7 @@ end
 function updateTrainPos()
 	if getSoundTime('trainSound') >= 4700 then
 		startedMoving = true
+		setVar('startedMoving', startedMoving)
 		playAnim('gf', 'hairBlow')
 		setProperty('gf.specialAnim', true)
 	end
@@ -194,6 +195,7 @@ function trainReset()
 	trainCars = 8
 	isTrainFinished = false
 	startedMoving = false
+	setVar('startedMoving', startedMoving)
 	setProperty('train.x', screenWidth + 200)
 
 	setProperty('gf.danced', false)

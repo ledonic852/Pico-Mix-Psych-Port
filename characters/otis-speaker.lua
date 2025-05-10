@@ -8,7 +8,7 @@ function onCreatePost()
         Go check the Abot Speaker's script for more information at line 374.
     ]]
     addLuaScript('characters/abot-speaker')
-    callScript('characters/abot-speaker', 'createSpeaker', {'otis-speaker', 20, 10}) -- {characterName, offsetX, offsetY}
+    callScript('characters/abot-speaker', 'createSpeaker', {'otis-speaker', 5, 10}) -- {characterName, offsetX, offsetY}
     if curStage == 'tankErect' then
         setVar('trackShader', false) -- Check line 30 of 'abot-speaker' to know its use.
         if shadersEnabled == true then
