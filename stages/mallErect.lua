@@ -29,7 +29,8 @@ function onCreate()
 	end
 
 	makeAnimatedLuaSprite('bottomBoppers', 'christmas/erect/bottomBop', -410, 100)
-	addAnimationByPrefix('bottomBoppers', 'idle', 'bottomBop', 24, false)
+	addAnimationByPrefix('bottomBoppers', 'idle', 'bop0', 24, false)
+	addAnimationByPrefix('bottomBoppers', 'hey', 'hey0', 24, false)
 	setScrollFactor('bottomBoppers', 0.9, 0.9)
 	addLuaSprite('bottomBoppers')
 
@@ -55,14 +56,21 @@ function onCreatePost()
 end
 
 --[[
-	Just makes the characters bop, pretty straight forward.
-	I do want to add the 'Hey' animations for them at one point, 	
-	since Psych Engine does it aswell, but I'm no animator.
-	
-	If you read this and want to help out,
-	please post a comment on the mod's Gamebanana page.
-	Thank you -- Ledonic :)
+	Everything below is to make the characters bop their head on beat.
+	It also checks if the 'Hey' event is played to make the ones at the bottom cheer aswell.
+	Shoutout for MrCatz for making the animation! Check his socials in the Credits Menu.
 ]]
+local heyTimer = 0
+function onUpdate(elapsed)
+	if heyTimer > 0 then
+		heyTimer = heyTimer - elapsed
+		if heyTimer <= 0 then
+			playAnim('bottomBoppers', 'idle', true);
+			heyTimer = 0
+		end
+	end
+end
+
 function onCountdownTick(swagCounter)
 	if lowQuality == false then
 		playAnim('topBoppers', 'idle', true)
@@ -75,6 +83,21 @@ function onBeatHit()
 	if lowQuality == false then
 		playAnim('topBoppers', 'idle', true)
 	end
-	playAnim('bottomBoppers', 'idle', true)
+	if heyTimer <= 0 then
+		playAnim('bottomBoppers', 'idle', true)
+	end
 	playAnim('santa', 'idle', true)
+end
+
+function onEvent(eventName, value1, value2)
+	if eventName == 'Hey!' then
+		if value1 ~= '0' or string.lower(value1) ~= 'bf' or string.lower(value1) ~= 'boyfriend' then
+			playAnim('bottomBoppers', 'hey', true)
+			if value2 == '' then
+				heyTimer = 0.6
+			else
+				heyTimer = tonumber(value2)
+			end
+		end
+	end
 end
