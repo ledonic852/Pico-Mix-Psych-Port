@@ -28,6 +28,38 @@ function onCreate()
     end
 end
 
+function onCreatePost()
+    if shadersEnabled == true then
+		initLuaShader('dropShadow')
+        for tankNum = 1, #runTankmen do
+            local tag = 'tankmanRun'..tankNum
+            setSpriteShader(tag, 'dropShadow')
+    		setShaderFloat(tag, 'hue', -38)
+    		setShaderFloat(tag, 'saturation', -20)
+    		setShaderFloat(tag, 'contrast', -25)
+    		setShaderFloat(tag, 'brightness', -46)
+			
+            setShaderFloat(tag, 'ang', math.rad(135))
+    		setShaderFloat(tag, 'str', 1)
+    		setShaderFloat(tag, 'dist', 15)
+    		setShaderFloat(tag, 'thr', 0.4)
+
+			setShaderFloat(tag, 'AA_STAGES', 2)
+			setShaderFloatArray(tag, 'dropColor', {223 / 255, 239 / 255, 60 / 255})
+            setShaderBool(tag, 'useMask', false)
+            runHaxeCode([[
+                import flixel.math.FlxAngle;
+                var tankmanRun = getLuaObject(tankmanTag);
+                tankmanRun.animation.callback = function(name:String, frameNumber:Int, frameIndex:Int)
+                {
+                    tankmanRun.shader.setFloatArray('uFrameBounds', [tankmanRun.frame.uv.x, tankmanRun.frame.uv.y, tankmanRun.frame.uv.width, tankmanRun.frame.uv.height]);
+                    tankmanRun.shader.setFloat('angOffset', tankmanRun.frame.angle * FlxAngle.TO_RAD);
+                }
+            ]], {tankmanTag = tag})
+		end
+	end
+end
+
 function onUpdatePost(elapsed)
     updateTankman()
     if #shootNotes > 0 and getSongPosition() > shootNotes[1][1] then

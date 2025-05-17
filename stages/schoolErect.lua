@@ -47,6 +47,31 @@ end
 
 function onCreatePost()
 	if shadersEnabled == true then
+		runHaxeCode([[
+            import flixel.math.FlxAngle;
+			function setShaderFrameInfo(objectName:String) {
+				var object:FlxSprite;
+				switch(objectName) {
+					case 'boyfriend':
+                    	object = game.boyfriend;
+                	case 'dad':
+                    	object = game.dad;
+                	case 'gf':
+                    	object = game.gf;
+                	default:
+                    	object = game.getLuaObject(objectName);
+				}
+
+				object.animation.callback = function(name:String, frameNumber:Int, frameIndex:Int)
+            	{
+					if (object.shader != null) {
+						object.shader.setFloatArray('uFrameBounds', [object.frame.uv.x, object.frame.uv.y, object.frame.uv.width, object.frame.uv.height]);
+                		object.shader.setFloat('angOffset', object.frame.angle * FlxAngle.TO_RAD);
+					}
+            	}
+			}
+        ]])
+
 		initLuaShader('dropShadow')
         for i, object in ipairs({'boyfriend', 'dad', 'gf'}) do
             setSpriteShader(object, 'dropShadow')
@@ -62,6 +87,7 @@ function onCreatePost()
 
 			setShaderFloat(object, 'AA_STAGES', 0)
 			setShaderFloatArray(object, 'dropColor', {82 / 255, 53 / 255, 29 / 255})
+			runHaxeFunction('setShaderFrameInfo', {object})
 
 			local imageFile = stringSplit(getProperty(object..'.imageFile'), '/')
 			if checkFileExists('images/characters/masks/'..imageFile[#imageFile]..'_mask.png') then
@@ -81,15 +107,6 @@ function onCreatePost()
 				setShaderFloat(object, 'dist', 3)
     			setShaderFloat(object, 'thr', 0.3)
 			end
-		end
-	end
-end
-
-function onUpdatePost(elapsed)
-	if shadersEnabled == true then
-		for i, object in ipairs({'boyfriend', 'dad', 'gf'}) do
-			setShaderFloatArray(object, 'uFrameBounds', {getProperty(object..'.frame.uv.x'), getProperty(object..'.frame.uv.y'), getProperty(object..'.frame.uv.width'), getProperty(object..'.frame.uv.height')})
-			setShaderFloat(object, 'angOffset', math.rad(getProperty(object..'.frame.angle')))
 		end
 	end
 end

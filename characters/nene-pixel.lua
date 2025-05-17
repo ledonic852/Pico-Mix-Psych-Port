@@ -48,6 +48,15 @@ function onCreatePost()
             setShaderSampler2D('AbotPixelSpeakers', 'altMask', 'characters/abot/pixel/masks/aBotPixelSpeaker_mask')
             setShaderFloat('AbotPixelSpeakers', 'thr2', 0)
             setShaderBool('AbotPixelSpeakers', 'useMask', true)
+            runHaxeCode([[
+                import flixel.math.FlxAngle;
+                var abotSpeakers = getLuaObject('AbotPixelSpeakers');
+                abotSpeakers.animation.callback = function(name:String, frameNumber:Int, frameIndex:Int)
+                {
+                    abotSpeakers.shader.setFloatArray('uFrameBounds', [abotSpeakers.frame.uv.x, abotSpeakers.frame.uv.y, abotSpeakers.frame.uv.width, abotSpeakers.frame.uv.height]);
+                    abotSpeakers.shader.setFloat('angOffset', abotSpeakers.frame.angle * FlxAngle.TO_RAD);
+                }
+            ]])
 
             initLuaShader('adjustColor')
             for _, object in ipairs({'AbotSpeakerPixel', 'AbotSpeakerBGPixel', 'AbotHeadPixel'}) do
@@ -65,13 +74,6 @@ function onCreatePost()
                 setShaderFloat('AbotSpeakerVisualizerPixel'..bar, 'brightness', -66)
             end
         end
-	end
-end
-
-function onUpdatePost(elapsed)
-	if shadersEnabled == true then
-		setShaderFloatArray('AbotPixelSpeakers', 'uFrameBounds', {getProperty('AbotPixelSpeakers.frame.uv.x'), getProperty('AbotPixelSpeakers.frame.uv.y'), getProperty('AbotPixelSpeakers.frame.uv.width'), getProperty('AbotPixelSpeakers.frame.uv.height')})
-	    setShaderFloat('AbotPixelSpeakers', 'angOffset', math.rad(getProperty('AbotPixelSpeakers.frame.angle')))
 	end
 end
 
