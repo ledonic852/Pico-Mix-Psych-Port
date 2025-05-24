@@ -25,7 +25,7 @@ gfDialogueData = {
 
 local dialogueFinished = false
 function onCreate()
-    setVar('dialogueFinished', false)
+    setVar('dialogueFinished', dialogueFinished)
     if dialogueBoxData.useMusic == true then
         playMusic(dialogueBoxData.musicName, 0, true)
         soundFadeIn(nil, 1, 0, 0.8)
@@ -135,12 +135,16 @@ function onUpdatePost(elapsed)
         if keyJustPressed('back') then
             if dialogueStarted == true then
                 dialogueFinish()
-                playSound('clickText', 0.8)
             end
         elseif keyJustPressed('accept') then
             if dialogueEnded == true then
                 if dialogueList[2] == nil and dialogueList[1] == nil then
-                    dialogueFinish()
+                    if getProperty('dialogueText.paused') == false then
+                        dialogueFinish()
+                    else
+                        dialogueStart()
+                        playSound('clickText', 0.8)
+                    end
                 else
                     dialogueStart()
                     playSound('clickText', 0.8)
@@ -149,31 +153,33 @@ function onUpdatePost(elapsed)
                 dialogueSkip()
             end
         end
+
+        if dialogueEnded == false then
+            if dialogueData.pausePos[1] ~= nil then
+                stopDialogue = dialogueData.pausePos[1] - 1
+            else
+                stopDialogue = getProperty('dialogueText._finalText.length')
+            end
+
+            if getProperty('dialogueText._length') == stopDialogue then
+                dialogueEnded = true
+                setProperty('handSelectBox.visible', true)
+
+                if dialogueData.pausePos[1] ~= nil then
+                    setProperty('dialogueText.paused', true)
+                    table.remove(dialogueData.pausePos, 1)
+                end
+            end
+        end
     end
 end
 
-local dialogueStop = 1
-local dialogueDelay = 0
 function dialogueStart()
     if getProperty('dialogueText.paused') == false then
-        dialogueStop = 0
         dialogueData = getCurrentDialogueData()
-        dialogueDelay = #dialogueData.text
         callMethod('dialogueText.resetText', {dialogueData.text:gsub('|', '')})
     end
-    
-    if dialogueData.pausePos[1] ~= nil then
-        if dialogueStop > 0 then
-            dialogueDelay = dialogueData.pausePos[1] - dialogueStop + 1
-        else
-            dialogueDelay = dialogueData.pausePos[1]
-        end
-    else
-        dialogueDelay = #dialogueData.text - dialogueStop
-    end
-          
     callMethod('dialogueText.start', {0.04})
-    runTimer('dialogueDelay', dialogueDelay * 0.04)
 
     dialogueEnded = false
     setProperty('handSelectBox.visible', false)
@@ -194,14 +200,14 @@ function dialogueStart()
 end
 
 function dialogueSkip()
-    cancelTimer('dialogueDelay')
-    if dialogueData.pausePos[1] ~= nil then
-        setProperty('dialogueText._length', dialogueData.pausePos[1])
-        setProperty('dialogueText.paused', true)
-        dialogueStop = dialogueStop + dialogueDelay
-        table.remove(dialogueData.pausePos, 1)
-    else
-        callMethod('dialogueText.skip')
+    if getProperty('dialogueText.paused') == false then
+        if dialogueData.pausePos[1] ~= nil then
+            setProperty('dialogueText._length', dialogueData.pausePos[1] - 1)
+            setProperty('dialogueText.paused', true)
+            table.remove(dialogueData.pausePos, 1)
+        else
+            callMethod('dialogueText.skip')
+        end
     end
     setProperty('handSelectBox.visible', true)
     playSound('clickText', 0.8)
@@ -211,7 +217,7 @@ end
 function dialogueFinish()
     dialogueSkip()
     dialogueFinished = true
-    setVar('dialogueFinished', true)
+    setVar('dialogueFinished', dialogueFinished)
     cancelTimer('dialogueBGFadeIn')
     if dialogueBoxData.useMusic == true then
         soundFadeOut(nil, 1.5, 0)
@@ -273,15 +279,6 @@ function onTimerCompleted(tag, loops, loopsLeft)
     if tag == 'dialogueBGFadeIn' then
         alpha = ((loops - loopsLeft) / loops) * 0.7
         setProperty('dialogueBG.alpha', alpha)
-    end
-    if tag == 'dialogueDelay' then
-        dialogueEnded = true
-        if dialogueData.pausePos[1] ~= nil then
-            setProperty('dialogueText.paused', true)
-            dialogueStop = dialogueStop + dialogueDelay
-            table.remove(dialogueData.pausePos, 1)
-        end
-        setProperty('handSelectBox.visible', true)
     end
     if tag == 'destroyDialogueBox' then
         for i, object in ipairs({'dialogueBG', 'dialogueBox', 'handSelectBox', 'dialogueText', 'skipText'}) do
