@@ -37,8 +37,14 @@ end
 
 local dialogueList = {}
 function createDialogueBox(isMad)
-    local dialogueFile = callMethodFromClass('backend.Paths', 'txt', {songPath..'/dialogue'})
-    dialogueList = callMethodFromClass('backend.CoolUtil', 'coolTextFile', {dialogueFile})
+    local dialoguePath = ''
+    local curLanguage = getPropertyFromClass('backend.ClientPrefs', 'data.language')
+    if checkFileExists('data/'..songPath..'/dialogue_'..curLanguage..'.txt') then
+        dialoguePath = callMethodFromClass('backend.Paths', 'txt', {songPath..'/dialogue_'..curLanguage})
+    else
+        dialoguePath = callMethodFromClass('backend.Paths', 'txt', {songPath..'/dialogue'})
+    end
+    dialogueList = callMethodFromClass('backend.CoolUtil', 'coolTextFile', {dialoguePath})
 
     setProperty('inCutscene', true)
     makeLuaSprite('dialogueBG')
@@ -112,7 +118,7 @@ function createDialogueBox(isMad)
         return; // DON'T REMOVE THIS LINE FOR THE LOVE OF GOD.
     ]])
 
-    local skipText = callMethodFromClass('backend.Language', 'getPhrase', {'dialogue_skip', 'Press BACK to Skip'})
+    local skipText = getTranslationPhrase('dialogue_skip', 'Press BACK to Skip')
     makeLuaText('skipText', skipText, 300, screenWidth - 320, screenHeight - 30)
     setTextSize('skipText', 16)
     setTextFont('skipText', 'nokiafc22.ttf')

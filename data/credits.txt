@@ -2,3 +2,4 @@ Pico Mix
 Ledonic::ledonic::Did everything::https://www.youtube.com/@ledonic852::3897FF
 cyachao::::Provided the updated rain shader\nObtained at the Psych Ward (Official Psych Discord Server)::::A1A1A1
 MrCatz::mrcatz::Made the 'Hey!' animation for the bottom characters\n in the Week 5 Erect stage::https://mrcatstudios.straw.page::342C3C
+SunkyDev31::sunky::Translated the Week 6 dialogues for Português (Brasil)::https://bsky.app/profile/sunkydunky31.bsky.social::FF3B25
