@@ -14,6 +14,18 @@ function onCreate()
 	addAnimationByPrefix('tankguy', 'idle', 'BLTank2 instance 1', 24, false)
 	scaleObject('tankguy', 1.15, 1.15)
 	addLuaSprite('tankguy')
+
+	if stringStartsWith(boyfriendName, 'pico') then
+		charVariant = '-pico'
+		maxVoicelines = 10
+	else
+		charVariant = ''
+		maxVoicelines = 25
+	end
+
+	for i = 1, maxVoicelines do
+		precacheSound('jeffGameover'..charVariant..'/jeffGameover-'..i)
+	end
 end
 
 function onCreatePost()
@@ -97,8 +109,49 @@ function onBeatHit()
 	end
 end
 
+startedDeathSound = false
+deathSoundEnded = false
+function onUpdate(elapsed)
+	if inGameOver == true and startedDeathSound == false then
+		if getPropertyFromGameOver('boyfriend._lastPlayedAnimation') == 'firstDeath' then
+			animEnded = (getPropertyFromGameOver('boyfriend.animation.curAnim.finished') or getPropertyFromGameOver('boyfriend.atlas.anim.finished'))
+			if animEnded then
+				local jeffVariant = getRandomInt(1, maxVoicelines)
+				playSound('jeffGameover'..charVariant..'/jeffGameover-'..jeffVariant, 1, 'jeffVoiceline')
+				startedDeathSound = true
+			end
+		end
+	end
+end
+
+function onUpdatePost(elapsed)
+	if inGameOver == true and deathSoundEnded == false then
+		setSoundVolume(nil, 0.2)
+	end
+end
+
 function onTimerCompleted(tag, loops, loopsLeft)
 	if tag == 'sipAnimLength' then
 		sniperSpecialAnim = false
 	end
+end
+
+local gameOverFinished = false
+function onGameOverConfirm()
+	gameOverFinished = true
+end
+
+function onSoundFinished(tag)
+	if tag == 'jeffVoiceline' and gameOverFinished == false then
+		soundFadeIn(nil, 4, 0.2, 1)
+		deathSoundEnded = true
+	end
+end
+
+function getPropertyFromGameOver(property)
+    if getPropertyFromClass('substates.GameOverSubstate', property) ~= nil then
+        return getPropertyFromClass('substates.GameOverSubstate', property)
+    else
+        return getPropertyFromClass('substates.GameOverSubstate', 'instance.'..property)
+    end
 end
