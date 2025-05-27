@@ -93,6 +93,14 @@ function onCreate()
         addAnimationByPrefix('bulletShot', 'anim', 'Bullet Shot0', 24, false)
         addLuaSprite('bulletShot', true)
         setProperty('bulletShot.visible', false)
+
+        createInstance('skipSprite', 'flixel.addons.display.FlxPieDial', {0, 0, 40, FlxColor('WHITE'), nil, 40, true, 24})
+        callMethod('skipSprite.replaceColor', {FlxColor('BLACK'), FlxColor('TRANSPARENT')})
+        setObjectCamera('skipSprite', 'camOther')
+        addLuaSprite('skipSprite')
+        setProperty('skipSprite.x', screenWidth - (getProperty('skipSprite.width') + 80))
+        setProperty('skipSprite.y', screenHeight - (getProperty('skipSprite.height') + 72))
+        setProperty('skipSprite.amount', 0)
         
         precacheSound('stressPicoCutsceneIntro')
         if not isRunning('custom_events/Set Camera Target') then
@@ -116,12 +124,14 @@ end
 
 function onSongStart()
     if seenCutscene == false then
-        setProperty('dad.visible', true)
-        if shadersEnabled == true then
-            removeSpriteShader('tankmanIntro')
+        if luaSpriteExists('tankmanIntro') then
+            setProperty('dad.visible', true)
+            if shadersEnabled == true then
+                removeSpriteShader('tankmanIntro')
+            end
+            setProperty('tankmanIntro.visible', false)
+            removeLuaSprite('tankmanIntro')
         end
-        setProperty('tankmanIntro.visible', false)
-        removeLuaSprite('tankmanIntro')
     end
 end
 
@@ -173,134 +183,185 @@ function activateShader()
     end
 end
 
+local holdingTime = 0
 function onUpdatePost(elapsed)
     if cutsceneFinished == false and seenCutscene == false then
         if getProperty('AbotPupilsCutscene.anim.curFrame') >= 17 then
             callMethod('AbotPupilsCutscene.anim.pause')
         end
-    end
-end
 
-local neneDanced = false
-function onTimerCompleted(tag, loops, loopsLeft)
-    if tag == 'beatHit' then
-        if getProperty('neneIntro.anim.finished') then
-            if getProperty('neneIntro.anim.curSymbol.name') == 'anim1' then
-                setProperty('tankmenDead.visible', true)
-                runTimer('startTankmenFlicker', 113 / 24)
-            end
-            if loopsLeft >= -16 then
-                neneDanced = not neneDanced
-                if neneDanced == true then
-                    playAnim('neneIntro', 'danceRight')
-                else
-                    playAnim('neneIntro', 'danceLeft')
-                end
-            elseif loopsLeft > -80 then
-                playAnim('neneIntro', 'idle')
-            end
+        if keyPressed('accept') then
+            holdingTime = math.max(0, math.min(1, holdingTime + elapsed))
+        elseif holdingTime > 0 then
+            holdingTime = math.max(0, math.lerp(holdingTime, -0.1, math.bound(elapsed * 3, 0, 1)))
         end
-        if loopsLeft > -28 then
-            playAnim('picoIntro', 'idle')
-            if loopsLeft % 2 == 1 then
-                if getRandomBool(2) and getProperty('sniper.animation.name') ~= 'sip' then
-                    playAnim('sniper', 'sip')
-                elseif getProperty('sniper.animation.finished') then
-                    playAnim('sniper', 'idle')
-                end
-                playAnim('tankguy', 'idle')
-            end
-        end
-    end
-    if tag == 'startCutscene' then
-        playAnim('tankmanIntro', 'anim1')
-        playAnim('neneIntro', 'danceLeft')
-        setProperty('neneIntro.anim.curFrame', getProperty('neneIntro.anim.length') - 1)
-        playSound('stressPicoCutsceneIntro')
-        runTimer('beatHit', 60 / 158, 0)
-        activateShader()
-    end
-    if tag == 'camFocusNene' then
-        triggerEvent('Set Camera Target', 'Dad,350,-240', '1.5,quadOut')
-        triggerEvent('Set Camera Zoom', '1.5,stage', '1.5,quadOut')
-    end
-    if tag == 'tankmenGunpointsNene' then
-        playAnim('neneIntro', 'anim1')
-    end
-    if tag == 'neneStabsTankmen' then
-        triggerEvent('Set Camera Target', 'Dad,330,-240', '0.4,expoOut')
-    end
-    if tag == 'camFocusOtis' then
-        triggerEvent('Set Camera Target', 'GF,-40,-400', '1.5,quadInOut')
-        triggerEvent('Set Camera Zoom', '1.05,stage', '1.5,quadInOut')
-    end
-    if tag == 'camFocusPico1' then
-        triggerEvent('Set Camera Target', 'BF,200', '1.2,expoIn')
-        triggerEvent('Set Camera Zoom', '1.4,stage', '1.2,expoIn')
-    end
-    if tag == 'picoCatchesNene' then
-        playAnim('picoIntro', 'anim')
-        playAnim('tankmanIntro', 'anim2')
-        setProperty('tankmanIntro.anim.curFrame', 0)
-        callMethod('tankmanIntro.anim.pause')
-        setProperty('AbotPupilsCutscene.anim.curFrame', 0)
-        callMethod('AbotPupilsCutscene.anim.pause')
-    end
-    if tag == 'camFocusPico2' then
-        triggerEvent('Set Camera Target', 'BF,230,20', '1,quadOut')
-    end
-    if tag == 'startTankmenFlicker' then
-        setProperty('tankmenDead.visible', false)
-        runTimer('tankmenFlicker1', 4 / 24, 4)
-    end
-    if tag == 'tankmenFlicker1' then
-        setProperty('tankmenDead.visible', not getProperty('tankmenDead.visible'))
-        if loopsLeft == 0 then
-            runTimer('tankmenFlicker2', 2 / 24, 4)
-        end
-    end
-    if tag == 'tankmenFlicker2' then
-        setProperty('tankmenDead.visible', not getProperty('tankmenDead.visible'))
-    end
-    if tag == 'camFocusTankman' then
-        triggerEvent('Set Camera Target', 'Dad,160,-60', '1,expoInOut')
-        triggerEvent('Set Camera Zoom', '1.2,stage', '1,expoInOut')
-    end
-    if tag == 'tankmanMocksOtis' then
-        playAnim('tankmanIntro', 'anim2')
-        playAnim('AbotPupilsCutscene', '', true)
-    end
-    if tag == 'otisShoots' then
-        playAnim('neneIntro', 'anim2')
-        runTimer('startBulletAnim', 20 / 24)
-    end
-    if tag == 'startBulletAnim' then
-        triggerEvent('Set Camera Target', 'Dad,130,-60', '0.2,backOut')
-        setProperty('bulletShot.visible', true)
-        playAnim('bulletShot', 'anim')
-    end
-    if tag == 'tankmanDodgesBullet' then
-        playAnim('tankmanIntro', 'anim3')
-    end
-    if tag == 'resetCamPos' then
-        triggerEvent('Set Camera Target', 'Dad', '2.5,quadInOut')
-        triggerEvent('Set Camera Zoom', '1,stage', '2.5,quadInOut ')
-    end
-    if tag == 'endCutsceneIntro' then
-        cutsceneFinished = true
-        setVar('cutsceneMode', false)
-        setProperty('camHUD.visible', true)
-        setProperty('gf.visible', true)
-        setProperty('boyfriend.visible', true)
-        for i, object in ipairs(cutsceneSprites) do
-            if i > 1 then
+        setProperty('skipSprite.amount', math.min(1, math.max(0, (holdingTime / 1) * 1.025)))
+        setProperty('skipSprite.alpha', math.remapToRange(getProperty('skipSprite.amount'), 0.025, 1, 0, 1))
+
+        if holdingTime >= 1 then
+            removeLuaSprite('skipSprite', false)
+            cutsceneFinished = true
+            stopSound('cutsceneSound')
+            setVar('cutsceneMode', false)
+            setProperty('camHUD.visible', true)
+            setProperty('gf.visible', true)
+            setProperty('dad.visible', true)
+            setProperty('boyfriend.visible', true)
+
+            for i, object in ipairs(cutsceneSprites) do
                 if shadersEnabled == true then
                     removeSpriteShader(object)
                 end
                 setProperty(object..'.visible', false)
                 removeLuaSprite(object)
             end
+            
+            startCountdown()
+            triggerEvent('Set Camera Target', 'Dad', '0')
+            triggerEvent('Set Camera Zoom', '1,stage', '0')
         end
-        startCountdown()
     end
+end
+
+local neneDanced = false
+function onTimerCompleted(tag, loops, loopsLeft)
+    if cutsceneFinished == false then
+        if tag == 'beatHit' then
+            if getProperty('neneIntro.anim.finished') then
+                if getProperty('neneIntro.anim.curSymbol.name') == 'anim1' then
+                    setProperty('tankmenDead.visible', true)
+                    runTimer('startTankmenFlicker', 113 / 24)
+                end
+                if loopsLeft >= -16 then
+                    neneDanced = not neneDanced
+                    if neneDanced == true then
+                        playAnim('neneIntro', 'danceRight')
+                    else
+                        playAnim('neneIntro', 'danceLeft')
+                    end
+                elseif loopsLeft > -80 then
+                    playAnim('neneIntro', 'idle')
+                end
+            end
+            if loopsLeft > -28 then
+                playAnim('picoIntro', 'idle')
+                if loopsLeft % 2 == 1 then
+                    if getRandomBool(2) and getProperty('sniper.animation.name') ~= 'sip' then
+                        playAnim('sniper', 'sip')
+                    elseif getProperty('sniper.animation.finished') then
+                        playAnim('sniper', 'idle')
+                    end
+                    playAnim('tankguy', 'idle')
+                end
+            end
+        end
+        if tag == 'startCutscene' then
+            playAnim('tankmanIntro', 'anim1')
+            playAnim('neneIntro', 'danceLeft')
+            setProperty('neneIntro.anim.curFrame', getProperty('neneIntro.anim.length') - 1)
+            playSound('stressPicoCutsceneIntro', 1, 'cutsceneSound')
+            runTimer('beatHit', 60 / 158, 0)
+            activateShader()
+        end
+        if tag == 'camFocusNene' then
+            triggerEvent('Set Camera Target', 'Dad,350,-240', '1.5,quadOut')
+            triggerEvent('Set Camera Zoom', '1.5,stage', '1.5,quadOut')
+        end
+        if tag == 'tankmenGunpointsNene' then
+            playAnim('neneIntro', 'anim1')
+        end
+        if tag == 'neneStabsTankmen' then
+            triggerEvent('Set Camera Target', 'Dad,330,-240', '0.4,expoOut')
+        end
+        if tag == 'camFocusOtis' then
+            triggerEvent('Set Camera Target', 'GF,-40,-400', '1.5,quadInOut')
+            triggerEvent('Set Camera Zoom', '1.05,stage', '1.5,quadInOut')
+        end
+        if tag == 'camFocusPico1' then
+            triggerEvent('Set Camera Target', 'BF,200', '1.2,expoIn')
+            triggerEvent('Set Camera Zoom', '1.4,stage', '1.2,expoIn')
+        end
+        if tag == 'picoCatchesNene' then
+            playAnim('picoIntro', 'anim')
+            playAnim('tankmanIntro', 'anim2')
+            setProperty('tankmanIntro.anim.curFrame', 0)
+            callMethod('tankmanIntro.anim.pause')
+            setProperty('AbotPupilsCutscene.anim.curFrame', 0)
+            callMethod('AbotPupilsCutscene.anim.pause')
+        end
+        if tag == 'camFocusPico2' then
+            triggerEvent('Set Camera Target', 'BF,230,20', '1,quadOut')
+        end
+        if tag == 'startTankmenFlicker' then
+            setProperty('tankmenDead.visible', false)
+            runTimer('tankmenFlicker1', 4 / 24, 4)
+        end
+        if tag == 'tankmenFlicker1' then
+            setProperty('tankmenDead.visible', not getProperty('tankmenDead.visible'))
+            if loopsLeft == 0 then
+                runTimer('tankmenFlicker2', 2 / 24, 4)
+            end
+        end
+        if tag == 'tankmenFlicker2' then
+            setProperty('tankmenDead.visible', not getProperty('tankmenDead.visible'))
+        end
+        if tag == 'camFocusTankman' then
+            triggerEvent('Set Camera Target', 'Dad,160,-60', '1,expoInOut')
+            triggerEvent('Set Camera Zoom', '1.2,stage', '1,expoInOut')
+        end
+        if tag == 'tankmanMocksOtis' then
+            playAnim('tankmanIntro', 'anim2')
+            playAnim('AbotPupilsCutscene', '', true)
+        end
+        if tag == 'otisShoots' then
+            playAnim('neneIntro', 'anim2')
+            runTimer('startBulletAnim', 20 / 24)
+        end
+        if tag == 'startBulletAnim' then
+            triggerEvent('Set Camera Target', 'Dad,130,-60', '0.2,backOut')
+            setProperty('bulletShot.visible', true)
+            playAnim('bulletShot', 'anim')
+        end
+        if tag == 'tankmanDodgesBullet' then
+            playAnim('tankmanIntro', 'anim3')
+        end
+        if tag == 'resetCamPos' then
+            triggerEvent('Set Camera Target', 'Dad', '2.5,quadInOut')
+            triggerEvent('Set Camera Zoom', '1,stage', '2.5,quadInOut ')
+        end
+        if tag == 'endCutsceneIntro' then
+            cutsceneFinished = true
+            setVar('cutsceneMode', false)
+            setProperty('camHUD.visible', true)
+            setProperty('gf.visible', true)
+            setProperty('boyfriend.visible', true)
+            for i, object in ipairs(cutsceneSprites) do
+                if i > 1 then
+                    if shadersEnabled == true then
+                        removeSpriteShader(object)
+                    end
+                    setProperty(object..'.visible', false)
+                    removeLuaSprite(object)
+                end
+            end
+            startCountdown()
+        end
+    end
+end
+
+function math.lerp(a, b, ratio)
+    return a + ratio * (b - a) 
+end
+
+function math.bound(value, min, max)
+    if value < min then
+        value = min
+    elseif value > max then
+        value = max
+    end
+    return value
+end
+
+function math.remapToRange(value, start1, stop1, start2, stop2)
+    return start2 + (value - start1) * ((stop2 - start2) / (stop1 - start1))
 end

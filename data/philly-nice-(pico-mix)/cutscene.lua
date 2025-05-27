@@ -58,6 +58,14 @@ function onCreate()
     addLuaSprite('bloodPool')
     setProperty('bloodPool.visible', false)
 
+    createInstance('skipSprite', 'flixel.addons.display.FlxPieDial', {0, 0, 40, FlxColor('WHITE'), nil, 40, true, 24})
+    callMethod('skipSprite.replaceColor', {FlxColor('BLACK'), FlxColor('TRANSPARENT')})
+    setObjectCamera('skipSprite', 'camOther')
+    addLuaSprite('skipSprite')
+    setProperty('skipSprite.x', screenWidth - (getProperty('skipSprite.width') + 80))
+    setProperty('skipSprite.y', screenHeight - (getProperty('skipSprite.height') + 72))
+    setProperty('skipSprite.amount', 0)
+
     if shadersEnabled == true then
         initLuaShader('adjustColor')
         for _, object in ipairs({'dopplegangerPlayer', 'dopplegangerOpponent', 'cigarette', 'bloodPool'}) do
@@ -78,18 +86,15 @@ function onCreate()
     if not isRunning('custom_events/Set Camera Target') then
         addLuaScript('custom_events/Set Camera Target')
     end
-    if not isRunning('custom_events/Set Camera Zoom') then
-        addLuaScript('custom_events/Set Camera Zoom')
-    end
 end
 
-local stopCountdown = true
+local cutsceneFinished = false
 function onStartCountdown()
     if seenCutscene == true or isStoryMode == true then
         setUpFinishedCutscene()
-        stopCountdown = false
+        cutsceneFinished = true
     end
-    if seenCutscene == false and stopCountdown == true then
+    if seenCutscene == false and cutsceneFinished == false then
         setProperty('camHUD.alpha', 0)
         playCutscene()
         return Function_Stop
@@ -106,8 +111,7 @@ function playCutscene()
     setProperty('dad.visible', false)
     setUpCutscene()
     triggerEvent('Set Camera Target', 'None,'..tostring(inBetweenCamPos.x)..','..tostring(inBetweenCamPos.y), '0')
-    startCutsceneAnim(isPlayerShooting, smokerExplodes)
-    runTimer('startCutsceneMusic', 0.001)
+    runTimer('startCutsceneMusic', 0.1)
     runTimer('moveToSmoker', 4)
     runTimer('moveToShooter', 6.3)
     runTimer('moveBackToSmoker', 8.75)
@@ -170,8 +174,16 @@ function setUpFinishedCutscene()
         
     if smokerExploded then
         setProperty('dad.visible', false)
-        setProperty('dopplegangerPlayer.visible', false)
         playAnim('dopplegangerOpponent', 'explode-loop')
+
+        if shadersEnabled == true then
+            removeSpriteShader('cigarette')
+            removeSpriteShader('dopplegangerPlayer')
+        end
+        setProperty('cigarette.visible', false)
+        setProperty('dopplegangerPlayer.visible', false)
+        removeLuaSprite('cigarette')
+        removeLuaSprite('dopplegangerPlayer')
 
         setProperty('opponentVocals.volume', 0)
         for i = 0, getProperty('notes.length') - 1 do
@@ -200,8 +212,18 @@ function setUpFinishedCutscene()
         end
         setProperty('cigarette.visible', true)
         callMethod('cigarette.animation.curAnim.finish')
+
+        if shadersEnabled == true then
+            removeSpriteShader('bloodPool')
+            removeSpriteShader('dopplegangerPlayer')
+            removeSpriteShader('dopplegangerOpponent')
+        end
+        setProperty('bloodPool.visible', false)
         setProperty('dopplegangerPlayer.visible', false)
         setProperty('dopplegangerOpponent.visible', false)
+        removeLuaSprite('bloodPool')
+        removeLuaSprite('dopplegangerPlayer')
+        removeLuaSprite('dopplegangerOpponent')
     end
 end
 
@@ -230,115 +252,197 @@ function startCutsceneAnim(isPlayerShooting, smokerExplodes)
     runTimer('picoSpinsGun', 10.33)
 end
 
+local canSkip = true
 function onTimerCompleted(tag, loops, loopsLeft)
-    if tag == 'beatHit' then
-        if getProperty('gf.animation.finished') then
-            characterDance('gf')
+    if cutsceneFinished == false then
+        if tag == 'beatHit' then
+            if getProperty('gf.animation.finished') then
+                characterDance('gf')
+            end
         end
-    end
-    if tag == 'startCutsceneMusic' then
-        if smokerExplodes then
-            playMusic('cutscene2')
-        else
-            playMusic('cutscene')
+        if tag == 'startCutsceneMusic' then
+            if smokerExplodes then
+                playMusic('cutscene2')
+            else
+                playMusic('cutscene')
+            end
+            runTimer('beatHit', 60 / 150, 0)
+            startCutsceneAnim(isPlayerShooting, smokerExplodes)
         end
-        runTimer('beatHit', 60 / 150, 0)
-    end
-    if tag == 'delayGasp' then
-        playSound('picoGasp')
-    end
-    if tag == 'picoPointsCigarette' then
-        if smokerExplodes then
-            playSound('picoCigarette2')
-        else
-            playSound('picoCigarette')
+        if tag == 'delayGasp' then
+            playSound('picoGasp', 1, 'cutsceneSound1')
         end
-    end
-    if tag == 'moveToSmoker' then
-        triggerEvent('Set Camera Target', 'None,'..tostring(smokerCamPos.x)..','..tostring(smokerCamPos.y))
-    end
-    if tag == 'picoShoots' then
-        playSound('picoShoot')
-    end
-    if tag == 'moveToShooter' then
-        triggerEvent('Set Camera Target', 'None,'..tostring(shooterCamPos.x)..','..tostring(shooterCamPos.y))
-    end
-    if tag == 'picoFuckinDies' then
-        playSound('picoExplode')
-    end
-    if tag == 'moveBackToSmoker' then
-        triggerEvent('Set Camera Target', 'None,'..tostring(smokerCamPos.x)..','..tostring(smokerCamPos.y))
-        if smokerExplodes then
-            playAnim('gf', 'drop70')
-            setProperty('gf.specialAnim', true)
+        if tag == 'picoPointsCigarette' then
+            if smokerExplodes then
+                playSound('picoCigarette2', 1, 'cutsceneSound2')
+            else
+                playSound('picoCigarette', 1, 'cutsceneSound2')
+            end
         end
-    end
-    if tag == 'picoSpinsGun' then
-        playSound('picoSpin')
-    end
-    if tag == 'picoBleeds' then
-        playAnim('bloodPool', 'poolAnim')
-        setProperty('bloodPool.visible', true)
-    end
-    if tag == 'picoSpitsCigarette' then
-        playAnim('cigarette', 'anim', true)
-        setProperty('cigarette.visible', true)
-    end
-    if tag == 'endCutscene' then
-        if smokerExplodes == false or isPlayerShooting == true then
-            stopCountdown = false
-            startCountdown()
-            setProperty('camHUD.alpha', 1)
-            cancelTimer('beatHit')
+        if tag == 'moveToSmoker' then
+            triggerEvent('Set Camera Target', 'None,'..tostring(smokerCamPos.x)..','..tostring(smokerCamPos.y))
         end
-        if smokerExplodes == true then
-            if isPlayerShooting == true then
-                setProperty('dopplegangerPlayer.visible', false)
-                setProperty('boyfriend.visible', true)
-                setProperty('opponentVocals.volume', 0)
-                for i = 0, getProperty('notes.length') - 1 do
-                    if getPropertyFromGroup('notes', i, 'mustPress') == false then
-                        setPropertyFromGroup('notes', i, 'ignoreNote', true)
-                    end
+        if tag == 'picoShoots' then
+            playSound('picoShoot', 1, 'cutsceneSound3')
+        end
+        if tag == 'moveToShooter' then
+            triggerEvent('Set Camera Target', 'None,'..tostring(shooterCamPos.x)..','..tostring(shooterCamPos.y))
+        end
+        if tag == 'picoFuckinDies' then
+            playSound('picoExplode', 1, 'cutsceneSound4')
+        end
+        if tag == 'moveBackToSmoker' then
+            canSkip = false
+            triggerEvent('Set Camera Target', 'None,'..tostring(smokerCamPos.x)..','..tostring(smokerCamPos.y))
+            if smokerExplodes then
+                playAnim('gf', 'drop70')
+                setProperty('gf.specialAnim', true)
+            end
+        end
+        if tag == 'picoSpinsGun' then
+            playSound('picoSpin', 1, 'cutsceneSound5')
+        end
+        if tag == 'picoBleeds' then
+            playAnim('bloodPool', 'poolAnim')
+            setProperty('bloodPool.visible', true)
+        end
+        if tag == 'picoSpitsCigarette' then
+            playAnim('cigarette', 'anim', true)
+            setProperty('cigarette.visible', true)
+        end
+        if tag == 'endCutscene' then
+            if smokerExplodes == false or isPlayerShooting == true then
+                cutsceneFinished = true
+                startCountdown()
+                setProperty('camHUD.alpha', 1)
+                cancelTimer('beatHit')
+            end
+            if smokerExplodes == true then
+                if shadersEnabled == true then
+                    removeSpriteShader('cigarette')
                 end
-                for i = 0, getProperty('unspawnNotes.length') - 1 do
-                    if getPropertyFromGroup('unspawnNotes', i, 'mustPress') == false then
-                        setPropertyFromGroup('unspawnNotes', i, 'ignoreNote', true)
+                setProperty('cigarette.visible', false)
+                removeLuaSprite('cigarette')
+                if isPlayerShooting == true then
+                    if shadersEnabled == true then
+                        removeSpriteShader('dopplegangerPlayer')
                     end
+                    setProperty('dopplegangerPlayer.visible', false)
+                    removeLuaSprite('dopplegangerPlayer')   
+
+                    setProperty('boyfriend.visible', true)
+                    setProperty('opponentVocals.volume', 0)
+                    for i = 0, getProperty('notes.length') - 1 do
+                        if getPropertyFromGroup('notes', i, 'mustPress') == false then
+                            setPropertyFromGroup('notes', i, 'ignoreNote', true)
+                        end
+                    end
+                    for i = 0, getProperty('unspawnNotes.length') - 1 do
+                        if getPropertyFromGroup('unspawnNotes', i, 'mustPress') == false then
+                            setPropertyFromGroup('unspawnNotes', i, 'ignoreNote', true)
+                        end
+                    end
+                else
+                    setProperty('dopplegangerOpponent.visible', false)
+                    setProperty('dad.visible', true)
+                    runTimer('fadeOutScreen', 1)
+                    runTimer('goBackToMenu', 2)
                 end
             else
+                if shadersEnabled == true then
+                    removeSpriteShader('bloodPool')
+                    removeSpriteShader('dopplegangerPlayer')
+                    removeSpriteShader('dopplegangerOpponent')
+                end
+                setProperty('bloodPool.visible', false)
+                setProperty('dopplegangerPlayer.visible', false)
                 setProperty('dopplegangerOpponent.visible', false)
+                removeLuaSprite('bloodPool')
+                removeLuaSprite('dopplegangerPlayer')
+                removeLuaSprite('dopplegangerOpponent')
+
+                setProperty('boyfriend.visible', true)
                 setProperty('dad.visible', true)
-                runTimer('fadeOutScreen', 1)
-                runTimer('goBackToMenu', 2)
             end
-        else
-            setProperty('dopplegangerPlayer.visible', false)
-            setProperty('boyfriend.visible', true)
-            setProperty('dopplegangerOpponent.visible', false)
-            setProperty('dad.visible', true)
         end
-    end
-    if tag == 'fadeOutScreen' then
-        cameraFade('game', '000000', 1)
-    end
-    if tag == 'goBackToMenu' then
-        endSong()
+        if tag == 'fadeOutScreen' then
+            cameraFade('game', '000000', 1)
+        end
+        if tag == 'goBackToMenu' then
+            endSong()
+        end
     end
 end
 
 function onUpdate(elapsed)
-    if getProperty('dopplegangerOpponent.anim.finished') then
-        if getProperty('dopplegangerOpponent.anim.curSymbol.name') == 'explode' then
-            playAnim('dopplegangerOpponent', 'explode-loop')
+    if luaSpriteExists('dopplegangerOpponent') then
+        if getProperty('dopplegangerOpponent.anim.finished') then
+            if getProperty('dopplegangerOpponent.anim.curSymbol.name') == 'explode' then
+                playAnim('dopplegangerOpponent', 'explode-loop')
+            end
         end
     end
-    if getProperty('dopplegangerPlayer.anim.finished') then
-        if getProperty('dopplegangerPlayer.anim.curSymbol.name') == 'explode' then
-            playAnim('dopplegangerPlayer', 'explode-loop')
+    if luaSpriteExists('dopplegangerPlayer') then
+        if getProperty('dopplegangerPlayer.anim.finished') then
+            if getProperty('dopplegangerPlayer.anim.curSymbol.name') == 'explode' then
+                playAnim('dopplegangerPlayer', 'explode-loop')
+            end
         end
     end
-    if getProperty('bloodPool.anim.curFrame') >= getProperty('bloodPool.anim.length') - 1 then
-        callMethod('bloodPool.anim.pause')
+    if luaSpriteExists('bloodPool') then
+        if getProperty('bloodPool.anim.curFrame') >= getProperty('bloodPool.anim.length') - 1 then
+            callMethod('bloodPool.anim.pause')
+        end
     end
+end
+
+local holdingTime = 0
+function onUpdatePost(elapsed)
+    if cutsceneFinished == false and seenCutscene == false then
+        if keyPressed('accept') and canSkip == true then
+            holdingTime = math.max(0, math.min(1, holdingTime + elapsed))
+        elseif holdingTime > 0 then
+            holdingTime = math.max(0, math.lerp(holdingTime, -0.1, math.bound(elapsed * 3, 0, 1)))
+        end
+        setProperty('skipSprite.amount', math.min(1, math.max(0, (holdingTime / 1) * 1.025)))
+        setProperty('skipSprite.alpha', math.remapToRange(getProperty('skipSprite.amount'), 0.025, 1, 0, 1))
+
+        if holdingTime >= 1 then
+            removeLuaSprite('skipSprite', false)
+            cutsceneFinished = true
+            stopSound(nil)
+            for i = 1, 5 do
+                if luaSoundExists('cutsceneSound'..i) then
+                    stopSound('cutsceneSound'..i)
+                end
+            end
+            setProperty('camHUD.alpha', 1)
+            setProperty('dad.visible', true)
+            setProperty('boyfriend.visible', true)
+            
+            setDataFromSave('Pico_Mix_Variables', 'smokerExploded', false)
+            flushSaveData('Pico_Mix_Variables')
+            setUpFinishedCutscene()
+
+            startCountdown()
+            triggerEvent('Set Camera Target', 'Dad', '0')
+        end
+    end
+end
+
+function math.lerp(a, b, ratio)
+    return a + ratio * (b - a) 
+end
+
+function math.bound(value, min, max)
+    if value < min then
+        value = min
+    elseif value > max then
+        value = max
+    end
+    return value
+end
+
+function math.remapToRange(value, start1, stop1, start2, stop2)
+    return start2 + (value - start1) * ((stop2 - start2) / (stop1 - start1))
 end

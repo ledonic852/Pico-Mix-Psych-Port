@@ -14,6 +14,16 @@ function onCreatePost()
     setProperty('tankmanCutscene.visible', false)
     precacheSound('endCutsceneEnding')
 
+    if not luaSpriteExists('skipSprite') then
+        createInstance('skipSprite', 'flixel.addons.display.FlxPieDial', {0, 0, 40, FlxColor('WHITE'), nil, 40, true, 24})
+        callMethod('skipSprite.replaceColor', {FlxColor('BLACK'), FlxColor('TRANSPARENT')})
+        setObjectCamera('skipSprite', 'camOther')
+        addLuaSprite('skipSprite')
+        setProperty('skipSprite.x', screenWidth - (getProperty('skipSprite.width') + 80))
+        setProperty('skipSprite.y', screenHeight - (getProperty('skipSprite.height') + 72))
+        setProperty('skipSprite.amount', 0)
+    end
+
     if shadersEnabled == true then
         runHaxeCode([[
             import flixel.FlxCameraFollowStyle;
@@ -52,13 +62,32 @@ function onEndSong()
     end
 end
 
+local holdingTime = 0
 function onUpdatePost(elapsed)
-    if shadersEnabled == true then
-        runHaxeFunction('updateDropShadowShader')
+    if getProperty('inCutscene') == true then
+        if shadersEnabled == true then
+            runHaxeFunction('updateDropShadowShader')
+        end
+
+        if keyPressed('accept') then
+            holdingTime = math.max(0, math.min(1, holdingTime + elapsed))
+        elseif holdingTime > 0 then
+            holdingTime = math.max(0, math.lerp(holdingTime, -0.1, math.bound(elapsed * 3, 0, 1)))
+        end
+        setProperty('skipSprite.amount', math.min(1, math.max(0, (holdingTime / 1) * 1.025)))
+        setProperty('skipSprite.alpha', math.remapToRange(getProperty('skipSprite.amount'), 0.025, 1, 0, 1))
+
+        if holdingTime >= 1 then
+            removeLuaSprite('skipSprite')
+            cutsceneFinished = true    
+            stopSound('cutsceneSound')
+            endSong()
+        end
     end
 end
 
 function playCutscene()
+    addLuaSprite('skipSprite')
     setProperty('inCutscene', true)
     setProperty('dad.visible', false)
     setProperty('tankmanCutscene.visible', true)
@@ -66,7 +95,7 @@ function playCutscene()
     triggerEvent('Set Camera Target', 'Dad,290,-60', '2.8,expoOut')
     triggerEvent('Set Camera Zoom', '0.65', '2,expoOut')
     playAnim('tankmanCutscene', 'anim')
-    playSound('stressPicoCutsceneEnding')
+    playSound('stressPicoCutsceneEnding', 1, 'cutsceneSound')
     runTimer('picoAndNeneLaugh', 176 / 24)
     runTimer('startFade', 270 / 24)
     runTimer('endCutsceneEnding', 320 / 24)
@@ -107,4 +136,21 @@ function onTimerCompleted(tag, loops, loopsLeft)
         cutsceneFinished = true
         endSong()
     end
+end
+
+function math.lerp(a, b, ratio)
+    return a + ratio * (b - a) 
+end
+
+function math.bound(value, min, max)
+    if value < min then
+        value = min
+    elseif value > max then
+        value = max
+    end
+    return value
+end
+
+function math.remapToRange(value, start1, stop1, start2, stop2)
+    return start2 + (value - start1) * ((stop2 - start2) / (stop1 - start1))
 end
