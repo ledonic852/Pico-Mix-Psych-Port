@@ -3,17 +3,19 @@ function onCreate()
 	scaleObject('bar', 1.15, 1.15)
 	addLuaSprite('bar')
 
-	makeAnimatedLuaSprite('sniper', 'tankmanBattlefield/erect/sniper', -127, 349)
-	addAnimationByPrefix('sniper', 'idle', 'Tankmanidlebaked instance 1', 24, false)
-	addAnimationByPrefix('sniper', 'sip', 'tanksippingBaked instance 1', 24, false)
-	scaleObject('sniper', 1.15, 1.15)
-	addLuaSprite('sniper')
-	playAnim('sniper', 'idle')
+	if lowQuality == false then
+		makeAnimatedLuaSprite('sniper', 'tankmanBattlefield/erect/sniper', -127, 349)
+		addAnimationByPrefix('sniper', 'idle', 'Tankmanidlebaked instance 1', 24, false)
+		addAnimationByPrefix('sniper', 'sip', 'tanksippingBaked instance 1', 24, false)
+		scaleObject('sniper', 1.15, 1.15)
+		addLuaSprite('sniper')
+		playAnim('sniper', 'idle')
 
-	makeAnimatedLuaSprite('tankguy', 'tankmanBattlefield/erect/guy', 1398, 407)
-	addAnimationByPrefix('tankguy', 'idle', 'BLTank2 instance 1', 24, false)
-	scaleObject('tankguy', 1.15, 1.15)
-	addLuaSprite('tankguy')
+		makeAnimatedLuaSprite('tankguy', 'tankmanBattlefield/erect/guy', 1398, 407)
+		addAnimationByPrefix('tankguy', 'idle', 'BLTank2 instance 1', 24, false)
+		scaleObject('tankguy', 1.15, 1.15)
+		addLuaSprite('tankguy')
+	end
 
 	-- Sets and precaches the Tankman death voicelines.
 	if stringStartsWith(boyfriendName, 'pico') then
@@ -99,18 +101,37 @@ end
 	and also randomly make the sniper guy drink his cup.
 ]]
 sniperSpecialAnim = false
-function onBeatHit()
-	if getRandomBool(2) and sniperSpecialAnim == false then
-		playAnim('sniper', 'sip', true)
-		runTimer('sipAnimLength', getProperty('sniper.animation.curAnim.numFrames') / 24)
-		sniperSpecialAnim = true
-	end
-
-	if curBeat % 2 == 0 then
-		if sniperSpecialAnim == false then
-			playAnim('sniper', 'idle', true)
+function onCountdownTick(counter)
+	if lowQuality == false then
+		if getRandomBool(2) and sniperSpecialAnim == false then
+			playAnim('sniper', 'sip', true)
+			runTimer('sipAnimLength', getProperty('sniper.animation.curAnim.numFrames') / 24)
+			sniperSpecialAnim = true
 		end
-		playAnim('tankguy', 'idle', true)
+
+		if counter % 2 == 0 then
+			if sniperSpecialAnim == false then
+				playAnim('sniper', 'idle', true)
+			end
+			playAnim('tankguy', 'idle', true)
+		end
+	end
+end
+
+function onBeatHit()
+	if lowQuality == false then
+		if getRandomBool(2) and sniperSpecialAnim == false then
+			playAnim('sniper', 'sip', true)
+			runTimer('sipAnimLength', getProperty('sniper.animation.curAnim.numFrames') / 24)
+			sniperSpecialAnim = true
+		end
+
+		if curBeat % 2 == 0 then
+			if sniperSpecialAnim == false then
+				playAnim('sniper', 'idle', true)
+			end
+			playAnim('tankguy', 'idle', true)
+		end
 	end
 end
 

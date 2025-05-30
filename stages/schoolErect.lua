@@ -22,10 +22,12 @@ function onCreate()
 	addLuaSprite('schoolStreet')
 	setProperty('schoolStreet.antialiasing', false)
 
-	makeLuaSprite('treesBack', 'weeb/erect/weebTreesBack', -200, 6)
-	scaleObject('treesBack', 6, 6)
-	addLuaSprite('treesBack')
-	setProperty('treesBack.antialiasing', false)
+	if lowQuality == false then
+		makeLuaSprite('treesBack', 'weeb/erect/weebTreesBack', -200, 6)
+		scaleObject('treesBack', 6, 6)
+		addLuaSprite('treesBack')
+		setProperty('treesBack.antialiasing', false)
+	end
 
 	makeAnimatedLuaSprite('trees', 'weeb/erect/weebTrees', -806, -1050, 'packer')
 	addAnimation('trees', 'anim', {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18}, 12)
@@ -33,11 +35,13 @@ function onCreate()
 	addLuaSprite('trees')
 	setProperty('trees.antialiasing', false)
 
-	makeAnimatedLuaSprite('fallingPetals', 'weeb/erect/petals', -20, -40)
-	addAnimationByPrefix('fallingPetals', 'anim', 'PETALS ALL')
-	scaleObject('fallingPetals', 6, 6)
-	addLuaSprite('fallingPetals')
-	setProperty('fallingPetals.antialiasing', false)
+	if lowQuality == false then
+		makeAnimatedLuaSprite('fallingPetals', 'weeb/erect/petals', -20, -40)
+		addAnimationByPrefix('fallingPetals', 'anim', 'PETALS ALL')
+		scaleObject('fallingPetals', 6, 6)
+		addLuaSprite('fallingPetals')
+		setProperty('fallingPetals.antialiasing', false)
+	end
 
 	-- Default Game Over.
 	setPropertyFromClass('substates.GameOverSubstate', 'characterName', 'bf-pixel-dead')

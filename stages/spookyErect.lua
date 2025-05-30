@@ -44,6 +44,14 @@ function onCreatePost()
 		-- Need to set up those, or the rain will freak out completely
 		setShaderFloatArray('outdoorTrees', 'uScreenResolution', {screenWidth, screenHeight})
 		setShaderFloatArray('outdoorTrees', 'uCameraBounds', {0, 0, screenWidth, screenHeight})
+		runHaxeCode([[
+            import flixel.math.FlxAngle;
+            var outdoorTrees = getLuaObject('outdoorTrees');
+            outdoorTrees.animation.callback = function(name:String, frameNumber:Int, frameIndex:Int)
+            {
+                outdoorTrees.shader.setFloatArray('uFrameBounds', [outdoorTrees.frame.uv.x, outdoorTrees.frame.uv.y, outdoorTrees.frame.uv.width, outdoorTrees.frame.uv.height]);
+            }
+        ]])
     end
 
 	--[[
@@ -64,7 +72,6 @@ function onUpdate(elapsed)
     if shadersEnabled == true then
         elapsedTime = elapsedTime + elapsed
 		setShaderFloat('outdoorTrees', 'uTime', elapsedTime)
-		setShaderFloatArray('outdoorTrees', 'uFrameBounds', {getProperty('outdoorTrees.frame.uv.x'), getProperty('outdoorTrees.frame.uv.y'), getProperty('outdoorTrees.frame.uv.width'), getProperty('outdoorTrees.frame.uv.height')})
     end
 end
 
