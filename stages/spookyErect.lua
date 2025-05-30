@@ -45,8 +45,7 @@ function onCreatePost()
 		setShaderFloatArray('outdoorTrees', 'uScreenResolution', {screenWidth, screenHeight})
 		setShaderFloatArray('outdoorTrees', 'uCameraBounds', {0, 0, screenWidth, screenHeight})
 		runHaxeCode([[
-            import flixel.math.FlxAngle;
-            var outdoorTrees = getLuaObject('outdoorTrees');
+            var outdoorTrees = game.getLuaObject('outdoorTrees');
             outdoorTrees.animation.callback = function(name:String, frameNumber:Int, frameIndex:Int)
             {
                 outdoorTrees.shader.setFloatArray('uFrameBounds', [outdoorTrees.frame.uv.x, outdoorTrees.frame.uv.y, outdoorTrees.frame.uv.width, outdoorTrees.frame.uv.height]);

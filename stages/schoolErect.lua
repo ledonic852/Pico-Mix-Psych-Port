@@ -1,4 +1,5 @@
 function onCreate()
+	addHaxeLibrary('FlxAngle', 'flixel.math')
 	makeLuaSprite('sky', 'weeb/erect/weebSky', -164, -78)
 	setScrollFactor('sky', 0.2, 0.2)
 	scaleObject('sky', 6, 6)

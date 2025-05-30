@@ -1,4 +1,5 @@
 function onCreate()
+	addHaxeLibrary('FlxAngle', 'flixel.math')
 	makeLuaSprite('bar', 'tankmanBattlefield/erect/bg', -985, -805)
 	scaleObject('bar', 1.15, 1.15)
 	addLuaSprite('bar')
