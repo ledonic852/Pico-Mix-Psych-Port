@@ -22,7 +22,7 @@ end
     
     WARNING: The speaker can only get attached to BF, Dad, or GF type characters.
     Else, the offsets act as simple x and y positions.
-    Go check the Abot Speaker's script for more information at line 374.
+    Go check the 'abot-speaker' script for more information at line 385.
 ]]
 function onCreatePost()
     addLuaScript('characters/abot-speaker')

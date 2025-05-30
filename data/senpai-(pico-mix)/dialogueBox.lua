@@ -1,16 +1,25 @@
+--[[
+    WARNING!!!:
+    When using the dialogueBox in a song, 
+    make sure to set up these 4 variables underneath.
+    The rest will be handled by the script itself.
+]]
 dialogueBoxData = {
-    musicName = 'Lunchbox',
-    soundIntro = 'ANGRY_TEXT_BOX',
-    useMusic = true,
-    useSoundIntro = false
+    musicName = 'Lunchbox', -- The music that plays on loop during the dialogue.
+    soundIntro = 'ANGRY_TEXT_BOX', -- The sound that plays when the dialogue appears.
+    useMusic = true, -- Enables or not the music during the dialogue.
+    useSoundIntro = false -- Enables or not the sound when the dialogue appears.
 }
+-- This character will be on the right.
 bfDialogueData = {
-    name = 'pico',
+    name = 'pico', -- characterName
     expressions = {
+        -- expressionName = {x = offsetX, y = offsetY}
         normal = {x = 0, y = 0},
         peeved = {x = 50, y = 45}
     }
 }
+-- This character will be on the left.
 dadDialogueData = {
     name = 'senpai',
     expressions = {
@@ -18,6 +27,7 @@ dadDialogueData = {
         bwuh = {x = 10, y = 0}
     }
 }
+-- This character will be in the middle.
 gfDialogueData = {
     name = 'nene',
     expressions = {
@@ -133,7 +143,7 @@ end
 local dialogueData = {}
 local dialogueStarted = false
 local dialogueEnded = false
-local senpaiDisgusted = false
+local senpaiDisgusted = false -- Exclusive variable for this dialogue.
 function onUpdatePost(elapsed)
     if getProperty('inCutscene') == true and dialogueFinished == false then
         if getProperty('dialogueBox.animation.finished') == true and dialogueStarted == false then
@@ -163,6 +173,7 @@ function onUpdatePost(elapsed)
             end
         end
 
+        -- This is how the script detects when the current dialogue is finished.
         if dialogueEnded == false then
             if dialogueData.pausePos[1] ~= nil then
                 stopDialogue = dialogueData.pausePos[1] - 1
@@ -197,6 +208,13 @@ function onUpdatePost(elapsed)
     end
 end
 
+--[[
+    This function starts the next dialogue line.
+    Either it will reset the box to make the new dialogue appear,
+    or it will continue the dialogue if it has detected a seperation line
+    which is represented by this character '|' in the .txt file.
+    It also switches and/or changes the character's expression of this dialogue.
+]]
 function dialogueStart()
     if getProperty('dialogueText.paused') == false then
         dialogueData = getCurrentDialogueData()
@@ -222,6 +240,12 @@ function dialogueStart()
     end
 end
 
+--[[
+    This function skips the current dialogue to the next one.
+    It will either make the full text appear,
+    or will skip to the dialogue line breaker
+    represented by this character '|' in the .txt file.
+]]
 function dialogueSkip()
     if getProperty('dialogueText.paused') == false then
         if dialogueData.pausePos[1] ~= nil then
@@ -237,6 +261,10 @@ function dialogueSkip()
     dialogueEnded = true
 end
 
+--[[
+    This function ends the dialogue and closes the dialogue box,
+    skipping the current one if it hasn't been finished.
+]]
 function dialogueFinish()
     dialogueSkip()
     dialogueFinished = true
@@ -250,6 +278,12 @@ function dialogueFinish()
     runTimer('startGame', 1.5)
 end
 
+--[[
+    This function gets the current dialogue line,
+    the character and their expression.
+    It also checks if there are any breaker lines
+    that are represented by this character '|', and saves their position.
+]]
 function getCurrentDialogueData()
     local split = stringSplit(dialogueList[1], '::')
     table.remove(dialogueList, 1)
@@ -272,6 +306,7 @@ function getCurrentDialogueData()
     return {char = split[1], expression = split[2], text = split[3], pausePos = textPause}
 end
 
+-- This function is what makes the characters change their expression.
 function changeExpression(character, newExpression)
     local charSide = ''
     local charName = ''

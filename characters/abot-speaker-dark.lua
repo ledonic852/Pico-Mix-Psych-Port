@@ -156,8 +156,8 @@ function createSpeaker(attachedCharacter, offsetX, offsetY)
     end
 end
 
-local speakerActive = true
 -- Self explanatory. Nothing to add this time.
+local speakerActive = true
 function showSpeaker(value)
     for _, object in ipairs({'AbotSpeakerDark', 'AbotSpeakerBGDark', 'AbotPupilsDark', 'AbotEyesDark'}) do
         setProperty(object..'.visible', value)
@@ -347,6 +347,14 @@ function onUpdatePost(elapsed)
     setProperty('AbotPupilsDark.anim.framerate', 24 * playbackRate)
 end
 
+--[[
+    Exclusive function for the dark variant of the speaker.
+    This controls the look of the speaker when the lighting strikes 
+    in 'spookyErect' depending on the attached character's alpha.
+
+    More info inside the 'spookyErect' stage file, 
+    and the scripts used for the dark variants of characters.
+]]
 function translateAlpha(value)
     setShaderFloat('AbotSpeakerDark', 'fadeAmount', value)
     for bar = 1, 7 do
@@ -477,6 +485,7 @@ function visualizerOffsetY(bar)
     return offsetY
 end
 
+-- This handles which color to return between two set colors, depending on the factor.
 function interpolateColor(color1, color2, factor)
     redColor1 = color1 / (16^4)
     greenColor1 = (redColor1 - math.floor(redColor1)) * 256
@@ -493,6 +502,7 @@ function interpolateColor(color1, color2, factor)
     return math.floor(targetRed) * 16^4 + math.floor(targetGreen) * 16^2 + math.floor(targetBlue)
 end
 
+-- Ditto, but for float values.
 function interpolateFloat(value1, value2, factor)
     return (value2 - value1) * factor + value1
 end

@@ -30,7 +30,7 @@ function onCreate()
     --[[
         WARNING!!!
         Only set this variable to false if you want to set up specific shaders 
-        to each individual part of Abot. Else, refer to line 376 to know how to set shaders globally.
+        to each individual part of Abot. Else, refer to line 375 to know how to set shaders globally.
     ]]
     if getVar('trackShader') == nil then
         setVar('trackShader', true)
@@ -69,7 +69,7 @@ function createSpeaker(attachedCharacter, offsetX, offsetY)
     end
     
     makeAnimatedLuaSprite('AbotPixelSpeakers', 'characters/abot/pixel/aBotPixelSpeaker')
-    addAnimationByPrefix('AbotPixelSpeakers', 'idle', 'bop', 24, false)
+    addAnimationByPrefix('AbotPixelSpeakers', 'idle', 'danceLeft', 24, false)
     scaleObject('AbotPixelSpeakers', 6, 6)
     if characterType ~= '' then
         setObjectOrder('AbotPixelSpeakers', getObjectOrder(characterType..'Group'))
@@ -100,7 +100,7 @@ function createSpeaker(attachedCharacter, offsetX, offsetY)
     end
     
     makeAnimatedLuaSprite('AbotSpeakerPixel', 'characters/abot/pixel/aBotPixelBody')
-    addAnimationByPrefix('AbotSpeakerPixel', 'idle', 'bop', 24, false)
+    addAnimationByPrefix('AbotSpeakerPixel', 'idle', 'danceLeft', 24, false)
     scaleObject('AbotSpeakerPixel', 6, 6)
     if characterType ~= '' then
         setObjectOrder('AbotSpeakerPixel', getObjectOrder(characterType..'Group'))
@@ -182,8 +182,8 @@ function createSpeaker(attachedCharacter, offsetX, offsetY)
     end
 end
 
-local speakerActive = true
 -- Self explanatory. Nothing to add this time.
+local speakerActive = true
 function showSpeaker(value)
     for _, object in ipairs({'AbotSpeakerPixel', 'AbotPixelSpeakers', 'AbotSpeakerBGPixel', 'AbotHeadPixel'}) do
         setProperty(object..'.visible', value)

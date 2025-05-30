@@ -1,3 +1,4 @@
+-- This script's purpose is to make the introduction and call the dialogueBox script.
 function onCreate()
     if seenCutscene == false then
         makeLuaSprite('blackScreen')

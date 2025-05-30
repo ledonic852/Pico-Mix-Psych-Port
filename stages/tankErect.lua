@@ -15,6 +15,7 @@ function onCreate()
 	scaleObject('tankguy', 1.15, 1.15)
 	addLuaSprite('tankguy')
 
+	-- Sets and precaches the Tankman death voicelines.
 	if stringStartsWith(boyfriendName, 'pico') then
 		charVariant = '-pico'
 		maxVoicelines = 10
@@ -93,6 +94,10 @@ function onCreatePost()
 	end
 end
 
+--[[
+	This handles the tankmen bopping their heads on beat, 
+	and also randomly make the sniper guy drink his cup.
+]]
 sniperSpecialAnim = false
 function onBeatHit()
 	if getRandomBool(2) and sniperSpecialAnim == false then
@@ -109,6 +114,13 @@ function onBeatHit()
 	end
 end
 
+function onTimerCompleted(tag, loops, loopsLeft)
+	if tag == 'sipAnimLength' then
+		sniperSpecialAnim = false
+	end
+end
+
+-- Everything from here handles Tankman voiceline's when you die (skill issue dumbass). 
 startedDeathSound = false
 deathSoundEnded = false
 function onUpdate(elapsed)
@@ -127,12 +139,6 @@ end
 function onUpdatePost(elapsed)
 	if inGameOver == true and deathSoundEnded == false then
 		setSoundVolume(nil, 0.2)
-	end
-end
-
-function onTimerCompleted(tag, loops, loopsLeft)
-	if tag == 'sipAnimLength' then
-		sniperSpecialAnim = false
 	end
 end
 

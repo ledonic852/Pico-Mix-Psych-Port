@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TextureAtlas imagePath="spritesheet.png">
+<TextureAtlas imagePath="nenePixelKnifeToss.png">
 	<SubTexture name="knifetosscolor0000" x="0" y="0" width="60" height="67" frameX="0" frameY="0" frameWidth="60" frameHeight="67" />
 	<SubTexture name="knifetosscolor0001" x="0" y="0" width="60" height="67" frameX="0" frameY="0" frameWidth="60" frameHeight="67" />
 	<SubTexture name="knifetosscolor0002" x="61" y="0" width="60" height="67" frameX="0" frameY="0" frameWidth="60" frameHeight="67" />

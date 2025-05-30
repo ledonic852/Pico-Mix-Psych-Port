@@ -1,6 +1,7 @@
 local shootNotes = {}
 local runTankmen = {}
 function onCreate()
+    -- Creates the table using the 'picospeaker' chart.
     local songFormat = callMethodFromClass('backend.Paths', 'formatToSongPath', {songPath})
     local shootChart = callMethodFromClass('backend.Song', 'getChart', {'picospeaker', songFormat})
     for _, section in pairs(shootChart.notes) do
@@ -9,6 +10,7 @@ function onCreate()
         end
     end
 
+    -- Randomly spawns all the running tankmen for the song.
     if lowQuality == false then
         local tankNum = 0
         for i = 1, #shootNotes do
@@ -60,6 +62,7 @@ function onCreatePost()
 	end
 end
 
+-- Shooting and tankmen running behavior.
 function onUpdatePost(elapsed)
     updateTankman()
     if #shootNotes > 0 and getSongPosition() > shootNotes[1][1] then

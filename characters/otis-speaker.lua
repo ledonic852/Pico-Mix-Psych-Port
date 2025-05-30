@@ -13,10 +13,12 @@ function onCreatePost()
     
         WARNING: The speaker can only get attached to BF, Dad, or GF type characters.
         Else, the offsets act as simple x and y positions.
-        Go check the Abot Speaker's script for more information at line 374.
+        Go check the 'abot-speaker' script for more information at line 385.
     ]]
     addLuaScript('characters/abot-speaker')
     callScript('characters/abot-speaker', 'createSpeaker', {'otis-speaker', 5, 10}) -- {characterName, offsetX, offsetY}
+
+    -- Some extra code to set up the speaker's shader in the 'tankErect' stage.
     if curStage == 'tankErect' then
         setVar('trackShader', false) -- Check line 30 of 'abot-speaker' to know its use.
         if shadersEnabled == true then
@@ -40,6 +42,7 @@ function onCreatePost()
 	end
 end
 
+-- Everything underneath is for the muzzle flash when Otis shoots.
 function onUpdatePost(elapsed)
     local gfCurAnim = getProperty('gf.animation.curAnim.name')
     updateMuzzleFlash(gfCurAnim)

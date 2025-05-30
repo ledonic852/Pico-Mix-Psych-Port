@@ -62,6 +62,7 @@ function onEndSong()
     end
 end
 
+-- Skip cutscene behaviour.
 local holdingTime = 0
 function onUpdatePost(elapsed)
     if getProperty('inCutscene') == true then
@@ -125,13 +126,16 @@ function activateShader()
 end
 
 function onTimerCompleted(tag, loops, loopsLeft)
+    -- Pico and Nene laughs.
     if tag == 'picoAndNeneLaugh' then
         playAnim('boyfriend', 'laugh', true)
     end
+    -- Custscene starts fading.
     if tag == 'startFade' then
         triggerEvent('Set Camera Target', 'Dad,290,-360', '2,quadInOut')
         doTweenAlpha('fadeInScreen', 'blackScreen', 1, 2, 'linear')
     end
+    -- The cutscene ends.
     if tag == 'endCutsceneEnding' then
         cutsceneFinished = true
         endSong()

@@ -30,7 +30,7 @@ function onCreate()
     --[[
         WARNING!!!
         Only set this variable to false if you want to set up specific shaders 
-        to each individual part of Abot. Else, refer to line 376 to know how to set shaders globally.
+        to each individual part of Abot. Else, refer to line 385 to know how to set shaders globally.
     ]]
     if getVar('trackShader') == nil then
         setVar('trackShader', true)
@@ -172,8 +172,8 @@ function createSpeaker(attachedCharacter, offsetX, offsetY)
     end
 end
 
-local speakerActive = true
 -- Self explanatory. Nothing to add this time.
+local speakerActive = true
 function showSpeaker(value)
     for _, object in ipairs({'AbotSpeaker', 'AbotSpeakerBG', 'AbotPupils', 'AbotEyes'}) do
         setProperty(object..'.visible', value)

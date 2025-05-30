@@ -39,6 +39,7 @@ function onCreate()
 	addLuaSprite('fallingPetals')
 	setProperty('fallingPetals.antialiasing', false)
 
+	-- Default Game Over.
 	setPropertyFromClass('substates.GameOverSubstate', 'characterName', 'bf-pixel-dead')
 	setPropertyFromClass('substates.GameOverSubstate', 'deathSoundName', 'fnf_loss_sfx-pixel')
 	setPropertyFromClass('substates.GameOverSubstate', 'loopSoundName', 'gameOver-pixel')

@@ -1,3 +1,4 @@
+-- Everything here is to save the frames of each animation for the cutscene.
 local tastyRevengeFrames = {}
 local knockoffFrames = {}
 local dodgeBulletFrames = {}
@@ -42,6 +43,7 @@ for i = 0, 783 do
     end
 end
 
+-- The actual code for the cutscene from here.
 function onCreate()
     if seenCutscene == false then
         makeLuaSprite('tankmenDead', 'tankmanBattlefield/cutscenes/tankmenDead', 1517, 634)
@@ -183,6 +185,7 @@ function activateShader()
     end
 end
 
+-- Skip cutscene behaviour.
 local holdingTime = 0
 function onUpdatePost(elapsed)
     if cutsceneFinished == false and seenCutscene == false then
@@ -226,6 +229,7 @@ end
 local neneDanced = false
 function onTimerCompleted(tag, loops, loopsLeft)
     if cutsceneFinished == false then
+        -- This is to make the characters bop their head to the beat of the cutscene's music.
         if tag == 'beatHit' then
             if getProperty('neneIntro.anim.finished') then
                 if getProperty('neneIntro.anim.curSymbol.name') == 'anim1' then
@@ -255,32 +259,41 @@ function onTimerCompleted(tag, loops, loopsLeft)
                 end
             end
         end
+        -- Starts the cutscene with music and animations.
         if tag == 'startCutscene' then
             playAnim('tankmanIntro', 'anim1')
             playAnim('neneIntro', 'danceLeft')
+            playAnim('picoIntro', 'idle')
             setProperty('neneIntro.anim.curFrame', getProperty('neneIntro.anim.length') - 1)
+            setProperty('picoIntro.anim.curFrame', getProperty('picoIntro.anim.length') - 1)
             playSound('stressPicoCutsceneIntro', 1, 'cutsceneSound')
             runTimer('beatHit', 60 / 158, 0)
             activateShader()
         end
+        -- Camera zooms onto Nene.
         if tag == 'camFocusNene' then
             triggerEvent('Set Camera Target', 'Dad,350,-240', '1.5,quadOut')
             triggerEvent('Set Camera Zoom', '1.5,stage', '1.5,quadOut')
         end
+        -- The tankmen points their gun to Nene.
         if tag == 'tankmenGunpointsNene' then
             playAnim('neneIntro', 'anim1')
         end
+        -- Nene stabs one of the tankmen on the forehead.
         if tag == 'neneStabsTankmen' then
             triggerEvent('Set Camera Target', 'Dad,330,-240', '0.4,expoOut')
         end
+        -- Camera moves towards the incoming Otis.
         if tag == 'camFocusOtis' then
             triggerEvent('Set Camera Target', 'GF,-40,-400', '1.5,quadInOut')
             triggerEvent('Set Camera Zoom', '1.05,stage', '1.5,quadInOut')
         end
+        -- First part of the camera coming back to Pico.
         if tag == 'camFocusPico1' then
             triggerEvent('Set Camera Target', 'BF,200', '1.2,expoIn')
             triggerEvent('Set Camera Zoom', '1.4,stage', '1.2,expoIn')
         end
+        -- Pico ctaches Nene while Otis takes care of the tankmen.
         if tag == 'picoCatchesNene' then
             playAnim('picoIntro', 'anim')
             playAnim('tankmanIntro', 'anim2')
@@ -289,46 +302,57 @@ function onTimerCompleted(tag, loops, loopsLeft)
             setProperty('AbotPupilsCutscene.anim.curFrame', 0)
             callMethod('AbotPupilsCutscene.anim.pause')
         end
+        -- Second part of the camera coming back to Pico.
         if tag == 'camFocusPico2' then
             triggerEvent('Set Camera Target', 'BF,230,20', '1,quadOut')
         end
+        -- The tankman on the side starts to flicker.
         if tag == 'startTankmenFlicker' then
             setProperty('tankmenDead.visible', false)
             runTimer('tankmenFlicker1', 4 / 24, 4)
         end
+        -- The tankman is flickering.
         if tag == 'tankmenFlicker1' then
             setProperty('tankmenDead.visible', not getProperty('tankmenDead.visible'))
             if loopsLeft == 0 then
                 runTimer('tankmenFlicker2', 2 / 24, 4)
             end
         end
+        -- The tankman is gone. :(
         if tag == 'tankmenFlicker2' then
             setProperty('tankmenDead.visible', not getProperty('tankmenDead.visible'))
         end
+        -- Camera moves back to Tankman.
         if tag == 'camFocusTankman' then
             triggerEvent('Set Camera Target', 'Dad,160,-60', '1,expoInOut')
             triggerEvent('Set Camera Zoom', '1.2,stage', '1,expoInOut')
         end
+        -- Tankman mocks Otis in frustration.
         if tag == 'tankmanMocksOtis' then
             playAnim('tankmanIntro', 'anim2')
             playAnim('AbotPupilsCutscene', '', true)
         end
+        -- Otis shoots towards Tankman.
         if tag == 'otisShoots' then
             playAnim('neneIntro', 'anim2')
             runTimer('startBulletAnim', 20 / 24)
         end
+        -- Bullet gets shot.
         if tag == 'startBulletAnim' then
             triggerEvent('Set Camera Target', 'Dad,130,-60', '0.2,backOut')
             setProperty('bulletShot.visible', true)
             playAnim('bulletShot', 'anim')
         end
+        -- Tankman dodges the bullet.
         if tag == 'tankmanDodgesBullet' then
             playAnim('tankmanIntro', 'anim3')
         end
+        -- Camera comes back into position before game starts.
         if tag == 'resetCamPos' then
             triggerEvent('Set Camera Target', 'Dad', '2.5,quadInOut')
             triggerEvent('Set Camera Zoom', '1,stage', '2.5,quadInOut ')
         end
+        -- The cutscene ends.
         if tag == 'endCutsceneIntro' then
             cutsceneFinished = true
             setVar('cutsceneMode', false)

@@ -17,6 +17,7 @@ function onCreate()
 end
 
 function onCreatePost()
+    -- This is to make sure that the hardcoded WeekEnd 1 stages don't have a duplicate.
     if curStage == 'phillyStreets' or curStage == 'phillyBlazin' then
         if gfName == 'nene' then
             setCharacterX('gf', getCharacterX('gf') - 60)
@@ -24,9 +25,9 @@ function onCreatePost()
             callMethod('stages[0].abot.destroy')
         end
     elseif curStage == 'tankErect' then
+        -- Temporary fix to make Nene centered in this stage.
         if gfName == 'nene' then
             setCharacterX('gf', getCharacterX('gf') + 115)
-            setCharacterY('gf', getCharacterY('gf'))
         end
     end
     
@@ -36,10 +37,12 @@ function onCreatePost()
     
         WARNING: The speaker can only get attached to BF, Dad, or GF type characters.
         Else, the offsets act as simple x and y positions.
-        Go check the Abot Speaker's script for more information at line 374.
+        Go check the 'abot-speaker' script for more information at line 385.
     ]]
     addLuaScript('characters/abot-speaker')
     callScript('characters/abot-speaker', 'createSpeaker', {'nene', 0, 0}) -- {characterName, offsetX, offsetY}
+
+    -- Some extra code to set up the speaker's shader in the 'tankErect' stage.
     if curStage == 'tankErect' then
         setVar('trackShader', false) -- Check line 30 of 'abot-speaker' to know its use.
         if shadersEnabled == true then
@@ -126,7 +129,7 @@ end
     This function is what controls Nene's animations dependently of the player's health.
     When the player's health is low, Nene will smoothly go to her 'raiseKnife' anim.
     If the player gains enough health, Nene will go back to bopping her head.
-    Also, it also controls her animations when the train pasees by in 'philly' and 'phillyErect'.
+    It also controls her animations when the train pasees by in 'philly' and 'phillyErect'.
 ]]
 local animTrans = 0
 local blinkDelay = 3
@@ -207,7 +210,7 @@ function checkHairBlowState()
     elseif curStage == 'phillyErect' then
         trainStartedMoving = getVar('startedMoving')
     else
-        return
+        return -- Nothing lol
     end
 
     if trainStartedMoving == true and animTrans < 4 then

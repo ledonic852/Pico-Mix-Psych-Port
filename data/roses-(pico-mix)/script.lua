@@ -1,3 +1,4 @@
+-- This script's purpose is only to call the dialogueBox script.
 function onCreate()
     if seenCutscene == false then
         if not isRunning('custom_events/Set Camera Target') then

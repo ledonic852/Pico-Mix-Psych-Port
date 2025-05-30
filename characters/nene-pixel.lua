@@ -23,10 +23,12 @@ function onCreatePost()
     
         WARNING: The speaker can only get attached to BF, Dad, or GF type characters.
         Else, the offsets act as simple x and y positions.
-        Go check the Abot Speaker's script for more information at line 374.
+        Go check the 'abot-speaker-pixel' script for more information at line 375.
     ]]
     addLuaScript('characters/abot-speaker-pixel')
     callScript('characters/abot-speaker-pixel', 'createSpeaker', {'nene-pixel', 0, 0}) -- {characterName, offsetX, offsetY}
+
+    -- Some extra code to set up the speaker's shader in the 'schoolErect' stage.
     if curStage == 'schoolErect' then
         setVar('trackShader', false) -- Check line 30 of 'abot-speaker-pixel' to know its use.
         if shadersEnabled == true then

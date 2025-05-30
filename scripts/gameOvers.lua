@@ -2,10 +2,10 @@ local characterCheck = nil
 local useRetrySprite = true
 local useGfOverlay = true
 local gfOverlayProperties = {
-    offsetX = 0,
+    offsetX = 0, 
     offsetY = 0,
-    imageFile = '',
-    animationName = '',
+    imageFile = '', -- Image path file
+    animationName = '', -- .XML animation name
     isPixelSprite = false
 }
 
@@ -60,11 +60,13 @@ end
 
 local gfPos = {}
 function onGameOver()
+    -- This is to track the Gf character position for the Game Over.
     if characterCheck == true and useGfOverlay == true then
         gfPos = runHaxeFunction('getScreenPosition', {'gf'})
     end
 end
 
+-- Creates the extra Game Over assets, depending on the death set up.
 function onGameOverStart()
     if characterCheck == true then
         if useRetrySprite == true then
@@ -88,6 +90,7 @@ function onGameOverStart()
     end
 end
 
+-- Controls the extra assets behavior, depending on the death set up.
 function onUpdate(elapsed)
     if characterCheck == true and inGameOver == true then
         if useGfOverlay == true then
@@ -107,6 +110,7 @@ function onUpdate(elapsed)
     end
 end
 
+-- Makes the extra asset play the confirm anim, depending on the death set up.
 function onGameOverConfirm(isNotGoingToMenu)
     if isNotGoingToMenu == true and characterCheck == true then
         if useRetrySprite == true then
@@ -116,6 +120,7 @@ function onGameOverConfirm(isNotGoingToMenu)
     end
 end
 
+-- Sets up the gameover properties for the current character, and their variants.
 function setUpDeathProperties(characterName)
     setPropertyFromGameOver('characterName', 'pico-playable-dead')
     setPropertyFromGameOver('deathSoundName', 'fnf_loss_sfx-pico')

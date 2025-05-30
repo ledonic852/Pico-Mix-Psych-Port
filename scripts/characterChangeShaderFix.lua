@@ -1,3 +1,18 @@
+--[[
+    This script fixes an issue related to the 'Change Character' event.
+    If you used it when the character had shaders on, 
+    it would duplicate the character with a potential bugged shader,
+    and spawn the new character without the shaders.
+
+    DISCLAIMER!!!
+    Although this script is pretty useful for simple shaders,
+    you might have to reset some shader values in other scripts
+    to make your shaders work correctly.
+    (Just like in Stress (Pico Mix) with Tankman and the shadowDrop shader.)
+
+    Also, if you use this script in another mod, credits will be appreciated! - Ledonic
+]]
+
 local characterEventTiming = {}
 function onCreatePost()
     local index = 0

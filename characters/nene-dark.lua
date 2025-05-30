@@ -22,6 +22,8 @@ local propertyTracker = {
     {'antialiasing', nil},
     {'visible', nil}
 }
+
+-- Exclusive code for Nene: Calls her script file to avoid mixing the scripts into one.
 function onCreate()
     addLuaScript('characters/nene')
 end
@@ -36,6 +38,7 @@ function onCreatePost()
     setObjectOrder(characterType..'Light', getObjectOrder(characterType..'Group'))
     addInstance(characterType..'Light')    
 
+    -- Exclusive code for Nene: Calls the dark variant of Abot Speaker.
     addLuaScript('characters/abot-speaker-dark')
     callScript('characters/abot-speaker-dark', 'createSpeaker', {'nene-dark', 0, 0})
 end

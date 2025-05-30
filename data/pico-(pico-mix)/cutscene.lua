@@ -1,3 +1,4 @@
+-- Everything here is to save the frames of each animation for the dopplegangers.
 local shootPlayerFrames = {}
 local shootOpponentFrames = {}
 for i = 0, 300 do
@@ -26,6 +27,7 @@ for i = 577, 877 do
     cigaretteOpponentFrames[(i - 576)] = i
 end
 
+-- The actual code for the cutscene from here.
 function onCreate()
     initSaveData('Pico_Mix_Variables')
     
@@ -109,14 +111,14 @@ function playCutscene()
     setProperty('dad.visible', false)
     setUpCutscene()
     triggerEvent('Set Camera Target', 'None,'..tostring(inBetweenCamPos.x)..','..tostring(inBetweenCamPos.y), '0')
-    runTimer('startCutsceneMusic', 0.1)
+    runTimer('startCutscene', 0.1)
     runTimer('moveToSmoker', 4)
     runTimer('moveToShooter', 6.3)
     runTimer('moveBackToSmoker', 8.75)
     if smokerExplodes then
         runTimer('picoBleeds', 11.2)
     else
-        runTimer('picoSpitsCigarette', 11.5)
+        runTimer('picoSpitsCigarette', 11.6)
     end
     runTimer('endCutscene', 13)
 end
@@ -244,7 +246,7 @@ function startCutsceneAnim(isPlayerShooting, smokerExplodes)
         playAnim('doppleganger'..smoker, 'cigarette')
     end
 
-    runTimer('delayGasp', 0.3)
+    runTimer('delayGasp', 0.35)
     runTimer('picoPointsCigarette', 3.7)
     runTimer('picoShoots', 6.29)
     runTimer('picoSpinsGun', 10.33)
@@ -253,12 +255,14 @@ end
 local canSkip = true
 function onTimerCompleted(tag, loops, loopsLeft)
     if cutsceneFinished == false then
+        -- This is to make the characters bop their head to the beat of the cutscene's music.
         if tag == 'beatHit' then
             if getProperty('gf.animation.finished') then
                 characterDance('gf')
             end
         end
-        if tag == 'startCutsceneMusic' then
+        -- Starts the cutscene with music and animations.
+        if tag == 'startCutscene' then
             if smokerExplodes then
                 playMusic('cutscene2')
             else
@@ -267,9 +271,11 @@ function onTimerCompleted(tag, loops, loopsLeft)
             runTimer('beatHit', 60 / 150, 0)
             startCutsceneAnim(isPlayerShooting, smokerExplodes)
         end
+        -- This to time the gasp correctly with the dopplegangers' animation.
         if tag == 'delayGasp' then
             playSound('picoGasp', 1, 'cutsceneSound1')
         end
+        -- The Pico smoker points to his cigarette.
         if tag == 'picoPointsCigarette' then
             if smokerExplodes then
                 playSound('picoCigarette2', 1, 'cutsceneSound2')
@@ -277,18 +283,23 @@ function onTimerCompleted(tag, loops, loopsLeft)
                 playSound('picoCigarette', 1, 'cutsceneSound2')
             end
         end
+        -- The camera moves to the Pico smoker.
         if tag == 'moveToSmoker' then
             triggerEvent('Set Camera Target', 'None,'..tostring(smokerCamPos.x)..','..tostring(smokerCamPos.y))
         end
+        -- The Pico shooter points the gun and shoots towards the Pico smoker.
         if tag == 'picoShoots' then
             playSound('picoShoot', 1, 'cutsceneSound3')
         end
+        -- The camera moves to the Pico shooter.
         if tag == 'moveToShooter' then
             triggerEvent('Set Camera Target', 'None,'..tostring(shooterCamPos.x)..','..tostring(shooterCamPos.y))
         end
+        -- This is when the Pico smoker actually gets killed by the Pico shooter.
         if tag == 'picoFuckinDies' then
             playSound('picoExplode', 1, 'cutsceneSound4')
         end
+        -- The camera moves back to the Pico smoker.
         if tag == 'moveBackToSmoker' then
             canSkip = false
             triggerEvent('Set Camera Target', 'None,'..tostring(smokerCamPos.x)..','..tostring(smokerCamPos.y))
@@ -297,17 +308,21 @@ function onTimerCompleted(tag, loops, loopsLeft)
                 setProperty('gf.specialAnim', true)
             end
         end
+        -- The Pico shooter proudly spins his gun after shooting.
         if tag == 'picoSpinsGun' then
             playSound('picoSpin', 1, 'cutsceneSound5')
         end
+        -- That's for when the Pico smoker falls back and bleeds like a river.
         if tag == 'picoBleeds' then
             playAnim('bloodPool', 'poolAnim')
             setProperty('bloodPool.visible', true)
         end
+        -- That's for when the Pico smoker survives the shot and spits his cigarette.
         if tag == 'picoSpitsCigarette' then
             playAnim('cigarette', 'anim', true)
             setProperty('cigarette.visible', true)
         end
+        -- The cutscene ends, depending on what happened.
         if tag == 'endCutscene' then
             if smokerExplodes == false or isPlayerShooting == true then
                 cutsceneFinished = true
@@ -363,6 +378,7 @@ function onTimerCompleted(tag, loops, loopsLeft)
                 setProperty('dad.visible', true)
             end
         end
+        -- This is for when it's the player that gets shot.
         if tag == 'fadeOutScreen' then
             cameraFade('game', '000000', 1)
         end
@@ -372,6 +388,7 @@ function onTimerCompleted(tag, loops, loopsLeft)
     end
 end
 
+-- Looping and stopping anims for Atlas assets.
 function onUpdate(elapsed)
     if luaSpriteExists('dopplegangerOpponent') then
         if getProperty('dopplegangerOpponent.anim.finished') then
@@ -394,6 +411,7 @@ function onUpdate(elapsed)
     end
 end
 
+-- Skip cutscene behaviour.
 local holdingTime = 0
 function onUpdatePost(elapsed)
     if cutsceneFinished == false and seenCutscene == false then
