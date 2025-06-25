@@ -147,7 +147,8 @@ startedDeathSound = false
 deathSoundEnded = false
 function onUpdate(elapsed)
 	if inGameOver == true and startedDeathSound == false then
-		if getPropertyFromGameOver('boyfriend._lastPlayedAnimation') == 'firstDeath' then
+		curAnim = (getPropertyFromGameOver('boyfriend.animation.curAnim.name') or getPropertyFromGameOver('boyfriend.atlas.anim.curSymbol.name'))
+		if curAnim == 'firstDeath' then
 			animEnded = (getPropertyFromGameOver('boyfriend.animation.curAnim.finished') or getPropertyFromGameOver('boyfriend.atlas.anim.finished'))
 			if animEnded then
 				local jeffVariant = getRandomInt(1, maxVoicelines)

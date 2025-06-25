@@ -8,7 +8,7 @@
     Although this script is pretty useful for simple shaders,
     you might have to reset some shader values in other scripts
     to make your shaders work correctly.
-    (Just like in Stress (Pico Mix) with Tankman and the shadowDrop shader.)
+    (Just like in Stress (Pico Mix) with Tankman and the dropShadow shader.)
 
     Also, if you use this script in another mod, credits will be appreciated! - Ledonic
 ]]

@@ -40,10 +40,6 @@ function onCreatePost()
         setShaderFloat('outdoorTrees', 'uIntensity', 0.4)
         setShaderBool('outdoorTrees', 'uSpriteMode', true)
 		setShaderFloatArray('outdoorTrees', 'uRainColor', {102 / 255, 128 / 255, 204 / 255})
-
-		-- Need to set up those, or the rain will freak out completely
-		setShaderFloatArray('outdoorTrees', 'uScreenResolution', {screenWidth, screenHeight})
-		setShaderFloatArray('outdoorTrees', 'uCameraBounds', {0, 0, screenWidth, screenHeight})
 		runHaxeCode([[
             var outdoorTrees = game.getLuaObject('outdoorTrees');
             outdoorTrees.animation.callback = function(name:String, frameNumber:Int, frameIndex:Int)
@@ -51,6 +47,10 @@ function onCreatePost()
                 outdoorTrees.shader.setFloatArray('uFrameBounds', [outdoorTrees.frame.uv.x, outdoorTrees.frame.uv.y, outdoorTrees.frame.uv.width, outdoorTrees.frame.uv.height]);
             }
         ]])
+
+		-- Need to set up those, or the rain will freak out completely
+		setShaderFloatArray('outdoorTrees', 'uScreenResolution', {screenWidth, screenHeight})
+		setShaderFloatArray('outdoorTrees', 'uCameraBounds', {0, 0, screenWidth, screenHeight})
     end
 
 	--[[
