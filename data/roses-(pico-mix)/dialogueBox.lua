@@ -172,7 +172,7 @@ function onUpdatePost(elapsed)
         -- This is how the script detects when the current dialogue is finished.
         if dialogueEnded == false then
             if dialogueData.pausePos[1] ~= nil then
-                stopDialogue = dialogueData.pausePos[1] - 1
+                stopDialogue = dialogueData.pausePos[1]
             else
                 stopDialogue = getProperty('dialogueText._finalText.length')
             end
@@ -263,29 +263,32 @@ end
 --[[
     This function gets the current dialogue line,
     the character and their expression.
-    It also checks if there are any breaker lines
+    It also checks if there are any pause during the dialogue
     that are represented by this character '|', and saves their position.
 ]]
 function getCurrentDialogueData()
     local split = stringSplit(dialogueList[1], '::')
     table.remove(dialogueList, 1)
 
-    local dialogue = split[3]
-    local textPause = {}
-    local pause = dialogue:find('|')
-    local lastPause = 1
-    while pause ~= nil do
-        table.insert(textPause, pause)
-        dialogue:gsub('|', '', 1)
-        lastPause = textPause[#textPause]
-        pause = dialogue:find('|', lastPause + 1)
-    end
+    runHaxeCode([[
+        function detectPause(dialogue:String) {
+            var result:Array<Int> = [];
+            var pause = dialogue.indexOf("|");
+            
+            while (pause != -1) {
+                result.push(pause);
+                pause = dialogue.indexOf("|", pause + 1);
+            }
 
-    for i = 1, #textPause do
-        textPause[i] = textPause[i] - (i - 1)
-    end
-    
-    return {char = split[1], expression = split[2], text = split[3], pausePos = textPause}
+            if (result[0] != null) {
+                for (i in 0...result.length) result[i] -= i;
+            }
+
+            return result;
+        }
+    ]])
+
+    return {char = split[1], expression = split[2], text = split[3], pausePos = runHaxeFunction('detectPause', {split[3]})}
 end
 
 -- This function is what makes the characters change their expression.
